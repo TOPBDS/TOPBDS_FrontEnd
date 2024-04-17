@@ -1,0 +1,83 @@
+import styled from "styled-components";
+
+export const HeaderStyle = styled.div`
+    width: 100%;
+    height: 80px;
+    
+    background: #FFFFFF;
+    border-bottom: 1px solid #D5D7DD;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const SubHeaderStyle = styled.div`
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 48px;
+
+    background: #FFFFFF;
+    border-bottom: 1px solid #D5D7DD;
+`
+
+export const HeaderMenuStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 40px;
+`
+
+export const HeaderMenuItemStyle = styled.div`
+    width: 100px;
+    height: 80px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    font-size: 14px;
+    margin: 8px;
+`
+
+export const SubHeaderMenuStyle = styled.div`
+    display: flex;
+    flex-direction: row;    
+    align-items: center;
+`
+
+export const SubHeaderMenuItemStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 10px;
+
+    width: 126px;
+    height: 32px;
+
+    background: #03C6CE;
+    border-radius: 16px;
+
+    color: #fff;
+
+    margin: 8px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+`
+
+export const LogoImageStyle = styled.img`
+    width: 160.52px;
+    height: 48px;
+
+    margin-left: 40px;
+`
