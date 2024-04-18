@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HouseListStyle = styled.div`
     position: absolute;
-    width: 520px;
+    width: 410px;
     left: 0px;
     top: 128px;
 
@@ -32,7 +32,7 @@ export const HosueItemListStyle = styled.div`
 
 export const HouseDetailStyle = styled.div`
     position: absolute;
-    width: 520px;
+    width: 410px;
     height: 952px;
     left: 520px;
     top: 128px;
@@ -47,7 +47,7 @@ export const HouseSearchStyle = styled.div`
     padding: 16px;
     gap: 10px;
 
-    width: 520px;
+    width: 410px;
     height: 88px;
 
     background: #FFFFFF;
@@ -78,7 +78,7 @@ export const HouseSearchItemStyle = styled.input`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
-    width: 520px;
+    width: 410px;
     height: 234px;
 
     border-right: 1px solid #D5D7DD;
