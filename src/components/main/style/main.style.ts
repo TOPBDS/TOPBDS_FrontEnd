@@ -53,7 +53,7 @@ export const HouseSearchStyle = styled.div`
     background: #FFFFFF;
 `
 
-export const HouseSearchItemStyle = styled.div`
+export const HouseSearchItemStyle = styled.input`
     box-sizing: border-box;
 
     display: flex;
