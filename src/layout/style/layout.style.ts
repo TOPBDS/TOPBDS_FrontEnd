@@ -60,7 +60,7 @@ export const SubHeaderMenuItemStyle = styled.div`
     padding: 6px 16px;
     gap: 10px;
 
-    width: 126px;
+    width: fit-content;
     height: 32px;
 
     background: #03C6CE;
