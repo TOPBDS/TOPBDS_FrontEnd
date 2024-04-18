@@ -50,6 +50,10 @@ export const SubHeaderMenuStyle = styled.div`
     display: flex;
     flex-direction: row;    
     align-items: center;
+    gap: 0.5rem;
+
+    margin: 8px;
+    margin-left: 16px
 `
 
 export const SubHeaderMenuItemStyle = styled.div`
@@ -67,8 +71,6 @@ export const SubHeaderMenuItemStyle = styled.div`
     border-radius: 16px;
 
     color: #fff;
-
-    margin: 8px;
 
     flex: none;
     order: 0;
