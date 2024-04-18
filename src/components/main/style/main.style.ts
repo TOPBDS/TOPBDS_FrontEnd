@@ -63,7 +63,7 @@ export const HouseSearchItemStyle = styled.input`
     padding: 16px;
     gap: 101px;
 
-    width: 472px;
+    width: 100%;
     height: 56px;
 
     background: #FFFFFF;
@@ -89,10 +89,25 @@ export const HouseListItemStyle = styled.div`
     flex-grow: 0;
 `
 
+export const HouseItemTopStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
 export const HouseItemStyle = styled.div`
     display: flex;
     flex-direction: column;
     margin: 20px;
+`
+
+export const HouseImageStyle = styled.div`
+    width: 80px;
+    height: 80px;
+
+    margin: 20px;
+
+    background: #F1F2F4;
 `
 
 export const HouseItemTitle = styled.p`
@@ -142,7 +157,7 @@ export const HouseItemType = styled.p`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
 
@@ -156,7 +171,7 @@ export const HouseItemInfo = styled.p`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
 
@@ -193,4 +208,26 @@ export const HouseItemNumber = styled.p`
     flex-grow: 0;
 
     margin-top: 24px;
+`
+
+export const HouseItemRecommendButtonStyle = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 80px;
+    gap: 10px;
+
+    position: absolute;
+    top: 750px;
+    z-index: 10;
+    
+    width: 362px;
+    height: 48px;
+    
+    background: #03C6CE;
+    border-radius: 8px;
+    border: none;
+
+    color: #fff;
 `
