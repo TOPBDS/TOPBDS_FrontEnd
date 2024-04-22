@@ -6,6 +6,8 @@ import Main from './pages/main/Main';
 import Profile from './pages/profile/Profile';
 import Blog from './pages/blog/Blog';
 import Report from './pages/report/Report';
+import Login from './pages/auth/login/Login';
+import Register from './pages/auth/register/Register';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path='/my' element={<Profile />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/blog' element={<Blog />} />
           <Route path='/report' element={<Report />} />
           <Route path='/search' element={<Main />} />
