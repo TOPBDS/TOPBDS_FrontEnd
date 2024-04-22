@@ -111,11 +111,11 @@ export const VerifyNumberInput = styled.input`
 `
 
 
-export const NumberVerifyButton = styled.button`
+export const NumberVerifyButton = styled.button<{ inverted: boolean }>`
     width: 52px;
     height: 48px;
 
-    background: #9DA3AF;
+    background: ${props => props.inverted ? '#9DA3AF' : '#03C6CE'};
     border-radius: 8px;
 
     color: #FFFFFF;
@@ -125,7 +125,7 @@ export const NumberVerifyButton = styled.button`
     margin-bottom: 16px;
 `
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled.button<{ inverted: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -136,7 +136,7 @@ export const RegisterButton = styled.button`
     width: 300px;
     height: 48px;
 
-    background: #9DA3AF;
+    background: ${props => props.inverted ? '#9DA3AF' : '#03C6CE'};
     border-radius: 8px;
 
     color: #FFFFFF;

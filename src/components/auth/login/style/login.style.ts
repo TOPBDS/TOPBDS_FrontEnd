@@ -67,7 +67,7 @@ export const LoginInput = styled.input`
     margin-bottom: 16px;
 `
 
-export const LoginButton = styled.button`
+export const LoginButton = styled.button<{ inverted: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -78,7 +78,7 @@ export const LoginButton = styled.button`
     width: 300px;
     height: 48px;
 
-    background: #9DA3AF;
+    background: ${props => props.inverted ? '#9DA3AF' : '#03C6CE'};
     border-radius: 8px;
 
     color: #FFFFFF;
