@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HouseListStyle = styled.div`
     position: absolute;
-    width: 410px;
+    width: 25.625rem;
     left: 0px;
     top: 128px;
 
@@ -32,7 +32,7 @@ export const HosueItemListStyle = styled.div`
 
 export const HouseDetailStyle = styled.div`
     position: absolute;
-    width: 410px;
+    width: 25.625rem;
     height: 952px;
     left: 520px;
     top: 128px;
@@ -42,13 +42,15 @@ export const HouseDetailStyle = styled.div`
 
 export const HouseSearchStyle = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-    gap: 10px;
 
-    width: 410px;
-    height: 88px;
+    width: 23.625rem;
+    padding: 1rem;
+
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+
+    gap: 10px;
 
     background: #FFFFFF;
 `
@@ -188,7 +190,7 @@ export const HouseItemNumber = styled.p`
     padding: 4px 8px;
     gap: 10px;
 
-    width: 159px;
+    width: fit-content;
     height: 28px;
 
     background: #F1F2F4;
