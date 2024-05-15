@@ -1,4 +1,4 @@
-import "./styles/main.css";
+import "./style/main.css"; 
 import React from "react";
 import { HosueItemListStyle, HouseItemRecommendButtonStyle, HouseListStyle } from "./style/main.style";
 import HouseListItem from "./HouseListItem";

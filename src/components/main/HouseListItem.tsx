@@ -1,4 +1,4 @@
-import "./styles/main.css";
+import "./style/main.css"; 
 import { useNavigate } from "react-router-dom";
 import { HouseImageStyle, HouseItemContent, HouseItemInfo, HouseItemInfoStyle, HouseItemNumber, HouseItemPrice, HouseItemStyle, HouseItemTitle, HouseItemTopStyle, HouseItemType, HouseListItemStyle } from "./style/main.style";
 
