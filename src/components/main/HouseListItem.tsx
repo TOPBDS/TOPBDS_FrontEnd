@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { HouseImageStyle, HouseItemContent, HouseItemInfo, HouseItemInfoStyle, HouseItemNumber, HouseItemPrice, HouseItemStyle, HouseItemTitle, HouseItemTopStyle, HouseItemType, HouseListItemStyle } from "./style/main.style";
 
 const HouseListItem = () => {
+    const naviagte = useNavigate();
+
     return (
-        <HouseListItemStyle>
+        <HouseListItemStyle onClick={() => naviagte("/item/1")}>
             <HouseItemTopStyle>
                 <HouseItemStyle>
                         <HouseItemTitle>무슨무슨 아파트</HouseItemTitle>

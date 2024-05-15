@@ -8,6 +8,7 @@ import Blog from './pages/blog/Blog';
 import Report from './pages/report/Report';
 import Login from './pages/auth/login/Login';
 import Register from './pages/auth/register/Register';
+import HouseDetail from './components/main/HouseDetail';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/blog' element={<Blog />} />
           <Route path='/report' element={<Report />} />
           <Route path='/search' element={<Main />} />
+          <Route path='/item/:idx' element={<HouseDetail />} />
         </Routes>
       </Layout>
     </>

@@ -7,7 +7,6 @@ const Main: React.FC = () => {
     return (
         <MainContainer>
             <HouseList />
-            {/* <HouseDetail /> */}
         </MainContainer>
     )
 }

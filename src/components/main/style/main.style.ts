@@ -33,11 +33,23 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 410px;
-    height: 952px;
-    left: 520px;
+    
+    left: 0px;
     top: 128px;
 
-    background: #FFFFFF;
+    background-color: #fff;
+    border-right: 1px solid #D5D7DD;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 export const HouseSearchStyle = styled.div`
