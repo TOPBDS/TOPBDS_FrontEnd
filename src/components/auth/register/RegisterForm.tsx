@@ -1,3 +1,4 @@
+import "./style/register.css";
 import { ReactComponent as X} from "../../../assets/icon/x.svg";
 import { useNavigate } from "react-router-dom";
 import { NumberInput, NumberVerifyButton, NumberVerifyContainerStyle, RegisterButton, RegisterFormStyle, RegisterHeaderStyle, RegisterInput, RegisterInputContainerStyle, RegisterText, VerifyNumberInput } from "./style/register.style";

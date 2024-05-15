@@ -1,3 +1,4 @@
+import "./styles/main.css";
 import { HouseSearchItemStyle, HouseSearchStyle } from "./style/main.style";
 
 const HouseSearch = () => {

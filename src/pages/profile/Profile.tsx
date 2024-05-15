@@ -1,3 +1,4 @@
+import "./style/profile.css";
 import React from "react";
 import { ProfileContainer } from "./style/profile.style";
 

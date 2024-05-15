@@ -1,3 +1,4 @@
+import "./style/login.css";
 import { LoginButton, LoginFormStyle, LoginHeaderStyle, LoginInput, LoginInputContainerStyle, LoginText, RegisterText } from "./style/login.style";
 import { ReactComponent as X} from "../../../assets/icon/x.svg";
 import { useNavigate } from "react-router-dom";
