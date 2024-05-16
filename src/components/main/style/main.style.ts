@@ -55,7 +55,7 @@ export const HouseDetailStyle = styled.div`
 export const HouseSearchStyle = styled.div`
     display: flex;
 
-    width: 23.625rem;
+    width: 100%;
     padding: 1rem;
 
     justify-content: space-between;
@@ -75,18 +75,16 @@ export const HouseSearchItemStyle = styled.input`
     justify-content: space-between;
     align-items: flex-start;
     padding: 1rem;
-    gap: 101px;
 
     width: 100%;
-    height: 4rem;
 
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    font-size: 1rem;
+    line-height: 1.5rem
+    font-weight: 500;
 `
 
 export const HouseListItemStyle = styled.div`
