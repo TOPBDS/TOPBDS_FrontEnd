@@ -4,7 +4,7 @@ export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
     left: 0px;
-    top: 128px;
+    top: 8rem;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -33,9 +33,9 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height: 952px;
-    left: 520px;
-    top: 128px;
+    height: 59.5rem;
+    left: 32.5rem;
+    top: 8rem;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -74,11 +74,11 @@ export const HouseSearchItemStyle = styled.input`
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 16px;
+    padding: 1rem;
     gap: 101px;
 
     width: 100%;
-    height: 56px;
+    height: 4rem;
 
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
@@ -92,7 +92,7 @@ export const HouseSearchItemStyle = styled.input`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
-    width: 410px;
+    width: 25.625rem;
     height: 100%;
 
     border-right: 1px solid #D5D7DD;
@@ -116,10 +116,10 @@ export const HouseItemStyle = styled.div`
 `
 
 export const HouseImageStyle = styled.div`
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
 
-    margin: 20px;
+    margin: 2.25rem;
 
     background: #F1F2F4;
 `
