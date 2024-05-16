@@ -18,7 +18,7 @@ const HouseListItem = () => {
                     </HouseItemInfoStyle>
                     <HouseItemNumber>매물 추천 번호 : 123456</HouseItemNumber>
                 </HouseItemStyle>
-                <HouseImageStyle> </HouseImageStyle>
+                <HouseImageStyle></HouseImageStyle>
             </HouseItemTopStyle>
         </HouseListItemStyle>
     )

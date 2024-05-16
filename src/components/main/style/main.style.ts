@@ -84,7 +84,13 @@ export const HouseSearchItemStyle = styled.input`
 
     font-size: 1rem;
     line-height: 1.5rem
-    font-weight: 500;
+    font-weight 500;
+`
+
+export const HouseSearchIcon = styled.button`
+    background: url(../../../assets/icon/search.svg);
+    width: 1.5rem;
+    height: 1.5rem;
 `
 
 

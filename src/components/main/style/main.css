@@ -1,0 +1,67 @@
+/* 색상 */
+:root {
+    --aqua-9: #013537;
+    --aqua-8: #026669;
+    --aqua-7: #03969C;
+    --aqua-6: #03C6CE;
+    --aqua-5: #08F2FB;
+    --aqua-4: #3BF5FC;
+    --aqua-3: #6DF7FD;
+    --aqua-2: #A0FAFD;
+    --aqua-1: #D2FDFE;
+    
+    --gray-9: #22252A;
+    --gray-8: #393E46;
+    --gray-7: #505662;
+    --gray-6: #676F7E;
+    --gray-5: #818898; 
+    --gray-4: #9DA3AF; 
+    --gray-3: #B9BDC6; 
+    --gray-2: #D5D7DD; 
+    --gray-1: #F1F2F4; 
+
+    --black: #000;
+    --white: #FFF;
+
+    /* Core Color */
+
+    /* Primary */
+    --primary: var(--aqua-6);
+    --primary-enabled: var(--aqua-6);
+    --primary-disabled: var(--gray-2);
+    --primary-hover: var(--aqua-7);
+
+    /* BackGround */
+    --bg-gray-1: var(--gray-1);
+    --bg-gray-2: var(--gray-3);
+    --bg-gray-3: var(--gray-5);
+    --bg-white: var(--white);
+
+    /* Border */
+    --border-gray-1: var(--gray-2);
+    --border-gray-2: var(--gray-5);
+    --border-gray-3: var(--gray-9);
+    --border-primary: var(--primary);
+    --border-black: var(--black);
+    --border-white: var(--white);
+
+    /* Text */
+    --text-black: var(--gray-9);
+    --text-gray-1: var(--gray-6);
+    --text-gray-2: var(--gray-4);
+    --text-gray-3: var(--gray-2);
+    --text-white: var(--gray-1);
+
+    /* System */
+    --placeholder: var(--gray-3);
+    --check: #00F728;
+    --error: #FA3434;
+}
+
+.button-lg {
+    display: inline-flex;
+    padding: 0.875rem 5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+}
