@@ -93,7 +93,6 @@ export const HouseListItemStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    border-right: 1px solid #D5D7DD;
     border-bottom: 1px solid #D5D7DD;
 
     flex: none;
