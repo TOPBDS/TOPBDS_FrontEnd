@@ -87,10 +87,6 @@ export const HouseSearchItemStyle = styled.input`
     font-weight: 500;
 `
 
-export const HouseSearchIcon = styled.button`
-    width: 1.5rem;
-    height: 1.5rem;
-`
 
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
