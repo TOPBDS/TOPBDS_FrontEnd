@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 export const HouseDetailHeaderStyle = styled.div`
     box-sizing: border-box;
 
-    width: 410px;
-    height: 234px;
+    width: 25.625rem;
+    height: 100%;
 
     background-color: #d3d3d3;
 
@@ -14,6 +14,22 @@ export const HouseDetailHeaderStyle = styled.div`
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    padding: 1.5rem;
+
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem;
+`
+
+export const HouseDetailSortation = styled.div`
+    width: 100%;
+    height: 0.375rem;
+
+    background: #D9D9D9;
+
+    margin: 2rem 0;
 `
 
 export const HouseDetailUnsoldStyle = styled.div`
