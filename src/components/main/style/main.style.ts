@@ -54,38 +54,30 @@ export const HouseDetailStyle = styled.div`
 
 export const HouseSearchStyle = styled.div`
     display: flex;
-
+    align-items: center;
     width: 100%;
     padding: 1rem;
-
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-shrink: 0;
-
     gap: 10px;
-
     background: #FFFFFF;
-`
+`;
+
+export const HouseSearchItemContainer = styled.div`
+    position: relative;
+    width: 100%;
+`;
 
 export const HouseSearchItemStyle = styled.input`
     box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 1rem;
-
     width: 100%;
-
+    padding: 1rem;
+    padding-right: 2.5rem; // 아이콘 공간 확보
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
-
     font-size: 1rem;
-    line-height: 1.5rem
-    font-weight 500;
-`
+    line-height: 1.5rem;
+    font-weight: 500;
+`;
 
 export const HouseSearchIcon = styled.button`
     background: url(../../../assets/icon/search.svg);
