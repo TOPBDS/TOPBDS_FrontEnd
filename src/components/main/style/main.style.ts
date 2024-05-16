@@ -87,6 +87,11 @@ export const HouseSearchItemStyle = styled.input`
     font-weight: 500;
 `
 
+export const HouseSearchIcon = styled.button`
+    width: 1.5rem;
+    height: 1.5rem;
+`
+
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
@@ -161,7 +166,7 @@ export const HouseItemPrice = styled.p`
 export const HouseItemInfoStyle = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 `
 
 export const HouseItemType = styled.p`
@@ -176,6 +181,8 @@ export const HouseItemType = styled.p`
 
     margin-top: 4px;
     margin-right: 8px;
+
+    white-space: nowrap;
 `
 
 export const HouseItemInfo = styled.p`
