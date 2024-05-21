@@ -17,7 +17,7 @@ export const HouseDetailHeaderStyle = styled.div`
 
     padding: 1.5rem;
 
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.5rem;
