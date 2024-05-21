@@ -58,6 +58,32 @@
     --error: #FA3434;
 }
 
+:root {
+    --value-1: 0.25rem;
+    --value-2: 0.5rem;
+    --value-3: 1rem;
+    --value-4: 1.5rem;
+    --value-5: 2rem;
+    --value-6: 2.5rem;
+    --value-7: 3rem;
+
+    /* Gap */
+
+    --gap-1: var(--value-1);
+    --gap-2: var(--value-2);
+    --gap-3: var(--value-3);
+    --gap-4: var(--value-4);
+    --gap-5: var(--value-5);
+
+    /* Radius */
+
+    --radius-1: var(--value-1);
+    --radius-2: var(--value-2);
+    --radius-3: var(--value-3);
+    --radius-4: var(--value-4);
+    --radius-5: var(--value-5);
+}
+
 .button-lg {
     display: inline-flex;
     padding: 0.875rem 5rem;
@@ -75,8 +101,8 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     pointer-events: auto;
     z-index: 1;
 }
