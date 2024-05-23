@@ -1,13 +1,16 @@
 import "./style/main.css"; 
 import "./style/main-item.style"
 import { HouseDetailStyle } from "./style/main.style";
-import { HouseDetailAptReviewStyle, HouseDetailAptsPriceStyle, HouseDetailAptsStyle, HouseDetailHeaderStyle, HouseDetailPopulationChangeStyle, HouseDetailRankStyle, HouseDetailRecentlyDownFallAptStyle, HouseDetailRecentlyRiseAptStyle, HouseDetailSupplyVolumeStyle, HouseDetailUnsoldStyle, HouseDetailSortation } from "./style/main-item.style";
+import { HouseDetailAptReviewStyle, HouseDetailAptsPriceStyle, HouseDetailAptsStyle, HouseDetailHeaderStyle, HouseDetailPopulationChangeStyle, HouseDetailRankStyle, HouseDetailRecentlyDownFallAptStyle, HouseDetailRecentlyRiseAptStyle, HouseDetailSupplyVolumeStyle, HouseDetailUnsoldStyle, HouseDetailSortation, HouseCloseIcon, HouseHeader } from "./style/main-item.style";
 
 const HouseDetail = () => {
     return (
         <HouseDetailStyle>
             <HouseDetailHeaderStyle>
-                아파트 정보
+                <HouseHeader>
+                    아파트 정보
+                    <HouseCloseIcon className="close"/>
+                </HouseHeader>
             </HouseDetailHeaderStyle> 
             <HouseDetailSortation></HouseDetailSortation>
             <HouseDetailUnsoldStyle>
