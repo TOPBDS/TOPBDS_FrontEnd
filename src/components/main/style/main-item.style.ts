@@ -17,10 +17,31 @@ export const HouseDetailHeaderStyle = styled.div`
 
     padding: 1.5rem;
 
+    display: flex;
+    justify-content: space-between;
+`
+
+export const HouseHeader = styled.button`
+    width: 100%;
+    height: fit-content;
+
+    background: none;
+    border: none;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+`
+export const HouseCloseIcon = styled.button`
+    background: url(../../../assets/icon/close.svg);
+    width: 2rem;
+    height: 2rem;
 `
 
 export const HouseDetailSortation = styled.div`
