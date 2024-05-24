@@ -34,7 +34,7 @@ export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
     height: 59.5rem;
-    left: 32.5rem;
+    // left: 32.5rem;
     top: 8rem;
 
     background-color: #fff;

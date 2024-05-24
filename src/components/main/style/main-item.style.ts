@@ -18,7 +18,7 @@ export const HouseDetailHeaderStyle = styled.div`
     padding: 1.5rem;
 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 `
 
 export const HouseHeader = styled.button`
@@ -59,8 +59,6 @@ export const HouseDetailUnsoldStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    background-color: #f0f9;
-
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
@@ -81,8 +79,6 @@ export const HouseDetailPopulationChangeStyle = styled.div`
 
     width: 25.625rem;
     height: 100%;
-
-    background-color: #d6f6d6;
 
     padding: 1.5rem;
 
@@ -105,8 +101,6 @@ export const HouseDetailRankStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    background-color: #d32f3d;
-
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
@@ -127,8 +121,6 @@ export const HouseDetailSupplyVolumeStyle = styled.div`
 
     width: 25.625rem;
     height: 100%;
-
-    background-color: green;
 
     padding: 1.5rem;
 
@@ -151,8 +143,6 @@ export const HouseDetailRecentlyDownFallAptStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    background-color: blue;
-
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
@@ -173,8 +163,6 @@ export const HouseDetailRecentlyRiseAptStyle = styled.div`
 
     width: 25.625rem;
     height: 100%;
-
-    background-color: skyblue;
 
     padding: 1.5rem;
 
@@ -197,8 +185,6 @@ export const HouseDetailAptsStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    background-color: orange;
-
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
@@ -220,8 +206,6 @@ export const HouseDetailAptsPriceStyle = styled.div`
     width: 25.625rem;
     height: 100%;
 
-    background-color: grey;
-
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
@@ -242,8 +226,6 @@ export const HouseDetailAptReviewStyle = styled.div`
 
     width: 25.625rem;
     height: 100%;
-
-    background-color: #fff;
 
     padding: 1.5rem;
 
