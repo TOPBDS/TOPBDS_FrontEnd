@@ -22,7 +22,6 @@ export const HosueItemListStyle = styled.div`
     flex-direction: column;
     align-items: center;
 
-    max-height: 100vh;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -33,7 +32,7 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height: 59.5rem;
+    height: fit-content;
     // left: 32.5rem;
     top: 8rem;
 
@@ -89,11 +88,7 @@ export const HouseSearchIcon = styled.button`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
-<<<<<<< Updated upstream
     width: 25.625rem;
-=======
-    width: 410px;
->>>>>>> Stashed changes
     height: 100%;
 
     border-bottom: 1px solid #D5D7DD;

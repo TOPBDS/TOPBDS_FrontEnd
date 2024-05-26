@@ -4,12 +4,9 @@ export const HouseDetailHeaderStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
-
-    background-color: #d3d3d3;
+    height: fit-content;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -46,23 +43,22 @@ export const HouseCloseIcon = styled.button`
 
 export const HouseDetailSortation = styled.div`
     width: 100%;
-    height: 0.375rem;
-
+    height: 6px;
     background: #D9D9D9;
-
     margin: 2rem 0;
+
+    padding-top: 6px;
 `
 
 export const HouseDetailUnsoldStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -78,12 +74,11 @@ export const HouseDetailPopulationChangeStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -99,12 +94,11 @@ export const HouseDetailRankStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -120,12 +114,11 @@ export const HouseDetailSupplyVolumeStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -141,12 +134,11 @@ export const HouseDetailRecentlyDownFallAptStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -162,12 +154,11 @@ export const HouseDetailRecentlyRiseAptStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -183,12 +174,11 @@ export const HouseDetailAptsStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -204,12 +194,11 @@ export const HouseDetailAptsPriceStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
     padding: 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -225,12 +214,11 @@ export const HouseDetailAptReviewStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
+    height: fit-content;
 
-    padding: 1.5rem;
+    padding: 0 1.5rem;
 
     border-right: 1px solid #D5D7DD;
-    border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
