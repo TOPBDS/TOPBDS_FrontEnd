@@ -6,8 +6,6 @@ export const HouseDetailHeaderStyle = styled.div`
     width: 25.625rem;
     height: fit-content;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -58,8 +56,6 @@ export const HouseDetailUnsoldStyle = styled.div`
 
     padding: 1.5rem;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -77,8 +73,6 @@ export const HouseDetailPopulationChangeStyle = styled.div`
     height: fit-content;
 
     padding: 1.5rem;
-
-    border-right: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -98,8 +92,6 @@ export const HouseDetailRankStyle = styled.div`
 
     padding: 1.5rem;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -117,8 +109,6 @@ export const HouseDetailSupplyVolumeStyle = styled.div`
     height: fit-content;
 
     padding: 1.5rem;
-
-    border-right: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -138,8 +128,6 @@ export const HouseDetailRecentlyDownFallAptStyle = styled.div`
 
     padding: 1.5rem;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -157,8 +145,6 @@ export const HouseDetailRecentlyRiseAptStyle = styled.div`
     height: fit-content;
 
     padding: 1.5rem;
-
-    border-right: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
@@ -178,8 +164,6 @@ export const HouseDetailAptsStyle = styled.div`
 
     padding: 1.5rem;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -198,8 +182,6 @@ export const HouseDetailAptsPriceStyle = styled.div`
 
     padding: 1.5rem;
 
-    border-right: 1px solid #D5D7DD;
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -217,8 +199,6 @@ export const HouseDetailAptReviewStyle = styled.div`
     height: fit-content;
 
     padding: 0 1.5rem;
-
-    border-right: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;

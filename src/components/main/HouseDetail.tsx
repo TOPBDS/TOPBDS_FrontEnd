@@ -4,7 +4,7 @@ import { HouseDetailStyle } from "./style/main.style";
 import { HouseDetailAptReviewStyle, HouseDetailAptsPriceStyle, HouseDetailAptsStyle, HouseDetailHeaderStyle, HouseDetailPopulationChangeStyle, HouseDetailRankStyle, HouseDetailRecentlyDownFallAptStyle, HouseDetailRecentlyRiseAptStyle, HouseDetailSupplyVolumeStyle, HouseDetailUnsoldStyle, HouseDetailSortation, HouseHeader } from "./style/main-item.style";
 import { ReactComponent as HouseCloseIcon } from "../../assets/icon/close.svg";
 import { useNavigate } from "react-router-dom";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { ReactComponent as HouseSearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as HeartIcon } from "../../assets/icon/heart.svg";
@@ -89,12 +89,14 @@ const HouseDetail = () => {
                     </select>
                 </div>
                 <div className="chart">
-                    <BarChart width={600} height={300} data={data}>
-                        <XAxis dataKey="name" tick={renderCustomAxisTick} />
-                        <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#8884d8"
-                        label={renderCustomBarLabel}/>
-                    </BarChart>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data}>
+                            <XAxis dataKey="name" tick={renderCustomAxisTick} />
+                            <YAxis />
+                            <Bar dataKey="uv" barSize={30} fill="#8884d8"
+                            label={renderCustomBarLabel}/>
+                        </BarChart>        
+                    </ResponsiveContainer>
                 </div>
                 <div className="table">
                     <h3>99년 12월 ~ 24년 2월</h3>
@@ -153,12 +155,14 @@ const HouseDetail = () => {
                     <input type="radio" /> 년간
                 </div>
                 <div className="chart">
-                    <BarChart width={600} height={300} data={data}>
-                        <XAxis dataKey="name" tick={renderCustomAxisTick} />
-                        <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#8884d8"
-                        label={renderCustomBarLabel}/>
-                    </BarChart>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data}>
+                            <XAxis dataKey="name" tick={renderCustomAxisTick} />
+                            <YAxis />
+                            <Bar dataKey="uv" barSize={30} fill="#8884d8"
+                            label={renderCustomBarLabel}/>
+                        </BarChart>              
+                    </ResponsiveContainer>
                 </div>
                 <div className="table">
                     <TableContainer component={Paper}>
