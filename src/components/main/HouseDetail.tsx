@@ -8,6 +8,9 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { ReactComponent as HouseSearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as HeartIcon } from "../../assets/icon/heart.svg";
+import { ReactComponent as StarIcon } from "../../assets/icon/star.svg";
+import { ReactComponent as FillStarIcon } from "../../assets/icon/fill-star.svg";
+import React from "react";
 
 const HouseDetail = () => {
     const navigate = useNavigate();
@@ -51,6 +54,18 @@ const HouseDetail = () => {
     const renderCustomBarLabel = ({ payload, x, y, width, height, value }: any) => {
         return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
+
+    const chartData = [
+        {
+          name: "강남구 삼성동 삼성동센트럴아파트 416세대",
+          size: "64평 84.52m",
+          date: "24.04.24",
+          price1: "27억/12층",
+          price2: "32억/24층",
+          price3: "최고가 대비 5억 하락 (15%)",
+        },
+        // Add other rows as necessary
+    ];
 
     return (
         <HouseDetailStyle>
@@ -147,7 +162,7 @@ const HouseDetail = () => {
                 </div>
                 <div className="search">
                     <div className="search-container">
-                        <input type="text" className="search-input" />
+                        <input type="text" className="search-input" placeholder="지역명" />
                         <HouseSearchIcon className="search-icon"/>
                     </div>
                     <div className="radios">
@@ -313,6 +328,67 @@ const HouseDetail = () => {
                     <input type="radio" /> 분기
                     <input type="radio" /> 년간
                 </div>
+                <div className="locations">
+                    <div className="select-location"><input type="radio" checked/>대구</div>
+                    <button type="button" className="add-location">대체지역 추가</button>
+                    <button type="button" className="delete-location">전체 삭제</button>
+                </div>
+                <div className="chart-container">
+                    <span>24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data}>
+                            <XAxis dataKey="name" tick={renderCustomAxisTick} />
+                            <YAxis />
+                            <Bar dataKey="uv" barSize={30} fill="#8884d8"
+                            label={renderCustomBarLabel}/>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="range">
+                    <h3>90년 1월 ~ 28년 12월</h3>
+                    <input type="range" className="range-date" />
+                </div>
+                <div className="small-maps">
+                    지도
+                </div>
+                <TableContainer component={Paper}>
+                    <Table size="small" stickyHeader>
+                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}> 
+                            <TableRow>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }}>위치</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }}>단지명</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }}>입주년월</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }}>총세대</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell sx={{ textAlign: "center" }}>대구광역시 서..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>마포푸르지오..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>2023년 10월</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>1000세대</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell sx={{ textAlign: "center" }}>대구광역시 서..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>마포푸르지오..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>2023년 10월</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>1000세대</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell sx={{ textAlign: "center" }}>대구광역시 서..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>마포푸르지오..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>2023년 10월</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>1000세대</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell sx={{ textAlign: "center" }}>대구광역시 서..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>마포푸르지오..</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>2023년 10월</TableCell>
+                                <TableCell sx={{ textAlign: "center" }}>1000세대</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </HouseDetailSupplyVolumeStyle>
             <HouseDetailSortation></HouseDetailSortation>
             <HouseDetailRecentlyDownFallAptStyle>
@@ -321,12 +397,158 @@ const HouseDetail = () => {
                         <h4>최근 하락 아파트</h4>
                     </div>
                 </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>대구</option>
+                        <option value="daegu">대구</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>시군구</option>
+                        <option value="donggu">동구</option>
+                        <option value="seogu">서구</option>
+                        <option value="namgu">남구</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>읍/면/동</option>
+                        <option value="ansim1">안심1동</option>
+                        <option value="ansim2">안심2동</option>
+                        <option value="ansim34">안심3,4동</option>
+                    </select>
+                </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>세대수</option>
+                        <option value="100">100+세대</option>
+                        <option value="1000">1000+세대</option>
+                        <option value="10000">10000+세대</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>과거 최고가</option>
+                        <option value="1">1억 이상</option>
+                        <option value="2">5000만월 이상</option>
+                        <option value="3">1000만월 이상</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>전체 평점</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div className="radios">
+                    <input type="radio" /> 매매
+                    <input type="radio" /> 전세
+                    <input type="radio" /> 월세
+                    <select className="sub-country">
+                        <option defaultChecked>최근 1주일거래</option>
+                        <option value="5">최근 1달거래</option>
+                        <option value="4">최근 1년거래</option>
+                    </select>
+                </div>
+                <TableContainer component={Paper}>
+                    <Table size="small" stickyHeader>
+                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}>
+                        <TableRow>
+                            <TableCell sx={{ width: "25%", textAlign: "center" }}>단지명</TableCell>
+                            <TableCell sx={{ width: "25%", textAlign: "center" }}>면적</TableCell>
+                            <TableCell sx={{ width: "25%", textAlign: "center" }}>계약일</TableCell>
+                            <TableCell sx={{ width: "25%", textAlign: "center" }}>체결 가격</TableCell>
+                        </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {chartData.map((row, index) => (
+                            <React.Fragment key={index}>
+                                <TableRow>
+                                    <TableCell sx={{ textAlign: "center" }} rowSpan={4}>{row.name} 416세대</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} rowSpan={4}>{row.size}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell sx={{ textAlign: "center" }}>{row.date}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }}>{row.price1}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell sx={{ textAlign: "center" }}>{row.date}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }}>{row.price2}</TableCell>
+                                </TableRow>
+                                <TableCell sx={{ textAlign: "center" }} colSpan={2}>{row.price3}</TableCell>
+                            </React.Fragment>
+                        ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </HouseDetailRecentlyDownFallAptStyle>
             <HouseDetailSortation></HouseDetailSortation>
             <HouseDetailRecentlyRiseAptStyle>
                 <div className="header">
                     <div className="top">
                         <h4>최근 상승 아파트</h4>
+                    </div>
+                </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>대구</option>
+                        <option value="daegu">대구</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>시군구</option>
+                        <option value="donggu">동구</option>
+                        <option value="seogu">서구</option>
+                        <option value="namgu">남구</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>읍/면/동</option>
+                        <option value="ansim1">안심1동</option>
+                        <option value="ansim2">안심2동</option>
+                        <option value="ansim34">안심3,4동</option>
+                    </select>
+                </div>
+                <div className="radios">
+                    <input type="radio" /> 매매
+                    <input type="radio" /> 전세
+                    <input type="radio" /> 월세
+                </div>
+                <div className="item-list">
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">서울 강남구 개포동</span>
+                        </div>
+                        <span>74개동</span>
+                        <div className="price-info">
+                            <span>3,300만</span>
+                            <span>1억 500만 ➡️ 1억 3,800만</span>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">서울 강남구 개포동</span>
+                        </div>
+                        <span>74개동</span>
+                        <div className="price-info">
+                            <span>3,300만</span>
+                            <span>1억 500만 ➡️ 1억 3,800만</span>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">서울 강남구 개포동</span>
+                        </div>
+                        <span>74개동</span>
+                        <div className="price-info">
+                            <span>3,300만</span>
+                            <span>1억 500만 ➡️ 1억 3,800만</span>
+                        </div>
                     </div>
                 </div>
             </HouseDetailRecentlyRiseAptStyle>
@@ -337,6 +559,71 @@ const HouseDetail = () => {
                         <h4>여러 아파트 비교</h4>
                     </div>
                 </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>대구</option>
+                        <option value="daegu">대구</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>시군구</option>
+                        <option value="donggu">동구</option>
+                        <option value="seogu">서구</option>
+                        <option value="namgu">남구</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>읍/면/동</option>
+                        <option value="ansim1">안심1동</option>
+                        <option value="ansim2">안심2동</option>
+                        <option value="ansim34">안심3,4동</option>
+                    </select>
+                </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>아파트</option>
+                        <option value="100">강남 반포자이</option>
+                        <option value="1000">롯데캐슬</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>이름</option>
+                        <option value="1">이름</option>
+                        <option value="2">이름</option>
+                        <option value="3">이름</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>동</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div className="locations">
+                    <div className="select-location"><input type="radio" checked/>반포자이 (32평)</div>
+                    <button type="button" className="add-location">대체지역 추가</button>
+                    <button type="button" className="delete-location">전체 삭제</button>
+                </div>
+                <div className="radios">
+                    <input type="radio" /> 매매
+                    <input type="radio" /> 전세
+                    <input type="radio" /> 월세
+                </div>
+                <div className="chart-container">
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data}>
+                            <XAxis dataKey="name" tick={renderCustomAxisTick} />
+                            <YAxis />
+                            <Bar dataKey="uv" barSize={30} fill="#8884d8"
+                            label={renderCustomBarLabel}/>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="range">
+                    <h3>06년 1월 ~ 24년 12월</h3>
+                    <input type="range" className="range-date" />
+                </div>
             </HouseDetailAptsStyle>
             <HouseDetailSortation></HouseDetailSortation>
             <HouseDetailAptsPriceStyle>
@@ -345,12 +632,139 @@ const HouseDetail = () => {
                         <h4>매물 증감</h4>
                     </div>
                 </div>
+                <div className="chip-list">
+                    <div className="chip active">전체</div>
+                    <div className="chip">서울</div>
+                    <div className="chip">경기</div>
+                    <div className="chip">대구</div>
+                    <div className="chip">대전</div>
+                    <div className="chip">광주</div>
+                </div>
+                <div className="radios">
+                    <div className="items">
+                        <input type="radio" /> 매매
+                        <input type="radio" /> 전세
+                        <input type="radio" /> 월세
+                    </div>
+                    <div className="sort">
+                        <span>증가순</span>
+                        <span>감소순</span>
+                    </div>
+                </div>
+                <div className="chip-list">
+                    <div className="chip active">10일전</div>
+                    <div className="chip">7일전</div>
+                    <div className="chip">5일전</div>
+                    <div className="chip">3일전</div>
+                    <div className="chip">1일전</div>
+                </div>
+                <div className="item-list">
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">일별 매물현황</span>
+                        </div>
+                        <span>읍면동 비교</span>
+                        <div className="price-info">
+                            <span>-3.6%</span>
+                            <span>4,555건 &gt; 4,296건</span>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">일별 매물현황</span>
+                        </div>
+                        <span>읍면동 비교</span>
+                        <div className="price-info">
+                            <span>-3.6%</span>
+                            <span>4,555건 &gt; 4,296건</span>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <span className="rank">1</span>
+                        <div className="info">
+                            <span>아파트 이름</span>
+                            <span className="address">일별 매물현황</span>
+                        </div>
+                        <span>읍면동 비교</span>
+                        <div className="price-info">
+                            <span>-3.6%</span>
+                            <span>4,555건 &gt; 4,296건</span>
+                        </div>
+                    </div>
+                </div>
             </HouseDetailAptsPriceStyle>
             <HouseDetailSortation></HouseDetailSortation>
             <HouseDetailAptReviewStyle>
                 <div className="header">
                     <div className="top">
                         <h4>아파트 평점</h4>
+                    </div>
+                </div>
+                <div className="input-star">
+                    <div className="star-list">
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                    </div>
+                    <input type="text" placeholder="리뷰를 작성해주세요." />
+                </div>
+                <div className="comment-list">
+                    <div className="comment-item">
+                        <div className="user">
+                            <div className="icon"></div>
+                            <div className="data">
+                                <span className="nickname">dasdasdadasdad</span>
+                                <span className="date ">2345.67.89</span>
+                            </div>
+                            <div className="user-star">
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                            </div>
+                        </div>
+                        <span className="comment">alksjdflka</span>
+                    </div>
+                    <div className="comment-item">
+                        <div className="user">
+                            <div className="icon"></div>
+                            <div className="data">
+                                <span className="nickname">dasdasdadasdad</span>
+                                <span className="date ">2345.67.89</span>
+                            </div>
+                            <div className="user-star">
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                            </div>
+                        </div>
+                        <span className="comment">alksjdflka</span>
+                    </div>
+                    <div className="comment-item">
+                        <div className="user">
+                            <div className="icon"></div>
+                            <div className="data">
+                                <span className="nickname">dasdasdadasdad</span>
+                                <span className="date ">2345.67.89</span>
+                            </div>
+                            <div className="user-star">
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                                <FillStarIcon />
+                            </div>
+                        </div>
+                        <span className="comment">alksjdflka</span>
                     </div>
                 </div>
             </HouseDetailAptReviewStyle>
