@@ -3,7 +3,10 @@ import styled from "styled-components";
 export const HeaderStyle = styled.div`
     width: 100%;
     height: 80px;
-    
+    position:fixed;
+    z-index:999;
+    top:0px;
+    left:0px;
     background: #FFFFFF;
     border-bottom: 1px solid #D5D7DD;
 
@@ -18,6 +21,10 @@ export const SubHeaderStyle = styled.div`
 
     width: 100%;
     height: 48px;
+    position:fixed;
+    z-index:999;
+    top:80px;
+    left:0px;
 
     background: #FFFFFF;
     border-bottom: 1px solid #D5D7DD;
