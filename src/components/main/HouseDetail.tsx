@@ -148,9 +148,11 @@ const HouseDetail = () => {
                         <input type="text" className="search-input" />
                         <HouseSearchIcon className="search-icon"/>
                     </div>
-                    <input type="radio" /> 월간
-                    <input type="radio" /> 분기
-                    <input type="radio" /> 년간
+                    <div className="radios">
+                        <input type="radio" /> 월간
+                        <input type="radio" /> 분기
+                        <input type="radio" /> 년간
+                    </div>
                 </div>
                 <div className="chart">
                     <BarChart width={600} height={300} data={data}>
@@ -281,6 +283,31 @@ const HouseDetail = () => {
                         <h4>공급 물량</h4>
                         <span>출처 : 분양물량조사</span>
                     </div>
+                </div>
+                <div className="search">
+                    <div className="search-container">
+                        <input type="text" className="search-input" placeholder="지역명" />
+                        <HouseSearchIcon className="search-icon"/>
+                    </div>
+                </div>
+                <div className="select">
+                    <select className="country">
+                        <option defaultChecked>대구</option>
+                        <option value="daegu">대구</option>
+                        <option value="seoul">서울</option>
+                        <option value="busan">부산</option>
+                    </select>
+                    <select className="sub-country">
+                        <option defaultChecked>시군구</option>
+                        <option value="daegu">동구</option>
+                        <option value="seoul">서구</option>
+                        <option value="busan">남구</option>
+                    </select>
+                </div>
+                <div className="radios">
+                    <input type="radio" /> 월간
+                    <input type="radio" /> 분기
+                    <input type="radio" /> 년간
                 </div>
             </HouseDetailSupplyVolumeStyle>
             <HouseDetailSortation></HouseDetailSortation>
