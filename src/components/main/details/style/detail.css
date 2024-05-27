@@ -1,0 +1,209 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.item span {
+    margin: 0 10px 0 5px;
+    font-size: 12px;
+    color: #03C6CE;
+}
+
+.item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item .rank {
+    font-size: 14px;
+    color: #03C6CE;
+}
+
+.item .info .address {
+    font-size: 12px;
+    color: #9DA3AF;
+}
+
+.item .info span {
+    font-size: 14px;
+    color: #111;
+}
+
+.item .price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.chip-list {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.chip {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.chip:hover {
+    border-color: #aaa;
+}
+
+.chip.active {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+}
+
+.chip:not(.active) {
+    background-color: white;
+    color: black;
+}
+
+.radios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-list .comment-item {
+    width: 100%;
+    height: 80px;
+    margin: 10px 0 10px 0;
+}
+
+.comment-item .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment-item .user .data {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.comment-item .user .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #D9D9D9;
+    margin-right: 10px;
+}
+
+.comment-item .user .data .nickname {
+    font-size: 14px;
+}
+
+.comment-item .user .data .date {
+    font-size: 10px;
+    color: #9DA3AF;
+}
+
+/* HouseDetailAptReview (리뷰 작성) */
+.input-star {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-star .star-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.star-list .icon {
+    width: 35px;
+    height: 35px;
+}
+
+.input-star .input-review {
+    width: 360px;
+    height: 55px;
+    border: 1px solid #D5D7DD;
+    padding: 16px;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-list .item {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0px 10px 0px;
+}
+
+.review-list .item .user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-list .item .user .user-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-list .item .user .user-data div.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #111;
+}
+
+.review-list .item .user .user-data .data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+}
+
+.review-list .item .user .data .nickname {
+    font-size: 14px;
+    color: #111;
+}
+
+.review-list .item .user .data .date {
+    font-size: 10px;
+    color: #9DA3AF;
+}
+
+.review-list .item .user .user-star {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-list .item .user .user-star .icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+}
+
+.review-list .item .comment {
+    font-size: 14px;
+    color: #111;
+    margin-top: 10px;
+}

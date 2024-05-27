@@ -156,7 +156,7 @@ export const HouseDetailRecentlyRiseAptStyle = styled.div`
     line-height: 1.5rem;
 `
 
-export const HouseDetailAptsStyle = styled.div`
+export const HouseDetailCompareAptsStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
@@ -174,7 +174,7 @@ export const HouseDetailAptsStyle = styled.div`
     line-height: 1.5rem;
 `
 
-export const HouseDetailAptsPriceStyle = styled.div`
+export const HouseDetailAptsInDecreasePriceStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
