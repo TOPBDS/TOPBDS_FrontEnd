@@ -54,11 +54,11 @@ const HouseDetailAptsInDecreasePrice: React.FC = () => {
                         <span className="rank">{index + 1}</span>
                         <div className="info">
                             <span>{aptInDecreasePrice.name}</span>
-                            <span className="address">일별 매물현황</span>
+                            <span className="data">일별 매물현황</span>
                         </div>
                         <span>읍면동 비교</span>
                         <div className="price-info">
-                            <span>-{aptInDecreasePrice.inDecrease}</span>
+                            <span>{aptInDecreasePrice.inDecrease}</span>
                             <span>{aptInDecreasePrice.inDecreaseTo}</span>
                         </div>
                     </div>
