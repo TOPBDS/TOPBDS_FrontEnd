@@ -73,12 +73,12 @@ const HouseDetailPopulationChange: React.FC = () => {
                     <HouseSearchIcon className="search-icon"/>
                 </div>
                 <div className="radios">
-                    <input type="radio" /> 월간
-                    <input type="radio" /> 분기
-                    <input type="radio" /> 년간
+                    <input type="radio" className="radio" /> 월간
+                    <input type="radio" className="radio" /> 분기
+                    <input type="radio" className="radio" /> 년간
                 </div>
             </div>
-            <div className="chart">
+            <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />
@@ -87,24 +87,24 @@ const HouseDetailPopulationChange: React.FC = () => {
                     </BarChart>              
                 </ResponsiveContainer>
             </div>
-            <div className="table">
-                <TableContainer component={Paper}>
-                    <Table size="small" stickyHeader>
-                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}> 
-                            <TableRow>
-                                <TableCell sx={{ width: "25%", textAlign: "center" }}>지역</TableCell>
-                                <TableCell sx={{ width: "25%", textAlign: "center" }}>2년전 2022.04</TableCell>
-                                <TableCell sx={{ width: "25%", textAlign: "center" }}>1년전 2023.04</TableCell>
-                                <TableCell sx={{ width: "25%", textAlign: "center" }}>2024년 4월</TableCell>
+            <div className="tables">
+                <TableContainer component={Paper} className="table-container">
+                    <Table size="small" stickyHeader className="table">
+                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }} className="table-head"> 
+                            <TableRow className="table-row">
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">지역</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">2년전 2022.04</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">1년전 2023.04</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">2024년 4월</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody className="table-body">
                             {populationList && populationList.map((population) => 
-                                <TableRow>
-                                    <TableCell sx={{ textAlign: "center" }}>{population.location}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }}>{population.two}명</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }}>{population.one}명</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }}>{population.now}명</TableCell>
+                                <TableRow className="table-row">
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{population.location}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{population.two}명</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{population.one}명</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{population.now}명</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>

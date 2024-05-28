@@ -64,7 +64,7 @@ const HouseDetailCompareApts: React.FC = () => {
                     <option value="seogu">서구</option>
                     <option value="namgu">남구</option>
                 </select>
-                <select className="sub-country">
+                <select className="sub-country2">
                     <option defaultChecked>읍/면/동</option>
                     <option value="ansim1">안심1동</option>
                     <option value="ansim2">안심2동</option>
@@ -72,18 +72,18 @@ const HouseDetailCompareApts: React.FC = () => {
                 </select>
             </div>
             <div className="select">
-                <select className="country">
+                <select className="name">
                     <option defaultChecked>아파트</option>
                     <option value="100">강남 반포자이</option>
                     <option value="1000">롯데캐슬</option>
                 </select>
-                <select className="sub-country">
+                <select className="name2">
                     <option defaultChecked>이름</option>
                     <option value="1">이름</option>
                     <option value="2">이름</option>
                     <option value="3">이름</option>
                 </select>
-                <select className="sub-country">
+                <select className="dong">
                     <option defaultChecked>동</option>
                     <option value="5">5</option>
                     <option value="4">4</option>
@@ -98,9 +98,9 @@ const HouseDetailCompareApts: React.FC = () => {
                 <button type="button" className="delete-location">전체 삭제</button>
             </div>
             <div className="radios">
-                <input type="radio" /> 매매
-                <input type="radio" /> 전세
-                <input type="radio" /> 월세
+                <input type="radio" className="radio" /> 매매
+                <input type="radio" className="radio" /> 전세
+                <input type="radio" className="radio" /> 월세
             </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>

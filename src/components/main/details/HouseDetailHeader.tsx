@@ -18,7 +18,7 @@ const HouseDetailHeader: React.FC = () => {
                 <img src="" alt="preview" className="preview-image"/>
             </div>
             <div className="interested">
-                <HeartIcon />
+                <HeartIcon className="icon" />
                 &nbsp; 관심 매물 추가하기
             </div>
         </HouseDetailHeaderStyle> 

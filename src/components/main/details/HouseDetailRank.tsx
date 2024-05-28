@@ -1,9 +1,23 @@
 import "./style/detail.css";
-import React from "react";
+import React, { useState } from "react";
 import { HouseDetailRankStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 
 const HouseDetailRank: React.FC = () => {
+    const [ rankList, setRankList ] = useState<{
+        name: string,
+        location: string,
+        dong: number,
+        number: number
+    }[]>([
+        {
+            name: "아파트 이름",
+            location: "서울시 강남구 개포동",
+            dong: 74,
+            number: 6423
+        }
+    ]);
+
     return (
         <HouseDetailRankStyle>
             <div className="header">
@@ -36,7 +50,7 @@ const HouseDetailRank: React.FC = () => {
                     <option value="seoul">서구</option>
                     <option value="busan">남구</option>
                 </select>
-                <select className="sub-country">
+                <select className="sub-country2">
                     <option defaultChecked>읍/면/동</option>
                     <option value="daegu">동구</option>
                     <option value="seoul">서구</option>
@@ -48,33 +62,17 @@ const HouseDetailRank: React.FC = () => {
                 <input type="range" className="range-date" />
             </div>
             <div className="item-list">
-                <div className="item">
-                    <span className="rank">1</span>
-                    <div className="info">
-                        <span>아파트 이름</span>
-                        <span className="address">서울 강남구 개포동</span>
+                {rankList && rankList.map((rank, index) => 
+                    <div className="item">
+                        <span className="rank">{index + 1}</span>
+                        <div className="info">
+                            <span>{rank.name}</span>
+                            <span className="address">{rank.location}</span>
+                        </div>
+                        <span>{rank.dong}개동</span>
+                        <span>{rank.number}세대</span>
                     </div>
-                    <span>74개동</span>
-                    <span>6423세대</span>
-                </div>
-                <div className="item">
-                    <span className="rank">1</span>
-                    <div className="info">
-                        <span>아파트 이름</span>
-                        <span className="address">서울 강남구 개포동</span>
-                    </div>
-                    <span>74개동</span>
-                    <span>6423세대</span>
-                </div>
-                <div className="item">
-                    <span className="rank">1</span>
-                    <div className="info">
-                        <span>아파트 이름</span>
-                        <span className="address">서울 강남구 개포동</span>
-                    </div>
-                    <span>74개동</span>
-                    <span>6423세대</span>
-                </div>
+                )}
             </div>
         </HouseDetailRankStyle>
     )

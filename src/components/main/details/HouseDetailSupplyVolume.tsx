@@ -87,9 +87,9 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </select>
             </div>
             <div className="radios">
-                <input type="radio" /> 월간
-                <input type="radio" /> 분기
-                <input type="radio" /> 년간
+                <input type="radio" className="radio" /> 월간
+                <input type="radio" className="radio" /> 분기
+                <input type="radio" className="radio" /> 년간
             </div>
             <div className="locations">
                 <div className="select-location"><input type="radio" checked/>대구</div>
@@ -113,28 +113,30 @@ const HouseDetailSupplyVolume: React.FC = () => {
             <div className="small-maps">
                 지도
             </div>
-            <TableContainer component={Paper}>
-                <Table size="small" stickyHeader>
-                    <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}> 
-                        <TableRow>
-                            <TableCell sx={{ width: "25%", textAlign: "center" }}>위치</TableCell>
-                            <TableCell sx={{ width: "25%", textAlign: "center" }}>단지명</TableCell>
-                            <TableCell sx={{ width: "25%", textAlign: "center" }}>입주년월</TableCell>
-                            <TableCell sx={{ width: "25%", textAlign: "center" }}>총세대</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {supplyVolumeList && supplyVolumeList.map((supplyVolume) => 
-                            <TableRow>
-                                <TableCell sx={{ textAlign: "center" }}>{supplyVolume.location}</TableCell>
-                                <TableCell sx={{ textAlign: "center" }}>{supplyVolume.name}</TableCell>
-                                <TableCell sx={{ textAlign: "center" }}>[supplyVolume.date]</TableCell>
-                                <TableCell sx={{ textAlign: "center" }}>{supplyVolume.total}세대</TableCell>
+            <div className="tables">
+                <TableContainer component={Paper} className="table-container">
+                    <Table size="small" stickyHeader className="table">
+                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }} className="table-head"> 
+                            <TableRow className="table-row">
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">위치</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">단지명</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">입주년월</TableCell>
+                                <TableCell sx={{ width: "25%", textAlign: "center" }} className="table-cell">총세대</TableCell>
                             </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody className="table-body">
+                            {supplyVolumeList && supplyVolumeList.map((supplyVolume, index) => 
+                                <TableRow key={index} className="table-row">
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.location}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.name}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">[supplyVolume.date]</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.total}세대</TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
         </HouseDetailSupplyVolumeStyle>
     )
 }

@@ -39,7 +39,7 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
                     <option value="seogu">서구</option>
                     <option value="namgu">남구</option>
                 </select>
-                <select className="sub-country">
+                <select className="sub-country2">
                     <option defaultChecked>읍/면/동</option>
                     <option value="ansim1">안심1동</option>
                     <option value="ansim2">안심2동</option>
@@ -47,9 +47,9 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
                 </select>
             </div>
             <div className="radios">
-                <input type="radio" /> 매매
-                <input type="radio" /> 전세
-                <input type="radio" /> 월세
+                <input type="radio" className="radio" /> 매매
+                <input type="radio" className="radio" /> 전세
+                <input type="radio" className="radio" /> 월세
             </div>
             <div className="item-list">
                 {recentlyRiseAptList && recentlyRiseAptList.map((recentlyRiseApt, index) => 

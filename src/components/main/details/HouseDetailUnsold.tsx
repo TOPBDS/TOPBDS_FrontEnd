@@ -76,7 +76,7 @@ const HouseDetailUnsold: React.FC = () => {
                     <option value="busan">남구</option>
                 </select>
             </div>
-            <div className="chart">
+            <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />
@@ -85,24 +85,26 @@ const HouseDetailUnsold: React.FC = () => {
                     </BarChart>        
                 </ResponsiveContainer>
             </div>
-            <div className="table">
+            <div className="range">
                 <h3>99년 12월 ~ 24년 2월</h3>
                 <input type="range" className="range-date" />
-                <TableContainer component={Paper}>
-                    <Table size="small" stickyHeader>
-                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}> 
-                            <TableRow>
-                                <TableCell sx={{ width: "30%", textAlign: "center" }}>위치</TableCell>
-                                <TableCell sx={{ width: "30%", textAlign: "center" }}>해당년월</TableCell>
-                                <TableCell sx={{ width: "30%", textAlign: "center" }}>미분양 수(호)</TableCell>
+            </div>
+            <div className="tables">
+                <TableContainer component={Paper} className="table-container">
+                    <Table size="small" stickyHeader className="table">
+                        <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }} className="table-head"> 
+                            <TableRow className="table-row">
+                                <TableCell sx={{ width: "30%", textAlign: "center" }} className="table-cell">위치</TableCell>
+                                <TableCell sx={{ width: "30%", textAlign: "center" }} className="table-cell">해당년월</TableCell>
+                                <TableCell sx={{ width: "30%", textAlign: "center" }} className="table-cell">미분양 수(호)</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody className="table-body">
                             {unsoldList && unsoldList.map((row, index) => 
-                                <TableRow key={index}>
-                                    <TableCell sx={{ textAlign: "center" }}>{row.location}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }}>{row.date}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }}>{row.unsold}</TableCell>
+                                <TableRow key={index} className="table-row">
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{row.location}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{row.date}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{row.unsold}</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>
