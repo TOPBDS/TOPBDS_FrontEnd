@@ -63,7 +63,7 @@ const HouseDetailAptReview: React.FC = () => {
                                 </div>
                                 <div className="data">
                                     <span className="nickname">{review.nickName}</span>
-                                    <span className="date " >{review.date}</span>
+                                    <span className="date" >{review.date}</span>
                                 </div>
                             </div>
                             <div className="user-star">
