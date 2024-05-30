@@ -183,7 +183,7 @@ export const HouseItemInfo = styled.p`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
 
