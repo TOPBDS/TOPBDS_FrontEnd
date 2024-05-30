@@ -66,14 +66,14 @@ const HouseDetailUnsold: React.FC = () => {
             </div>
             <div className="select">
                 <select className="country">
-                    <option value="daegu">대구</option>
-                    <option value="seoul">서울</option>
-                    <option value="busan">부산</option>
+                    <option value="daegu" className="select-value">대구</option>
+                    <option value="seoul" className="select-value">서울</option>
+                    <option value="busan" className="select-value">부산</option>
                 </select>
-                <select className="sub-country">
-                    <option value="daegu">동구</option>
-                    <option value="seoul">서구</option>
-                    <option value="busan">남구</option>
+                <select className="country">
+                    <option value="daegu" className="select-value">동구</option>
+                    <option value="seoul" className="select-value">서구</option>
+                    <option value="busan" className="select-value">남구</option>
                 </select>
             </div>
             <div className="chart-container">
@@ -81,7 +81,7 @@ const HouseDetailUnsold: React.FC = () => {
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />
                         <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#8884d8" label={barLabel}/>
+                        <Bar dataKey="uv" barSize={30} fill="#03C6CE" label={barLabel}/>
                     </BarChart>        
                 </ResponsiveContainer>
             </div>
