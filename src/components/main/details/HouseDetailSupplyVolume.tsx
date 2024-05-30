@@ -87,9 +87,9 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </select>
             </div>
             <div className="radios">
-                <input type="radio" className="radio" /> 월간
-                <input type="radio" className="radio" /> 분기
-                <input type="radio" className="radio" /> 년간
+                <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
+                <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
+                <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
             </div>
             <div className="locations">
                 <div className="select-location"><input type="radio" checked/>대구</div>
