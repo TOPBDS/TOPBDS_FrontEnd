@@ -52,7 +52,7 @@ const HouseDetailUnsold: React.FC = () => {
     };
 
     const barLabel = ({ payload, x, y, width, height, value }: any) => {
-        return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
+        return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
 
     return (

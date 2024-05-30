@@ -41,7 +41,7 @@ const HouseDetailCompareApts: React.FC = () => {
     };
 
     const barLabel = ({ payload, x, y, width, height, value }: any) => {
-        return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
+        return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
 
     return (
@@ -107,7 +107,7 @@ const HouseDetailCompareApts: React.FC = () => {
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />
                         <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#8884d8" label={barLabel}/>
+                        <Bar dataKey="uv" barSize={30} fill="#03C6CE" label={barLabel}/>
                     </BarChart>
                 </ResponsiveContainer>
             </div>

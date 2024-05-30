@@ -55,7 +55,7 @@ const HouseDetailPopulationChange: React.FC = () => {
     };
 
     const barLabel = ({ payload, x, y, width, height, value }: any) => {
-        return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
+        return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
 
     return (
@@ -72,18 +72,18 @@ const HouseDetailPopulationChange: React.FC = () => {
                     <input type="text" className="search-input" placeholder="지역명" />
                     <HouseSearchIcon className="search-icon"/>
                 </div>
-                <div className="radios">
+            </div>
+            <div className="radios">
                     <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
                     <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
                     <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
                 </div>
-            </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />
                         <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#8884d8" label={barLabel}/>
+                        <Bar dataKey="uv" barSize={30} fill="#03C6CE" label={barLabel}/>
                     </BarChart>              
                 </ResponsiveContainer>
             </div>

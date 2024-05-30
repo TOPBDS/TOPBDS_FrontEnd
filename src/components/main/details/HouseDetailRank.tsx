@@ -44,13 +44,13 @@ const HouseDetailRank: React.FC = () => {
                     <option value="seoul">서울</option>
                     <option value="busan">부산</option>
                 </select>
-                <select className="sub-country">
+                <select className="country">
                     <option defaultChecked>시군구</option>
                     <option value="daegu">동구</option>
                     <option value="seoul">서구</option>
                     <option value="busan">남구</option>
                 </select>
-                <select className="sub-country2">
+                <select className="country">
                     <option defaultChecked>읍/면/동</option>
                     <option value="daegu">동구</option>
                     <option value="seoul">서구</option>
