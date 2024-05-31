@@ -79,7 +79,7 @@ const HouseDetailSupplyVolume: React.FC = () => {
                     <option value="seoul">서울</option>
                     <option value="busan">부산</option>
                 </select>
-                <select className="sub-country">
+                <select className="country">
                     <option defaultChecked>시군구</option>
                     <option value="daegu">동구</option>
                     <option value="seoul">서구</option>
@@ -93,8 +93,10 @@ const HouseDetailSupplyVolume: React.FC = () => {
             </div>
             <div className="locations">
                 <div className="select-location"><input type="radio" checked/>대구</div>
-                <button type="button" className="add-location">대체지역 추가</button>
-                <button type="button" className="delete-location">전체 삭제</button>
+                <div className="location-box">
+                    <button type="button" className="add-location button-lg">대체지역 추가</button>
+                    <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>
+                </div>
             </div>
             <div className="chart-container">
                 <span>24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span>

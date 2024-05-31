@@ -141,6 +141,13 @@
     padding-bottom: 0.5rem;
 }
 
+.location-box {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.5rem;
+}
+
 .comment-list {
     display: flex;
     flex-direction: column;
