@@ -99,7 +99,7 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </div>
             </div>
             <div className="chart-container">
-                <span>24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span>
+                <span className="sub-comment">24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span>
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
                         <XAxis dataKey="name" tick={axisTick} />

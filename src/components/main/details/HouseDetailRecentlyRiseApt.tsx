@@ -33,13 +33,13 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
                     <option value="seoul">서울</option>
                     <option value="busan">부산</option>
                 </select>
-                <select className="sub-country">
+                <select className="country">
                     <option defaultChecked>시군구</option>
                     <option value="donggu">동구</option>
                     <option value="seogu">서구</option>
                     <option value="namgu">남구</option>
                 </select>
-                <select className="sub-country2">
+                <select className="country">
                     <option defaultChecked>읍/면/동</option>
                     <option value="ansim1">안심1동</option>
                     <option value="ansim2">안심2동</option>

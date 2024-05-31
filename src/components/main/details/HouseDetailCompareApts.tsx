@@ -58,13 +58,13 @@ const HouseDetailCompareApts: React.FC = () => {
                     <option value="seoul">서울</option>
                     <option value="busan">부산</option>
                 </select>
-                <select className="sub-country">
+                <select className="country">
                     <option defaultChecked>시군구</option>
                     <option value="donggu">동구</option>
                     <option value="seogu">서구</option>
                     <option value="namgu">남구</option>
                 </select>
-                <select className="sub-country2">
+                <select className="country">
                     <option defaultChecked>읍/면/동</option>
                     <option value="ansim1">안심1동</option>
                     <option value="ansim2">안심2동</option>
@@ -77,13 +77,13 @@ const HouseDetailCompareApts: React.FC = () => {
                     <option value="100">강남 반포자이</option>
                     <option value="1000">롯데캐슬</option>
                 </select>
-                <select className="name2">
+                <select className="name">
                     <option defaultChecked>이름</option>
                     <option value="1">이름</option>
                     <option value="2">이름</option>
                     <option value="3">이름</option>
                 </select>
-                <select className="dong">
+                <select className="number">
                     <option defaultChecked>동</option>
                     <option value="5">5</option>
                     <option value="4">4</option>
@@ -94,8 +94,10 @@ const HouseDetailCompareApts: React.FC = () => {
             </div>
             <div className="locations">
                 <div className="select-location"><input type="radio" checked/>반포자이 (32평)</div>
-                <button type="button" className="add-location">대체지역 추가</button>
-                <button type="button" className="delete-location">전체 삭제</button>
+                <div className="location-box">
+                    <button type="button" className="add-location button-lg">대체지역 추가</button>
+                    <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>
+                </div>
             </div>
             <div className="radios">
                 <input type="radio" className="radio" /> 매매

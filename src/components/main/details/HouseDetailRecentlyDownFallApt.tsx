@@ -38,13 +38,13 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                     <option value="seoul">서울</option>
                     <option value="busan">부산</option>
                 </select>
-                <select className="sub-country">
+                <select className="country">
                     <option defaultChecked>시군구</option>
                     <option value="donggu">동구</option>
                     <option value="seogu">서구</option>
                     <option value="namgu">남구</option>
                 </select>
-                <select className="sub-country2">
+                <select className="country">
                     <option defaultChecked>읍/면/동</option>
                     <option value="ansim1">안심1동</option>
                     <option value="ansim2">안심2동</option>
@@ -58,13 +58,13 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                     <option value="1000">1000+세대</option>
                     <option value="10000">10000+세대</option>
                 </select>
-                <select className="max-price">
+                <select className="number">
                     <option defaultChecked>과거 최고가</option>
                     <option value="1">1억 이상</option>
                     <option value="2">5000만월 이상</option>
                     <option value="3">1000만월 이상</option>
                 </select>
-                <select className="all-review">
+                <select className="number">
                     <option defaultChecked>전체 평점</option>
                     <option value="5">5</option>
                     <option value="4">4</option>
@@ -73,10 +73,12 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                     <option value="1">1</option>
                 </select>
             </div>
-            <div className="radios">
-                <div className="radio-box"><input type="radio" className="radio" /> 매매</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 전세</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 월세</div>
+            <div className="space-radios">
+                <div className="radio-list">
+                    <div className="radio-box"><input type="radio" className="radio" /> 매매</div>
+                    <div className="radio-box"><input type="radio" className="radio" /> 전세</div>
+                    <div className="radio-box"><input type="radio" className="radio" /> 월세</div>
+                </div>
                 <select className="transaction">
                     <option defaultChecked>최근 1주일거래</option>
                     <option value="5">최근 1달거래</option>
