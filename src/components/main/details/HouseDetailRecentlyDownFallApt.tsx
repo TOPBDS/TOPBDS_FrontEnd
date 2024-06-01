@@ -2,6 +2,7 @@ import "./style/detail.css";
 import React, { useState } from "react";
 import { HouseDetailRecentlyDownFallAptStyle } from "../style/main-item.style";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Select from "../../common/Select";
 
 const HouseDetailRecentlyDownFallApt: React.FC = () => {
     const [ recentlyDownFailAptList, setRecentlyDownFailAptList ] = useState<{
@@ -32,46 +33,14 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <select className="country">
-                    <option defaultChecked>대구</option>
-                    <option value="daegu">대구</option>
-                    <option value="seoul">서울</option>
-                    <option value="busan">부산</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>시군구</option>
-                    <option value="donggu">동구</option>
-                    <option value="seogu">서구</option>
-                    <option value="namgu">남구</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>읍/면/동</option>
-                    <option value="ansim1">안심1동</option>
-                    <option value="ansim2">안심2동</option>
-                    <option value="ansim34">안심3,4동</option>
-                </select>
+                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
+                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
+                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
             </div>
             <div className="select">
-                <select className="number">
-                    <option defaultChecked>세대수</option>
-                    <option value="100">100+세대</option>
-                    <option value="1000">1000+세대</option>
-                    <option value="10000">10000+세대</option>
-                </select>
-                <select className="number">
-                    <option defaultChecked>과거 최고가</option>
-                    <option value="1">1억 이상</option>
-                    <option value="2">5000만월 이상</option>
-                    <option value="3">1000만월 이상</option>
-                </select>
-                <select className="number">
-                    <option defaultChecked>전체 평점</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
+                <Select optionName="세대수" optionList={["100+세대", "1000+세대", "10000+세대"]} />
+                <Select optionName="과거 최고가" optionList={["1억 이상", "5000만월 이상", "1000만월 이상"]} />
+                <Select optionName="전체 평점" optionList={["5", "4", "3", "2", "1"]} />
             </div>
             <div className="space-radios">
                 <div className="radio-list">

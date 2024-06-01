@@ -2,6 +2,7 @@ import "./style/detail.css";
 import React, { useState } from "react";
 import { HouseDetailRankStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
+import Select from "../../common/Select";
 
 const HouseDetailRank: React.FC = () => {
     const [ rankList, setRankList ] = useState<{
@@ -38,24 +39,9 @@ const HouseDetailRank: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <select className="country">
-                    <option defaultChecked>대구</option>
-                    <option value="daegu">대구</option>
-                    <option value="seoul">서울</option>
-                    <option value="busan">부산</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>시군구</option>
-                    <option value="daegu">동구</option>
-                    <option value="seoul">서구</option>
-                    <option value="busan">남구</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>읍/면/동</option>
-                    <option value="daegu">동구</option>
-                    <option value="seoul">서구</option>
-                    <option value="busan">남구</option>
-                </select>
+                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
+                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
+                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
             </div>
             <div className="range">
                 <h3>세대수</h3>

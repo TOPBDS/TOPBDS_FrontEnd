@@ -2,6 +2,7 @@ import "./style/detail.css";
 import React from "react";
 import { HouseDetailCompareAptsStyle } from "../style/main-item.style";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import Select from "../../common/Select";
 
 const HouseDetailCompareApts: React.FC = () => {
     const chartData = [
@@ -44,6 +45,12 @@ const HouseDetailCompareApts: React.FC = () => {
         return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
 
+    const countryOptionList = [
+        "대구",
+        "서울",
+        "부산"
+    ]
+
     return (
         <HouseDetailCompareAptsStyle>
             <div className="header">
@@ -52,24 +59,9 @@ const HouseDetailCompareApts: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <select className="country">
-                    <option defaultChecked>대구</option>
-                    <option value="daegu">대구</option>
-                    <option value="seoul">서울</option>
-                    <option value="busan">부산</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>시군구</option>
-                    <option value="donggu">동구</option>
-                    <option value="seogu">서구</option>
-                    <option value="namgu">남구</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>읍/면/동</option>
-                    <option value="ansim1">안심1동</option>
-                    <option value="ansim2">안심2동</option>
-                    <option value="ansim34">안심3,4동</option>
-                </select>
+                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
+                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
+                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
             </div>
             <div className="select">
                 <select className="name">

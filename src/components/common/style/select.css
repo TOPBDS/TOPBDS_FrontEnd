@@ -1,0 +1,35 @@
+.select-box {
+    position: relative;
+    display: inline-block;
+}
+
+.select-label {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.option-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 100%;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.option-list .select-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.option-list .select-option:hover {
+    background-color: #f1f1f1;
+}

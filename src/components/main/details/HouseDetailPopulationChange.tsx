@@ -74,10 +74,10 @@ const HouseDetailPopulationChange: React.FC = () => {
                 </div>
             </div>
             <div className="radios">
-                    <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
-                    <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
-                    <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
-                </div>
+                <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
+                <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
+                <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
+            </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>

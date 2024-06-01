@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { HouseDetailUnsoldStyle } from "../style/main-item.style";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Select from "../../common/Select";
 
 const HouseDetailUnsold: React.FC = () => {
     const [ unsoldList, setUnsoldList ] = useState<{
@@ -65,16 +66,8 @@ const HouseDetailUnsold: React.FC = () => {
                 <span>분양을 했으나 분양되지 않은 주택 수를 시기별로 확인해보세요.</span>
             </div>
             <div className="select">
-                <select className="country">
-                    <option value="daegu" className="select-value">대구</option>
-                    <option value="seoul" className="select-value">서울</option>
-                    <option value="busan" className="select-value">부산</option>
-                </select>
-                <select className="country">
-                    <option value="daegu" className="select-value">동구</option>
-                    <option value="seoul" className="select-value">서구</option>
-                    <option value="busan" className="select-value">남구</option>
-                </select>
+                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
+                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
             </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>

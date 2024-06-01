@@ -4,6 +4,7 @@ import { HouseDetailSupplyVolumeStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Select from "../../common/Select";
 
 const HouseDetailSupplyVolume: React.FC = () => {
     const [ supplyVolumeList, setSupplyVolumeList ] = useState<{
@@ -73,18 +74,8 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <select className="country">
-                    <option defaultChecked>대구</option>
-                    <option value="daegu">대구</option>
-                    <option value="seoul">서울</option>
-                    <option value="busan">부산</option>
-                </select>
-                <select className="country">
-                    <option defaultChecked>시군구</option>
-                    <option value="daegu">동구</option>
-                    <option value="seoul">서구</option>
-                    <option value="busan">남구</option>
-                </select>
+                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
+                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
             </div>
             <div className="radios">
                 <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
