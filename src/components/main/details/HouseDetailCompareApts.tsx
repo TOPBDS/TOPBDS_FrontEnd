@@ -1,6 +1,7 @@
 import "./style/detail.css";
 import React from "react";
 import { HouseDetailCompareAptsStyle } from "../style/main-item.style";
+import { ReactComponent as SelectLocation } from "../../../assets/icon/select-location.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import Select from "../../common/Select";
 
@@ -64,28 +65,15 @@ const HouseDetailCompareApts: React.FC = () => {
                 <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
             </div>
             <div className="select">
-                <select className="name">
-                    <option defaultChecked>아파트</option>
-                    <option value="100">강남 반포자이</option>
-                    <option value="1000">롯데캐슬</option>
-                </select>
-                <select className="name">
-                    <option defaultChecked>이름</option>
-                    <option value="1">이름</option>
-                    <option value="2">이름</option>
-                    <option value="3">이름</option>
-                </select>
-                <select className="number">
-                    <option defaultChecked>동</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
+                <Select optionName="아파트" optionList={["강남 반포자이", "롯데캐슬"]} />
+                <Select optionName="이름" optionList={["이름", "이름", "이름"]} />
+                <Select optionName="동" optionList={["5", "4", "3", "2", "1"]} />
             </div>
             <div className="locations">
-                <div className="select-location"><input type="radio" checked/>반포자이 (32평)</div>
+                <div className="select-location">
+                    <SelectLocation className="icon" />
+                    <p>반포자이 (32평)</p>
+                </div>
                 <div className="location-box">
                     <button type="button" className="add-location button-lg">대체지역 추가</button>
                     <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>

@@ -48,11 +48,9 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                     <div className="radio-box"><input type="radio" className="radio" /> 전세</div>
                     <div className="radio-box"><input type="radio" className="radio" /> 월세</div>
                 </div>
-                <select className="transaction">
-                    <option defaultChecked>최근 1주일거래</option>
-                    <option value="5">최근 1달거래</option>
-                    <option value="4">최근 1년거래</option>
-                </select>
+                <div className="transaction">
+                   <Select optionName="최근 1주일거래" optionList={["최근 1달거래", "최근 1년거래"]} />
+                </div>
             </div>
             <div className="tables">
                 <TableContainer component={Paper} className="table-container">

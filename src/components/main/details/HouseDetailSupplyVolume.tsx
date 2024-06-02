@@ -2,6 +2,7 @@ import "./style/detail.css";
 import React, { useState } from "react";
 import { HouseDetailSupplyVolumeStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
+import { ReactComponent as SelectLocation } from "../../../assets/icon/select-location.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
@@ -83,7 +84,10 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
             </div>
             <div className="locations">
-                <div className="select-location"><input type="radio" checked/>대구</div>
+            <div className="select-location">
+                    <SelectLocation className="icon" />
+                    <p>대구</p>
+                </div>
                 <div className="location-box">
                     <button type="button" className="add-location button-lg">대체지역 추가</button>
                     <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>
@@ -122,7 +126,7 @@ const HouseDetailSupplyVolume: React.FC = () => {
                                 <TableRow key={index} className="table-row">
                                     <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.location}</TableCell>
                                     <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.name}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">[supplyVolume.date]</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.date}</TableCell>
                                     <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.total}세대</TableCell>
                                 </TableRow>
                             )}
