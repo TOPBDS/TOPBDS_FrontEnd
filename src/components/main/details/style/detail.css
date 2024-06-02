@@ -48,9 +48,12 @@
 .chip-list {
     display: flex;
     gap: 10px;
-    padding: 10px;
     max-width: 100%;
     overflow-x: auto;
+}
+
+.chip-list::-webkit-scrollbar {
+    display: none;
 }
 
 .chip {
@@ -138,17 +141,50 @@
 .range {
     display: flex;
     flex-direction: column;
-    
     gap: 1rem;
     padding-bottom: 1rem;
 }
 
 .range-date {
     width: 100%;
-
     accent-color: #03C6CE;
-    background: #E6E0E9;
+    background-color: #E6E0E9;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 1rem;
 }
+
+.range-date::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #03C6CE;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.range-date::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #03C6CE;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
 
 .radio-box {
     display: flex;
