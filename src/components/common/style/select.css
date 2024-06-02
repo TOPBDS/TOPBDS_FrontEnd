@@ -9,12 +9,14 @@
 }
 
 .select-label {
-    background-color: #f9f9f9;
+    background-color: var(--bg-white);
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 0.75rem;
     cursor: pointer;
     width: 100%;
     text-align: left;
+
+    border-radius: 0.25rem;
 
     display: flex;
     flex-direction: row;
@@ -24,6 +26,15 @@
 
 .select-label p {
     font-size: 12px;
+
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem;
+
+    color: #9DA3AF;
+
+    white-space: nowrap;
 }
 
 .option-list {
