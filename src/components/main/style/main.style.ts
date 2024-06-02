@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { HEADER_HEIGHT_PX } from "../../../constants/style";
 
 export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
+    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
     left: 0px;
     top: 8rem;
 
@@ -22,7 +24,6 @@ export const HosueItemListStyle = styled.div`
     flex-direction: column;
     align-items: center;
 
-    max-height: 100vh;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -33,8 +34,7 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height: 59.5rem;
-    left: 32.5rem;
+    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
     top: 8rem;
 
     background-color: #fff;
@@ -90,7 +90,6 @@ export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
     width: 25.625rem;
-    height: 100%;
 
     border-bottom: 1px solid #D5D7DD;
 
@@ -183,7 +182,7 @@ export const HouseItemInfo = styled.p`
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
 

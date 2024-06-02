@@ -24,7 +24,7 @@ function App() {
           <Route path='/blog' element={<Blog />} />
           <Route path='/report' element={<Report />} />
           <Route path='/search' element={<Main />} />
-          <Route path='/item/:idx' element={<HouseDetail />} />
+          <Route path='/item/:idx' element={<Main />} />
         </Routes>
       </Layout>
     </>
