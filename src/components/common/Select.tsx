@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './style/select.css'
+import './style/select.css';
+import { ReactComponent as DropDownIcon } from "../../assets/icon/drop-down.svg";
 
 interface SelectProps {
     optionName: string;
@@ -25,7 +26,8 @@ const Select: React.FC<SelectProps> = ({
     return (
         <div className="select-box">
             <button type="button" className="select-label" onClick={toggleDropdown}>
-                {selectedOption}
+                <p>{selectedOption}</p>
+                <DropDownIcon className='icon' />
             </button>
             {isOpen && (
                 <ul className="option-list">

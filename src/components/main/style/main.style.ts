@@ -34,8 +34,7 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height: 100%;
-    // left: 32.5rem;
+    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
     top: 8rem;
 
     background-color: #fff;

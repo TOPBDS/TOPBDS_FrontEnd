@@ -12,6 +12,15 @@
     cursor: pointer;
     width: 100%;
     text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-label p {
+    font-size: 12px;
 }
 
 .option-list {

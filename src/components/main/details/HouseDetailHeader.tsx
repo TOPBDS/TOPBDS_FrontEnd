@@ -4,6 +4,7 @@ import { HouseDetailHeaderStyle, HouseHeader } from "../style/main-item.style";
 import { ReactComponent as HouseCloseIcon } from "../../../assets/icon/close.svg";
 import { ReactComponent as HeartIcon } from "../../../assets/icon/heart.svg";
 import { useNavigate } from "react-router-dom";
+import ApartImage  from "../../../assets/image/apartment.png";
 
 const HouseDetailHeader: React.FC = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const HouseDetailHeader: React.FC = () => {
                 <HouseCloseIcon className="close" onClick={() => navigate(-1)} />
             </HouseHeader>
             <div className="image-container">
-                <img src="" alt="preview" className="preview-image"/>
+                <img src={ApartImage} alt="preview" className="preview-image"/>
             </div>
             <div className="interested">
                 <HeartIcon className="icon" />
