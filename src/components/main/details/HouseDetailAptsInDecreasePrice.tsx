@@ -22,31 +22,33 @@ const HouseDetailAptsInDecreasePrice: React.FC = () => {
                     <h4>매물 증감</h4>
                 </div>
             </div>
-            <div className="chip-list">
-                <div className="chip active">전체</div>
-                <div className="chip">서울</div>
-                <div className="chip">경기</div>
-                <div className="chip">대구</div>
-                <div className="chip">대전</div>
-                <div className="chip">광주</div>
-            </div>
-            <div className="radios">
-                <div className="items">
-                    <input type="radio" /> 매매
-                    <input type="radio" /> 전세
-                    <input type="radio" /> 월세
+            <div className="aptsln-list">
+                <div className="chip-list">
+                    <div className="chip active">전체</div>
+                    <div className="chip">서울</div>
+                    <div className="chip">경기</div>
+                    <div className="chip">대구</div>
+                    <div className="chip">대전</div>
+                    <div className="chip">광주</div>
                 </div>
-                <div className="sort">
-                    <span>증가순</span>
-                    <span>감소순</span>
+                <div className="radios">
+                    <div className="items">
+                        <input type="radio" /> 매매
+                        <input type="radio" /> 전세
+                        <input type="radio" /> 월세
+                    </div>
+                    <div className="sort">
+                        <span>증가순</span>
+                        <span>감소순</span>
+                    </div>
                 </div>
-            </div>
-            <div className="chip-list">
-                <div className="chip active">10일전</div>
-                <div className="chip">7일전</div>
-                <div className="chip">5일전</div>
-                <div className="chip">3일전</div>
-                <div className="chip">1일전</div>
+                <div className="chip-list">
+                    <div className="chip active">10일전</div>
+                    <div className="chip">7일전</div>
+                    <div className="chip">5일전</div>
+                    <div className="chip">3일전</div>
+                    <div className="chip">1일전</div>
+                </div>
             </div>
             <div className="item-list">
                 {aptInDecreasePriceList && aptInDecreasePriceList.map((aptInDecreasePrice, index) =>
