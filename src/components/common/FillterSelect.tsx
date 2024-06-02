@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as DropDownIcon } from "../../assets/icon/drop-down.svg";
+import { ReactComponent as FillterDropDownIcon } from "../../assets/icon/fillter-drop-down.svg";
 
 interface FillterSelectProps {
     optionName: string;
@@ -26,7 +26,7 @@ const FilterSelect: React.FC<FillterSelectProps> = ({
         <div className="fillter-select-box">
             <button type="button" className="fillter-select-label" onClick={toggleDropdown}>
                 <p>{selectedOption}</p>
-                <DropDownIcon className='icon' />
+                <FillterDropDownIcon className='icon' />
             </button>
             {isOpen && (
                 <ul className="fillter-option-list">

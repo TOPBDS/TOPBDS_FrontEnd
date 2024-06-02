@@ -50,20 +50,28 @@
 }
 
 /* Fillter Select Box 디자인 */
-.select-box {
+.fillter-select-box {
     position: relative;
-    display: inline-block;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 10px;
 
-    width: 100%;
+    background: #03C6CE;
+    border-radius: 16px;
+
+    height: 32px;
 }
 
-.select-label {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+.fillter-select-label {
     padding: 10px;
     cursor: pointer;
-    width: 100%;
     text-align: left;
+    background: none;
+    border: none;
 
     display: flex;
     flex-direction: row;
@@ -71,15 +79,18 @@
     align-items: center;
 }
 
-.select-label p {
+.fillter-select-label p {
     font-size: 12px;
+    color: #fff;
+    margin-right: 10px;
 }
 
-.option-list {
+.fillter-option-list {
     margin: 0;
     padding: 0;
     list-style: none;
     position: absolute;
+    top: 40px;
     background-color: #fff;
     border: 1px solid #ccc;
     width: 100%;
@@ -88,11 +99,11 @@
     overflow-y: auto;
 }
 
-.option-list .select-option {
+.fillter-option-list .fillter-select-option {
     padding: 0.75rem;
     cursor: pointer;
 }
 
-.option-list .select-option:hover {
+.fillter-option-list .fillter-select-option:hover {
     background-color: #f1f1f1;
 }
