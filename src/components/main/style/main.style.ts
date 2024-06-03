@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import { HEADER_HEIGHT_PX } from "../../../constants/style";
 
 export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
-    left: 0px;
-    top: 8rem;
+    height:100vh;
+    left: 100px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
     
+    overflow-x: hidden;
     overflow-y: auto;
 
     display: flex;
@@ -34,8 +33,8 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
-    top: 8rem;
+    height:100vh;
+    left: 100px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -230,7 +229,7 @@ export const HouseItemRecommendButtonStyle = styled.button`
     gap: 10px;
 
     position: absolute;
-    top: 750px;
+    bottom: 30px;
     z-index: 10;
     
     width: 362px;

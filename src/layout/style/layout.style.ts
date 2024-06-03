@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
 export const HeaderStyle = styled.div`
-    width: 100%;
-    height: 80px;
+    width: 100px;
+    height: 100vh;
     position:fixed;
     z-index:999;
     top:0px;
     left:0px;
     background: #FFFFFF;
-    border-bottom: 1px solid #D5D7DD;
+    border-right: 1px solid #D5D7DD;
 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 `
 
@@ -23,20 +22,13 @@ export const SubHeaderStyle = styled.div`
     height: 48px;
     position:fixed;
     z-index:999;
-    top:80px;
-    left:0px;
-
-    background: #FFFFFF;
-    border-bottom: 1px solid #D5D7DD;
+    top: 10px;
+    left: 510px;
 `
 
 export const HeaderMenuStyle = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    margin-right: 40px;
+    flex-direction: column;
 `
 
 export const HeaderMenuItemStyle = styled.div`
@@ -44,7 +36,7 @@ export const HeaderMenuItemStyle = styled.div`
     height: 80px;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
