@@ -10,10 +10,12 @@ export const HouseDetailHeaderStyle = styled.div`
     order: 0;
     flex-grow: 0;
 
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 0 1.5rem;
 
     display: flex;
     flex-direction: column;
+
+    gap: 1.5rem;
 `
 
 export const HouseHeader = styled.button`

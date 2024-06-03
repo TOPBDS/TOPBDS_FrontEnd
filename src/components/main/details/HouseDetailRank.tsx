@@ -45,7 +45,19 @@ const HouseDetailRank: React.FC = () => {
             </div>
             <div className="range">
                 <h3>세대수</h3>
-                <input type="range" className="range-date" />
+                <input
+                    type="range"
+                    className="range-date"
+                    min="100"
+                    max="500"
+                />
+                <div className="range-labels">
+                    <span>100</span>
+                    <span>200</span>
+                    <span>300</span>
+                    <span>400</span>
+                    <span>500</span>
+                </div>
             </div>
             <div className="item-list">
                 {rankList && rankList.map((rank, index) => 

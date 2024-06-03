@@ -60,6 +60,37 @@ const HouseDetailSupplyVolume: React.FC = () => {
         return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
     };
 
+    const [rangeValue, setRangeValue] = useState(0);
+
+    // Function to format the date based on the range value
+    const formatDate = (value: any) => {
+        const startYear = 1999;
+        const startMonth = 12;
+
+        const yearsPassed = Math.floor(value / 12);
+        const monthsPassed = value % 12;
+
+        let currentYear = startYear + yearsPassed;
+        let currentMonth = startMonth + monthsPassed;
+
+        if (currentMonth > 12) {
+        currentYear += Math.floor((currentMonth - 1) / 12);
+        currentMonth = currentMonth % 12 || 12;
+        }
+
+        return `${currentYear}년 ${currentMonth}월`;
+    };
+
+    const handleRangeChange = (event: any) => {
+        setRangeValue(event.target.value);
+    };
+
+    const getCurrentMonth = (): string => {
+        const date = new Date();
+        const month = date.getMonth() + 1; // getMonth() returns 0-based month, so add 1
+        return month < 10 ? `0${month}` : `${month}`;
+    };
+
     return (
         <HouseDetailSupplyVolumeStyle>
             <div className="header">
@@ -104,8 +135,22 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </ResponsiveContainer>
             </div>
             <div className="range">
-                <h3>90년 1월 ~ 28년 12월</h3>
-                <input type="range" className="range-date" />
+                <h3>{formatDate(rangeValue)} ~ 2024년 {getCurrentMonth()}월</h3>
+                <input
+                    type="range"
+                    className="range-date"
+                    min="0"
+                    max="292"
+                    value={rangeValue}
+                    onChange={handleRangeChange}
+                />
+                <div className="range-labels">
+                    <span>99년</span>
+                    <span>06년</span>
+                    <span>12년</span>
+                    <span>18년</span>
+                    <span>24년</span>
+                </div>
             </div>
             <div className="small-maps">
                 지도
