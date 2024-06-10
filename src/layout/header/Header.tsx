@@ -4,7 +4,7 @@ import "../style/layout.css";
 import { useState } from "react";
 
 const Header = () => {
-    const [ isLogin, setIsLogin ] = useState<boolean>(false);
+    const [ isLogin, setIsLogin ] = useState<boolean>(true);
 
     return (
         <HeaderStyle>
@@ -14,7 +14,7 @@ const Header = () => {
                 <HeaderMenuItemStyle><a href="/">보고서</a></HeaderMenuItemStyle>
                 {
                     isLogin ? (
-                        <HeaderMenuItemStyle><a href="/">마이페이지</a></HeaderMenuItemStyle>
+                        <HeaderMenuItemStyle><a href="/my">마이페이지</a></HeaderMenuItemStyle>
                     ) : (
                         <HeaderMenuItemStyle><a href="/login">로그인</a></HeaderMenuItemStyle>
                     )

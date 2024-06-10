@@ -1,0 +1,131 @@
+.close {
+    margin: 16px;
+}
+
+.icon {
+    width: 28px;
+}
+
+.profile {
+    width: 100%;
+    height: 200px;
+        
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.profile-icon {
+    width: 100px;
+    height: 100px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+}
+
+.profile p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+
+    margin-left: -30px;
+}
+
+.info {
+    width: 100%;
+    height: 150px;
+
+    margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info div {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info div .label {
+    font-size: 16px;
+    color: #9DA3AF;
+    margin-left: 24px;
+}
+
+.info div .data {
+    font-size: 14px;
+    color: #676F7E;
+    margin-right: 24px;
+}
+
+.management {
+    width: 100%;
+    height: 100px;
+    
+    margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.management div {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.management div .label {
+    font-size: 16px;
+    color: #9DA3AF;
+    margin-left: 24px;
+}
+
+.management div .icon {
+    margin-right: 24px;
+}
+
+.user-menu {
+    width: 100%;
+    height: 150px;
+    
+    margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-menu div {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-menu div .label {
+    font-size: 16px;
+    color: #9DA3AF;
+    margin-left: 24px;
+}
+
+.user-menu .logout .label {
+    color: #FA3434;
+}
