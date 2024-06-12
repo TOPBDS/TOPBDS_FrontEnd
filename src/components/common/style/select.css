@@ -1,11 +1,9 @@
 /* Select Box 디자인 */
 
 .select-box {
-    position: relative;
+    position: relative; /* Ensure this is set to create a stacking context */
     display: inline-block;
-
     width: 100%;
-    z-index: 999;
 }
 
 .select-label {
@@ -45,7 +43,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     width: 100%;
-    z-index: 999;
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
     max-height: 200px;
     overflow-y: auto;
 }
@@ -61,19 +59,17 @@
 }
 
 /* Fillter Select Box 디자인 */
+
 .fillter-select-box {
-    position: relative;
-    
+    position: relative; /* Ensure this is set to create a stacking context */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 6px 16px;
     gap: 10px;
-
     background: #03C6CE;
     border-radius: 16px;
-
     height: 32px;
 }
 
@@ -105,7 +101,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     width: 100%;
-    z-index: 1;
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
     max-height: 200px;
     overflow-y: auto;
 }
