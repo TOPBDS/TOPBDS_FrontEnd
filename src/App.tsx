@@ -18,6 +18,9 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path='/my' element={<Main />} />
+          <Route path='/my/info' element={<Main />} />
+          <Route path='/my/interest' element={<Main />} />
+          <Route path='/my/search' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/blog' element={<Blog />} />

@@ -1,14 +1,17 @@
 import "./style/profile.css";
 import { ProfileInfoStyle } from "./style/profile.style";
 import { ReactComponent as ArrowRightIcon } from "../../assets/icon/arrow_right.svg";
+import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = () => {
+    const navigate = useNavigate();
+
     return (
         <ProfileInfoStyle>
             <div className="profile">
                 <img src="" className="profile-icon" />
-                <p>안녕하세요, OOO님!</p>
-                <ArrowRightIcon className="icon" />
+                <p onClick={() => navigate("/my/info")}>안녕하세요, OOO님!</p>
+                <ArrowRightIcon className="icon" onClick={() => navigate("/my/info")} />
             </div>
             <div className="info">
                 <div className="email">
@@ -27,11 +30,11 @@ const ProfileInfo = () => {
             <div className="management">
                 <div className="my-house">
                     <p className="label">나의 관심 매물</p>
-                    <ArrowRightIcon className="icon" />
+                    <ArrowRightIcon className="icon" onClick={() => navigate("/my/interest")} />
                 </div>
                 <div className="search-manage">
                     <p className="label">검색 조건 관리</p>
-                    <ArrowRightIcon className="icon"/>
+                    <ArrowRightIcon className="icon" onClick={() => navigate("/my/search")}/>
                 </div>
             </div>
             <div className="user-menu">
