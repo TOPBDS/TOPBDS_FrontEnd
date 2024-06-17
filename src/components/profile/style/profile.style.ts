@@ -64,6 +64,7 @@ export const ProfileMoreInfoStyle = styled.div`
     align-items: center;
 
     margin-bottom: 280px;
+    overflow-x: hidden;
 `
 
 export const ProfileInterestStyle = styled.div`
