@@ -17,25 +17,25 @@ import HouseDetailAptReview from "./details/HouseDetailAptReview";
 const HouseDetail: React.FC = () => {
     return (
         <HouseDetailStyle>
-            <HouseDetailHeader />
+            <HouseDetailHeader /> {/* 아파트 정보 */}
             <HouseDetailSortation />
-            <HouseDetailUnsold />
+            <HouseDetailUnsold /> {/* 미분양 정보 */}
             <HouseDetailSortation />
-            <HouseDetailPopulationChange />
+            <HouseDetailPopulationChange /> {/* 인구수 변화 */}
             <HouseDetailSortation />
-            <HouseDetailRank />
+            <HouseDetailRank /> {/* 대단지 순위 */}
             <HouseDetailSortation />
-            <HouseDetailSupplyVolume />
+            <HouseDetailSupplyVolume /> {/* 공급 물량 */}
             <HouseDetailSortation />
-            <HouseDetailRecentlyDownFallApt />
+            <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
+            <HouseDetailSortation /> 
+            <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
             <HouseDetailSortation />
-            <HouseDetailRecentlyRiseApt />
+            <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
             <HouseDetailSortation />
-            <HouseDetailCompareApts />
+            <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
             <HouseDetailSortation />
-            <HouseDetailAptsInDecreasePrice />
-            <HouseDetailSortation />
-            <HouseDetailAptReview />
+            <HouseDetailAptReview /> {/* 아파트 평점 */}
             <HouseDetailSortation />
         </HouseDetailStyle>
     )
