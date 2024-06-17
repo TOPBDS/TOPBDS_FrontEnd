@@ -13,7 +13,7 @@ const ProfileInfo = () => {
                 <p onClick={() => navigate("/my/info")}>안녕하세요, OOO님!</p>
                 <ArrowRightIcon className="icon" onClick={() => navigate("/my/info")} />
             </div>
-            <div className="info">
+            <div className="profile-info">
                 <div className="email">
                     <p className="label">이메일</p>
                     <p className="data">rhdydqls1024@naver.com</p>

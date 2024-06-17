@@ -37,7 +37,7 @@
     margin-left: -30px;
 }
 
-.info {
+.profile-info {
     width: 100%;
     height: 150px;
 
@@ -49,7 +49,7 @@
     align-items: center;
 }
 
-.info div {
+.profile-info div {
     width: 100%;
     height: 50px;
 
@@ -59,13 +59,13 @@
     align-items: center;
 }
 
-.info div .label {
+.profile-info div .label {
     font-size: 16px;
     color: #9DA3AF;
     margin-left: 24px;
 }
 
-.info div .data {
+.profile-info div .data {
     font-size: 14px;
     color: #676F7E;
     margin-right: 24px;
@@ -135,7 +135,7 @@
     color: #FA3434;
 }
 
-.footer-info {
+.footer-profile-info {
     width: 100%;
 
     display: flex;
@@ -170,7 +170,7 @@
     margin-right: 16px;
 }
 
-.more-info {
+.more-profile-info {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -178,7 +178,7 @@
     margin-top: 32px;
 }
 
-.more-info .data {
+.more-profile-info .data {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -187,7 +187,7 @@
     height: 55px;
 }
 
-.more-info .data .title {
+.more-profile-info .data .title {
     font-size: 16px;
     color: #9DA3AF;
     line-height: 24px;
@@ -197,7 +197,7 @@
     margin-left: 16px;
 }
 
-.more-info .data p {
+.more-profile-info .data p {
     font-size: 14px;
     color: #676F7E;
     line-height: 20px;
@@ -207,7 +207,7 @@
     margin-right: 16px;
 }
 
-.more-info .update {
+.more-profile-info .update {
     width: 100%;
     height: 55px;
     cursor: pointer;
