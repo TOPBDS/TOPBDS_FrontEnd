@@ -24,7 +24,7 @@ export const SubHeaderStyle = styled.div`
     position:fixed;
     z-index:999;
     top: 10px;
-    left: 510px;
+    left: 474px;
     
 `
 
