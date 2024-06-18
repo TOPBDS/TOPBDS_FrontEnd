@@ -19,6 +19,14 @@ const HouseDetail: React.FC = () => {
         <HouseDetailStyle>
             <HouseDetailHeader /> {/* 아파트 정보 */}
             <HouseDetailSortation />
+            <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
+            <HouseDetailSortation />
+            <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
+            <HouseDetailSortation />
+            <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
+            <HouseDetailSortation />
+            <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
+            <HouseDetailSortation />
             <HouseDetailUnsold /> {/* 미분양 정보 */}
             <HouseDetailSortation />
             <HouseDetailPopulationChange /> {/* 인구수 변화 */}
@@ -27,16 +35,7 @@ const HouseDetail: React.FC = () => {
             <HouseDetailSortation />
             <HouseDetailSupplyVolume /> {/* 공급 물량 */}
             <HouseDetailSortation />
-            <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
-            <HouseDetailSortation /> 
-            <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
-            <HouseDetailSortation />
-            <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
-            <HouseDetailSortation />
-            <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
-            <HouseDetailSortation />
             <HouseDetailAptReview /> {/* 아파트 평점 */}
-            <HouseDetailSortation />
         </HouseDetailStyle>
     )
 }

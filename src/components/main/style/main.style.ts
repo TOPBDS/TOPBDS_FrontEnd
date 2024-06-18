@@ -4,7 +4,7 @@ export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
     height:100vh;
-    left: 100px;
+    left: 64px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -34,7 +34,7 @@ export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
     height:100vh;
-    left: 100px;
+    left: 64px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -88,12 +88,7 @@ export const HouseSearchIcon = styled.button`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
-<<<<<<< Updated upstream
     width: 25.625rem;
-=======
-    width: 410px;
-    height: 100%;
->>>>>>> Stashed changes
 
     border-bottom: 1px solid #D5D7DD;
 

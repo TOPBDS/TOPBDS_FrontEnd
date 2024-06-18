@@ -4,7 +4,7 @@ export const ProfileContainer = styled.div`
     position: absolute;
     width: 25.625rem;
     height:100vh;
-    left: 100px;
+    left: 64px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
