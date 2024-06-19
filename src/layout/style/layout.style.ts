@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyle = styled.div`
-    width: 100px;
+    width: 64px;
     height: 100vh;
     position:fixed;
     z-index:999;
@@ -13,6 +13,7 @@ export const HeaderStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 `
 
 export const SubHeaderStyle = styled.div`
@@ -23,7 +24,8 @@ export const SubHeaderStyle = styled.div`
     position:fixed;
     z-index:999;
     top: 10px;
-    left: 510px;
+    left: 474px;
+    
 `
 
 export const HeaderMenuStyle = styled.div`
