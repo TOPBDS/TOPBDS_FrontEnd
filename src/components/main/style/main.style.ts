@@ -12,6 +12,8 @@ export const HouseListStyle = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 
+    z-index: 2;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,6 +47,8 @@ export const HouseDetailStyle = styled.div`
 
     max-height: 100vh;
     overflow-y: auto;
+
+    z-index: 2;
 
     &::-webkit-scrollbar {
         display: none;

@@ -16,6 +16,8 @@ export const ProfileContainer = styled.div`
     max-height: 100vh;
     overflow-y: auto;
 
+    z-index: 2;
+
     &::-webkit-scrollbar {
         display: none;
     }

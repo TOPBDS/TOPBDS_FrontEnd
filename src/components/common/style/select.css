@@ -128,15 +128,15 @@
 .map-fillter-select-box {
     background: #FFFFFF;
     border-radius: 8px;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     margin-bottom: 16px;
     position: relative;
 }
 
 .map-fillter-select-label {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
 
     /* padding: 16px; */
     cursor: pointer;
