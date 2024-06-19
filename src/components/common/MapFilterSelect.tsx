@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./style/select.css";
-import { ReactComponent as FillterDropDownIcon } from "../../assets/icon/fillter-drop-down.svg";
 
-interface FillterSelectProps {
+interface MapFilterSelect {
     optionName: string;
     optionList: string[];
 }
 
-const FilterSelect: React.FC<FillterSelectProps> = ({ 
+const MapFilterSelect: React.FC<MapFilterSelect> = ({ 
     optionName,
     optionList 
 }) => {
@@ -24,15 +23,14 @@ const FilterSelect: React.FC<FillterSelectProps> = ({
     };
 
     return (
-        <div className="fillter-select-box">
-            <button type="button" className="fillter-select-label" onClick={toggleDropdown}>
+        <div className="map-fillter-select-box">
+            <button type="button" className="map-fillter-select-label" onClick={toggleDropdown}>
                 <p>{selectedOption}</p>
-                <FillterDropDownIcon className='icon' />
             </button>
             {isOpen && (
-                <ul className="fillter-option-list">
+                <ul className="map-fillter-option-list">
                     {optionList && optionList.map((option: any, index: number) => (
-                        <li key={index} className="fillter-select-option" onClick={() => handleOptionClick(option)}>
+                        <li key={index} className={`map-fillter-select-option ${selectedOption == option ? "active" : ""}`} onClick={() => handleOptionClick(option)}>
                             {option}
                         </li>
                     ))}
@@ -42,4 +40,4 @@ const FilterSelect: React.FC<FillterSelectProps> = ({
     );
 }
 
-export default FilterSelect;
+export default MapFilterSelect;
