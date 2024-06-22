@@ -24,7 +24,7 @@ const MapFilterSelect: React.FC<MapFilterSelect> = ({
 
     return (
         <div className="map-fillter-select-box">
-            <button type="button" className="map-fillter-select-label" onClick={toggleDropdown}>
+            <button type="button" className={`map-fillter-select-label ${selectedOption != optionName ? "active" : ""}`} onClick={toggleDropdown}>
                 <p>{selectedOption}</p>
             </button>
             {isOpen && (

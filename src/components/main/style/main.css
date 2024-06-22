@@ -253,6 +253,15 @@
     box-shadow: 0px 2px 6px 0px #00000040;
 }
 
+/* 지도 선택 시 active */
+/* .map-style-select-label.active {
+    background-color: #03C6CE;
+}
+
+.map-style-select-label.active p {
+    color: #FFFFFF;
+} */
+
 .map-style-select-label p {
     font-size: 12px;
     line-height: 20px;

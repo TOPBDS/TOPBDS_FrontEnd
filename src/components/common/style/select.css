@@ -148,6 +148,14 @@
     box-shadow: 0px 2px 6px 0px #00000040;
 }
 
+.map-fillter-select-label.active {
+    background-color: #03C6CE;
+}
+
+.map-fillter-select-label.active p {
+    color: #FFFFFF;
+}
+
 .map-fillter-select-label p {
     font-size: 12px;
     line-height: 20px;

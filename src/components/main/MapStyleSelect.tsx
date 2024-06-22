@@ -29,7 +29,7 @@ const MapStyleSelect: React.FC<MapStyleSelect> = ({
 
     return (
         <div className="map-style-select-box">
-            <button type="button" className="map-style-select-label" onClick={toggleDropdown}>
+            <button type="button" className={`map-style-select-label ${selectedOption != optionName ? "active" : ""}`} onClick={toggleDropdown}>
                 <p>{selectedOption}</p>
             </button>
             {isOpen && (
