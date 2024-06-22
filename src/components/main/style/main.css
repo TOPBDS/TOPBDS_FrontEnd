@@ -234,15 +234,15 @@
 .map-style-select-box {
     background: #FFFFFF;
     border-radius: 8px;
-    width: 52px;
-    height: 52px;
+    width: 3rem;
+    height: 3rem;
     margin-bottom: 16px;
     position: relative;
 }
 
 .map-style-select-label {
-    width: 52px;
-    height: 52px;
+    width: 3rem;
+    height: 3rem;
 
     /* padding: 16px; */
     cursor: pointer;
@@ -257,6 +257,8 @@
     font-size: 12px;
     line-height: 20px;
     color: #676F7E;
+
+    font-weight: 700;
 }
 
 .style-list {
@@ -316,8 +318,8 @@
 }
 
 .hide-button {
-    width: 52px;
-    height: 52px;
+    width: 3rem;
+    height: 3rem;
 
     /* padding: 16px; */
     cursor: pointer;
@@ -331,6 +333,7 @@
     line-height: 20px;
     color: #676F7E;
     margin-bottom: 16px;
+    font-weight: 700;
 }
 
 .hide-button.active {
