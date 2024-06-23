@@ -92,7 +92,12 @@ export const HouseSearchIcon = styled.button`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
+<<<<<<< Updated upstream
     width: 25.625rem;
+=======
+    width: 410px;
+    height: 100%;
+>>>>>>> Stashed changes
 
     border-bottom: 1px solid #D5D7DD;
 
