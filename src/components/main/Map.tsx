@@ -1,3 +1,4 @@
+import "./style/main.css";
 import { useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
