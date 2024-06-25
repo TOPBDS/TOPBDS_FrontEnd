@@ -12,7 +12,7 @@ const Header = () => {
         <HeaderStyle>
             <a href="/"><SLOGO className="logo" /></a>
             <HeaderMenuStyle>
-                <HeaderMenuItemStyle onClick={() => navigate("/")}>블로그</HeaderMenuItemStyle>
+                <HeaderMenuItemStyle onClick={() => navigate("/blog")}>블로그</HeaderMenuItemStyle>
                 <HeaderMenuItemStyle onClick={() => navigate("/")}>보고서</HeaderMenuItemStyle>
                 {
                     isLogin ? (
