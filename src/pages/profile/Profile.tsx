@@ -9,6 +9,7 @@ import ProfileMoreInfo from "../../components/profile/ProfileMoreInfo";
 import ProfileInterest from "../../components/profile/ProfileInterest";
 import ProfileSearch from "../../components/profile/ProfileSearch";
 import ProfileNotify from "../../components/profile/ProfileNotify";
+import FAQ from "../../components/profile/faq";
 
 const Profile: React.FC = () => {
     const { pathname } = useLocation();
@@ -17,6 +18,7 @@ const Profile: React.FC = () => {
                 : element == "interest" ? "나의 관심 매물" 
                 : element == "search" ? "검색 조건 관리" 
                 : element == "notify" ? "알림" 
+                : element == "faq" ? "FAQ"
                 : ""; 
 
     return (
@@ -31,12 +33,14 @@ const Profile: React.FC = () => {
                     <ProfileSearch />
                 ) : element == "notify" ? (
                     <ProfileNotify />
+                ) : element == "faq" ? (
+                    <FAQ />
                 ) : (
                     <ProfileInfo />
                 )
             }
             {
-                element !== "interest" && element !== "notify" && (
+                element !== "interest" && element !== "notify" && element !== "faq" && (
                     <ProfileFooter />
                 )
             }

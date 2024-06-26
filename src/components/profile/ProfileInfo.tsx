@@ -39,7 +39,7 @@ const ProfileInfo = () => {
             </div>
             <div className="user-menu">
                 <div className="q-a">
-                    <p className="label">F&Q</p>
+                    <p className="label" onClick={() => navigate("/my/faq")}>F&Q</p>
                 </div>
                 <div className="chatting">
                     <p className="label">1:1 채팅</p>

@@ -21,6 +21,7 @@ function App() {
           <Route path='/my/interest' element={<Main />} />
           <Route path='/my/search' element={<Main />} />
           <Route path='/my/notify' element={<Main />} />
+          <Route path='/my/faq' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/blog' element={<Main />} />
