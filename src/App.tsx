@@ -7,6 +7,7 @@ import Main from './pages/main/Main';
 import Report from './pages/report/Report';
 import Register from './pages/auth/register/Register';
 import Login from './pages/auth/login/Login';
+import Payment from './pages/payment/Payment';
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path='/report' element={<Report />} />
           <Route path='/search' element={<Main />} />
           <Route path='/item/:idx' element={<Main />} />
+          <Route path='/payment' element={<Payment />} />
         </Routes>
       </Layout>
     </>
