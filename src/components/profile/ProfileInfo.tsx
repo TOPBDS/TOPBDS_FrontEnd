@@ -24,7 +24,7 @@ const ProfileInfo = () => {
                 </div>
                 <div className="notify">
                     <p className="label">알림</p>
-                    <p className="data">새알림 2개</p>
+                    <p className="data" onClick={() => navigate("/my/notify")}>새알림 2개</p>
                 </div>
             </div>
             <div className="management">
