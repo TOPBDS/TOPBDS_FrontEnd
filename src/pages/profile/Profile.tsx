@@ -40,7 +40,7 @@ const Profile: React.FC = () => {
                 )
             }
             {
-                element !== "interest" && element !== "notify" && element !== "faq" && (
+                !["interest", "notify", "faq", "search"].includes(element) && (
                     <ProfileFooter />
                 )
             }
