@@ -9,6 +9,8 @@ export const LoginContainer = styled.div`
 
     background: rgba(0, 0, 0, 0.3);
 
+    z-index: 999;
+
     display: flex;
     justify-content: center;
     align-items: center;
