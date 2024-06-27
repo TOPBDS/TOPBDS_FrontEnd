@@ -31,11 +31,13 @@ export const SubHeaderStyle = styled.div`
 export const HeaderMenuStyle = styled.div`
     display: flex;
     flex-direction: column;
+
+    padding-bottom: 16px;
 `
 
 export const HeaderMenuItemStyle = styled.div`
-    width: 100px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
 
     display: flex;
     flex-direction: column;
@@ -44,7 +46,6 @@ export const HeaderMenuItemStyle = styled.div`
     text-align: center;
 
     font-size: 14px;
-    margin: 8px;
 `
 
 export const SubHeaderMenuStyle = styled.div`
