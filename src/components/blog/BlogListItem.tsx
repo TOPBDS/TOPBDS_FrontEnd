@@ -9,7 +9,7 @@ const BlogListItem: React.FC = () => {
     return (
         <BlogListItemStyle onClick={() => navigate("/blog/1")}>
             <img src="/" className="image" />
-            <div className="info">
+            <div className="blog-info">
                 <p className="title">제목을 입력해 주세요.</p>
                 <p className="sub">상세 제목 또는 부가 설명을 입력해 주세요.</p>
                 <p className="date">업로드 날짜를 입력해 주세요.</p>

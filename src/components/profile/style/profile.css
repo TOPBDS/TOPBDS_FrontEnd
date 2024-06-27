@@ -233,7 +233,7 @@
     }
 }
 
-.item {
+.notify-item {
     width: 100%;
     height: 100px;
     padding: 24px 16px;
@@ -246,11 +246,11 @@
     align-items: center;
 }
 
-.item.active {
+.notify-item.active {
     background-color: #D2FDFE;
 }
 
-.item .title {
+.notify-item .title {
     width: 100%;
     
     display: flex;
@@ -259,21 +259,21 @@
     align-items: center;
 }
 
-.item .title p {
+.notify-item .title p {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     color: #000000;
 }
 
-.item .title .time {
+.notify-item .title .time {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
     color: #9DA3AF;
 }
 
-.item .content {
+.notify-item .content {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;

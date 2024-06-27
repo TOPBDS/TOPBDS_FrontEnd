@@ -9,7 +9,7 @@ const ProfileNotifyItem: React.FC<ProfileNotifyItem> = ({
     active
 }) => {
     return (
-        <div className={`item ${active ? "active" : ""}`}>
+        <div className={`notify-item ${active ? "active" : ""}`}>
             <div className="title">
                 <p>이거 어케 하는거임</p>
                 <p className="time">1분 전</p>
