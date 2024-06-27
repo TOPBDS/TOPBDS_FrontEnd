@@ -24,7 +24,7 @@ const ProfileInfo = () => {
                 </div>
                 <div className="notify">
                     <p className="label">알림</p>
-                    <p className="data">새알림 2개</p>
+                    <p className="data" onClick={() => navigate("/my/notify")}>새알림 2개</p>
                 </div>
             </div>
             <div className="management">
@@ -39,7 +39,7 @@ const ProfileInfo = () => {
             </div>
             <div className="user-menu">
                 <div className="q-a">
-                    <p className="label">F&Q</p>
+                    <p className="label" onClick={() => navigate("/my/faq")}>F&Q</p>
                 </div>
                 <div className="chatting">
                     <p className="label">1:1 채팅</p>

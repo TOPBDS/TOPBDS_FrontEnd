@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
-export const LoginContainer = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
+export const PaymentContainer = styled.div`
     width: 100%;
     height: 100vh;
-
-    background: rgba(0, 0, 0, 0.3);
-
-    z-index: 999;
+    overflow-y: hidden;
 
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 `;

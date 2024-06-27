@@ -11,13 +11,16 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
+  const element = pathname.split("/")[1];
 
   return (
     <>
       <CssBaseline />
       <Header />
       {
-        !pathname.includes("login") && !pathname.includes("register") && (
+        !pathname.includes("login") &&
+        !pathname.includes("register") &&
+        !pathname.includes("payment") && (
           <SubHeader />
         )
       }

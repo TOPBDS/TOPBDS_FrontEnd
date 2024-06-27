@@ -1,37 +1,69 @@
 import "./style/main.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
 
 const Maps = () => {
-    const [ level, setLevel ] = useState<number>(3);
+    const defaultLevel = 3;
+    const [ level, setLevel ] = useState<number>(defaultLevel);
     const [ hide, setHide ] = useState<boolean>(false);
     const [ mapType, setMapType ] = useState<number>(1);
+    const [ location, setLocation ] = useState<{
+        lat: number,
+        lng: number
+    }>({
+        lat: 123,
+        lng: 123
+    });
 
-    const setPlusLevel = () => {
-        if (level > 3) {
-            setLevel(level - 1)
+    const mapRef = useRef<kakao.maps.Map>(null);
+
+    const handleLevel = (type: "increase" | "decrease") => {
+        const map = mapRef.current
+        if (!map) return
+
+        if (type === "increase") {
+            map.setLevel(map.getLevel() + 1)
+            setLevel(map.getLevel())
+        } else if (type === "decrease") {
+            map.setLevel(map.getLevel() - 1)
+            setLevel(map.getLevel())
         }
     }
 
-    const setMinusLevel = () => {
-        if (level < 12) {
-            setLevel(level + 1)
-        }
+    useEffect(() => {
+        getCenter();
+    }, [])
+
+    const getCenter = () => {
+        window.navigator.geolocation.getCurrentPosition((data) => {
+            const map = mapRef.current
+            if (!map) return;
+
+            const latlng = new kakao.maps.LatLng(data.coords.latitude, data.coords.longitude);
+            map.setCenter(latlng);
+
+            setLocation({
+                lat: data.coords.latitude,
+                lng: data.coords.longitude
+            });
+        });
     }
 
     return (
         <>
             <Map
                 className="map"
-                center={{ lat: 33.450701, lng: 126.570667 }}
-                level={level}
+                center={location}
                 mapTypeId={mapType}
+                level={defaultLevel}
+                zoomable={true}
+                ref={mapRef}
             >
                 <div className="map-system">
-                    <button className="map-level" onClick={() => setPlusLevel()}>+</button>
-                    <button className="map-level" onClick={() => setMinusLevel()}>-</button>
+                    <button className="map-level" onClick={() => handleLevel("decrease")}>+</button>
+                    <button className="map-level" onClick={() => handleLevel("increase")}>-</button>
 
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />
@@ -48,3 +80,4 @@ const Maps = () => {
 }
 
 export default Maps;
+

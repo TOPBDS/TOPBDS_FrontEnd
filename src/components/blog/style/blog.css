@@ -1,0 +1,70 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #22252A;
+}
+
+.header .close {
+    width: 32px;
+    height: 32px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu div {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9DA3AF;
+    cursor: pointer;
+}
+
+.menu div.active {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0F0F0F;
+}
+
+.image {
+    width: 362px;
+    height: 200px;
+    background-color: #D9D9D9;
+}
+
+.blog-info .title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #000000;
+    margin-top: 8px;
+}
+
+.blog-info .sub {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #9DA3AF;
+    margin-top: 8px;
+}
+
+.blog-info .date {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #9DA3AF;
+    margin-top: 8px;
+}

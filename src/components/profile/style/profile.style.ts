@@ -32,8 +32,6 @@ export const ProfileInfoStyle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin-bottom: 280px;
 `
 
 export const ProfileSearchStyle = styled.div`
@@ -47,8 +45,6 @@ export const ProfileSearchStyle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin-bottom: 280px;
 `
 
 export const ProfileMoreInfoStyle = styled.div`
@@ -78,13 +74,51 @@ export const ProfileInterestStyle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin-bottom: 280px;
 `
+
+export const ProfileNotifyStyle = styled.div`
+    width: 100%;
+    height: fit-content;
+
+    background: none;
+    border: none;
+
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+export const FAQStyle = styled.div`
+    width: 100%;
+    height: fit-content;
+
+    background: none;
+    border: none;
+
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
 
 export const ProfileFooterStyle = styled.div`
     width: 100%;
     height: 180px;
+
+    position: absolute;
+    bottom: -180px;
 
     background-color: #FFFFFF;
 
