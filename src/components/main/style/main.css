@@ -231,6 +231,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 }
 
 /* Map Fillter Select Box 디자인 */
