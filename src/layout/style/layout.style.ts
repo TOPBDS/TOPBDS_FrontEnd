@@ -46,6 +46,8 @@ export const HeaderMenuItemStyle = styled.div`
     text-align: center;
 
     font-size: 14px;
+
+    cursor: pointer;
 `
 
 export const SubHeaderMenuStyle = styled.div`

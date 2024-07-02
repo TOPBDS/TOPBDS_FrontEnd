@@ -1,5 +1,7 @@
 .close {
     margin: 16px;
+
+    cursor: pointer;
 }
 
 .title {
@@ -9,6 +11,8 @@
 
 .icon {
     width: 28px;
+
+    cursor: pointer;
 }
 
 .profile {
@@ -63,6 +67,8 @@
     font-size: 16px;
     color: #9DA3AF;
     margin-left: 24px;
+
+    cursor: pointer;
 }
 
 .profile-info div .data {
@@ -91,6 +97,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .management div .label {
@@ -123,6 +131,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .user-menu div .label {

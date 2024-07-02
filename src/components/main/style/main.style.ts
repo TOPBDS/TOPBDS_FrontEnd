@@ -92,18 +92,15 @@ export const HouseSearchIcon = styled.button`
 export const HouseListItemStyle = styled.div`
     box-sizing: border-box;
 
-<<<<<<< Updated upstream
     width: 25.625rem;
-=======
-    width: 410px;
-    height: 100%;
->>>>>>> Stashed changes
 
     border-bottom: 1px solid #D5D7DD;
 
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    cursor: pointer;
 `
 
 export const HouseItemTopStyle = styled.div`
@@ -249,4 +246,6 @@ export const HouseItemRecommendButtonStyle = styled.button`
     border: none;
 
     color: #fff;
+
+    cursor: pointer;
 `
