@@ -16,7 +16,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <CssBaseline />
-      <Header />
+      {
+        !pathname.includes("payment") && (
+          <Header />
+        )
+      }
       {
         !pathname.includes("login") &&
         !pathname.includes("register") &&
