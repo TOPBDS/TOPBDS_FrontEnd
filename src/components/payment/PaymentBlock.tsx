@@ -1,43 +1,38 @@
 import "./style/payment.css";
 import React from "react";
 import { PaymentBlockStyle } from "./style/payment.style";
+import { ReactComponent as CheckIcon } from "../../assets/icon/check.svg";
 
 interface PaymentBlock {
-    title: string;
-    subTitle: string;
+    type: string;
     price: string;
     use: boolean;
     items: string[];
 }
 
 const PaymentBlock: React.FC<PaymentBlock> = ({
-    title,
-    subTitle,
+    type,
     price,
     use,
     items
 }) => {
     return (
         <PaymentBlockStyle>
-            <div className="center">
-                <div className="title-container">
-                    <div className="title">{title}</div>
-                    <div className="sub-title">{subTitle}</div>
-                </div>
-                <div className="price">
-                    {price}
-                    <p>{price !== "무료" ? "/월" : ""}</p>
-                </div>
-                <button type="button" className={`use-button ${use ? "active" : ""}`}>{use ? "현재 사용중" : "사용하기"}</button>
+            <div className="title-container">
+                <div className="title">{type}</div>
+                <div className="price">{price}원 / 월</div>
             </div>
-            <div className="explain">
-                <p>포함된 기능</p>
+            <div className="explain"> 
                 {
                     items && items.map((item, index) => (
-                        <p className="item" key={index}>{item}</p>
+                        <div className="explain-item">
+                            <CheckIcon className="icon" />
+                            <p className="item-text" key={index}>{item}</p>
+                        </div>
                     ))
                 }
             </div>
+            <button type="button" className={`use-button ${use ? "active" : ""}`}>{use ? "현재 사용중" : "사용하기"}</button>
         </PaymentBlockStyle>
     )
 }

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
+import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
+import { ReactComponent as MinusIcon } from "../../assets/icon/minus.svg";
 
 const Maps = () => {
     const defaultLevel = 3;
@@ -62,8 +64,8 @@ const Maps = () => {
                 ref={mapRef}
             >
                 <div className="map-system">
-                    <button className="map-level" onClick={() => handleLevel("decrease")}>+</button>
-                    <button className="map-level" onClick={() => handleLevel("increase")}>-</button>
+                    <button className="map-level" onClick={() => handleLevel("decrease")}><PlusIcon /></button>
+                    <button className="map-level" onClick={() => handleLevel("increase")}><MinusIcon /></button>
 
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />

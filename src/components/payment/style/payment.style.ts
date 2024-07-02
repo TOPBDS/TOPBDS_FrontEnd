@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 export const PaymentBlockStyle = styled.div`
-    width: 400px;
-    height: 600px;
+    width: 388px;
+    height: 292px;
     border-radius: 16px;
-    border: 1px solid #03C6CE;
+    border: 1px solid #D5D7DD;
+
+    padding: 24px;
+    gap: 24px;
 
     display: flex;
     flex-direction: column;
-
-    margin: 24px;
+    justify-content: center;
+    align-items: start;
 `
