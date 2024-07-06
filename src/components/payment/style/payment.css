@@ -1,0 +1,66 @@
+.title-container .title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #000000;
+}
+
+.title-container .price {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #000000;
+}
+
+.price p {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #000000;
+}
+
+.use-button {
+    width: 340px;
+    height: 50px;
+    background-color: #03C6CE;
+    padding: 14px, 80px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+
+    border: none;
+    color: #ffffff;
+}
+
+.use-button.active {
+    background-color: #ffffff;
+    border: 1px solid #03C6CE;
+    color: #03C6CE;
+}
+
+.explain {
+    display: flex;
+    flex-direction: column;
+}
+
+.explain .explain-item { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.explain .explain-item .icon {
+    width: 24px;
+    height: 24px;
+    padding: 6px;
+    margin-right: 8px;
+}
+
+.explain .explain-item .item-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #676F7E;
+}

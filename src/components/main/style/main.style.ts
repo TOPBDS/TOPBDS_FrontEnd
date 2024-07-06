@@ -1,17 +1,18 @@
 import styled from "styled-components";
-import { HEADER_HEIGHT_PX } from "../../../constants/style";
 
 export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
-    left: 0px;
-    top: 8rem;
+    height:100vh;
+    left: 64px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
     
+    overflow-x: hidden;
     overflow-y: auto;
+
+    z-index: 2;
 
     display: flex;
     flex-direction: column;
@@ -34,8 +35,8 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:calc(100vh - ${HEADER_HEIGHT_PX}px);
-    top: 8rem;
+    height:100vh;
+    left: 64px;
 
     background-color: #fff;
     border-right: 1px solid #D5D7DD;
@@ -46,6 +47,8 @@ export const HouseDetailStyle = styled.div`
 
     max-height: 100vh;
     overflow-y: auto;
+
+    z-index: 2;
 
     &::-webkit-scrollbar {
         display: none;
@@ -96,6 +99,8 @@ export const HouseListItemStyle = styled.div`
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    cursor: pointer;
 `
 
 export const HouseItemTopStyle = styled.div`
@@ -230,7 +235,7 @@ export const HouseItemRecommendButtonStyle = styled.button`
     gap: 10px;
 
     position: absolute;
-    top: 750px;
+    bottom: 30px;
     z-index: 10;
     
     width: 362px;
@@ -241,4 +246,30 @@ export const HouseItemRecommendButtonStyle = styled.button`
     border: none;
 
     color: #fff;
+
+    cursor: pointer;
+`
+
+export const ReportPrintButtonStyle = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 80px;
+    gap: 10px;
+
+    position: fixed;
+    bottom: 30px;
+    z-index: 10;
+    
+    width: 362px;
+    height: 48px;
+    
+    background: #03C6CE;
+    border-radius: 8px;
+    border: none;
+
+    color: #fff;
+
+    cursor: pointer;
 `

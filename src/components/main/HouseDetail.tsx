@@ -1,6 +1,6 @@
 import "./style/main.css"; 
 import "./style/main-item.style"
-import { HouseDetailStyle } from "./style/main.style";
+import { HouseDetailStyle, ReportPrintButtonStyle } from "./style/main.style";
 import { HouseDetailSortation } from "./style/main-item.style";
 import React from "react";
 import HouseDetailHeader from "./details/HouseDetailHeader";
@@ -17,26 +17,26 @@ import HouseDetailAptReview from "./details/HouseDetailAptReview";
 const HouseDetail: React.FC = () => {
     return (
         <HouseDetailStyle>
-            <HouseDetailHeader />
+            <HouseDetailHeader /> {/* 아파트 정보 */}
             <HouseDetailSortation />
-            <HouseDetailUnsold />
+            <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
             <HouseDetailSortation />
-            <HouseDetailPopulationChange />
+            <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
             <HouseDetailSortation />
-            <HouseDetailRank />
+            <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
             <HouseDetailSortation />
-            <HouseDetailSupplyVolume />
+            <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
             <HouseDetailSortation />
-            <HouseDetailRecentlyDownFallApt />
+            <HouseDetailUnsold /> {/* 미분양 정보 */}
             <HouseDetailSortation />
-            <HouseDetailRecentlyRiseApt />
+            <HouseDetailPopulationChange /> {/* 인구수 변화 */}
             <HouseDetailSortation />
-            <HouseDetailCompareApts />
+            <HouseDetailRank /> {/* 대단지 순위 */}
             <HouseDetailSortation />
-            <HouseDetailAptsInDecreasePrice />
+            <HouseDetailSupplyVolume /> {/* 공급 물량 */}
             <HouseDetailSortation />
-            <HouseDetailAptReview />
-            <HouseDetailSortation />
+            <HouseDetailAptReview /> {/* 아파트 평점 */}
+            <ReportPrintButtonStyle type="button">보고서 출력하기</ReportPrintButtonStyle> {/* 보고서 출력 버튼 */}
         </HouseDetailStyle>
     )
 }

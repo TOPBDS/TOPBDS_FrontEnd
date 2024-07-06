@@ -1,11 +1,9 @@
 /* Select Box 디자인 */
 
 .select-box {
-    position: relative;
+    position: relative; /* Ensure this is set to create a stacking context */
     display: inline-block;
-
     width: 100%;
-    z-index: 999;
 }
 
 .select-label {
@@ -45,9 +43,13 @@
     background-color: #fff;
     border: 1px solid #ccc;
     width: 100%;
-    z-index: 999;
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
     max-height: 200px;
     overflow-y: auto;
+}
+
+.option-list::-webkit-scrollbar {
+    display: none;
 }
 
 .option-list .select-option {
@@ -61,24 +63,20 @@
 }
 
 /* Fillter Select Box 디자인 */
+
 .fillter-select-box {
-    position: relative;
-    
+    position: relative; /* Ensure this is set to create a stacking context */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 6px 16px;
+    padding: 8px 16px;
     gap: 10px;
-
     background: #03C6CE;
     border-radius: 16px;
-
-    height: 32px;
 }
 
 .fillter-select-label {
-    padding: 10px;
     cursor: pointer;
     text-align: left;
     background: none;
@@ -91,9 +89,8 @@
 }
 
 .fillter-select-label p {
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
-    margin-right: 10px;
 }
 
 .fillter-option-list {
@@ -105,16 +102,105 @@
     background-color: #fff;
     border: 1px solid #ccc;
     width: 100%;
-    z-index: 1;
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
     max-height: 200px;
     overflow-y: auto;
+    border-radius: 0.5rem;
+}
+
+.fillter-option-list::-webkit-scrollbar {
+    display: none;
 }
 
 .fillter-option-list .fillter-select-option {
     padding: 0.75rem;
     cursor: pointer;
+
+    font-size: 14px;
 }
 
 .fillter-option-list .fillter-select-option:hover {
     background-color: #f1f1f1;
+    color: #03C6CE;
+}
+
+/* Map Fillter Select Box 디자인 */
+
+.map-fillter-select-box {
+    background: #FFFFFF;
+    border-radius: 8px;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.map-fillter-select-label {
+    width: 3rem;
+    height: 3rem;
+
+    /* padding: 16px; */
+    cursor: pointer;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+
+    box-shadow: 0px 2px 6px 0px #00000040;
+}
+
+.map-fillter-select-label.active {
+    background-color: #03C6CE;
+}
+
+.map-fillter-select-label.active p {
+    color: #FFFFFF;
+}
+
+.map-fillter-select-label p {
+    font-size: 12px;
+    line-height: 20px;
+    color: #676F7E;
+
+    font-weight: 700;
+}
+
+.map-fillter-select-label:active{
+    background-color: #03C6CE;
+    color: #FFFFFF;
+}
+
+.map-fillter-option-list {
+    margin: 0;
+    padding: 12px, 16px;
+    list-style: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    width: 80px;
+    top: 0; /* Align the top of the dropdown with the button */
+    right: 53px; /* Position it to the right of the button */
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
+    max-height: 180px;
+    overflow-y: auto;
+    box-shadow: 0px 2px 6px 0px #00000040;
+}
+
+.map-fillter-option-list::-webkit-scrollbar {
+    display: none;
+}
+
+.map-fillter-option-list .map-fillter-select-option {
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 14px;
+    color: #676F7E;
+}
+
+.map-fillter-option-list .map-fillter-select-option:hover {
+    background-color: #f1f1f1;
+}
+
+.map-fillter-option-list .map-fillter-select-option.active {
+    background-color: #03C6CE;
+    color: #FFFFFF;
 }

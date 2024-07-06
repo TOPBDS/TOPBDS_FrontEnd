@@ -1,5 +1,4 @@
-import { SubHeaderMenuItemStyle, SubHeaderMenuStyle, SubHeaderStyle } from "../style/layout.style";
-import { ReactComponent as ArrowBottom } from "../../assets/icon/arrow_bottom.svg";
+import { SubHeaderMenuStyle, SubHeaderStyle } from "../style/layout.style";
 import FilterSelect from "../../components/common/FillterSelect";
 
 const SubHeader = () => {

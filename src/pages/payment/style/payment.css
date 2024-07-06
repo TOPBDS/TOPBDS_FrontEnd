@@ -1,0 +1,57 @@
+.container {
+    width: 834px;
+    height: 588px;
+    border-radius: 16px;
+
+    background-color: #FFFFFF;
+
+    padding: 24px;
+}
+
+.payment-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.payment-header .icon {
+    width: 32px;
+    height: 32px;
+}
+
+.main-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 24px;
+}
+
+.main-title .logo {
+    width: 102px;
+    height: 96px;
+}
+
+.main-title .main {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.main-title .sub {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #9DA3AF;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
