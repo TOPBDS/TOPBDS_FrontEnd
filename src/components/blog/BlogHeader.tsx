@@ -9,7 +9,7 @@ const BlogHeader:React.FC = () => {
 
     return (
         <BlogHeaderStyle>
-            <div className="header">
+            <div className="blog-header">
                 <h1>블로그 / 인사이트</h1>
                 <HouseCloseIcon className="close" onClick={() => navigate(-1)} />
             </div>

@@ -1,18 +1,18 @@
-.header {
+.blog-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.header h1 {
+.blog-header h1 {
     font-size: 24px;
     font-weight: 700;
     line-height: 32px;
     color: #22252A;
 }
 
-.header .close {
+.blog-header .close {
     width: 32px;
     height: 32px;
 }

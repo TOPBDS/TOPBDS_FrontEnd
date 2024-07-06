@@ -8,14 +8,14 @@
     padding: 24px;
 }
 
-.header {
+.payment-header {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: end;
 }
 
-.header .icon {
+.payment-header .icon {
     width: 32px;
     height: 32px;
 }

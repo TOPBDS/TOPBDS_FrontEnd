@@ -249,3 +249,27 @@ export const HouseItemRecommendButtonStyle = styled.button`
 
     cursor: pointer;
 `
+
+export const ReportPrintButtonStyle = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 80px;
+    gap: 10px;
+
+    position: fixed;
+    bottom: 30px;
+    z-index: 10;
+    
+    width: 362px;
+    height: 48px;
+    
+    background: #03C6CE;
+    border-radius: 8px;
+    border: none;
+
+    color: #fff;
+
+    cursor: pointer;
+`

@@ -12,7 +12,7 @@ const Payment: React.FC = () => {
     return (
         <PaymentContainer>
             <div className="container">
-                <div className="header">
+                <div className="payment-header">
                     <X className="icon" onClick={() => navigate(-1)} />
                 </div>
                 <div className="main-title">
