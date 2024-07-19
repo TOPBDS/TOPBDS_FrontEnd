@@ -67,14 +67,14 @@ export const RegisterInput = styled.input`
     margin-bottom: 16px;
 `
 
-export const NumberVerifyContainerStyle = styled.div`
+export const EmailVerifyContainerStyle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 `
 
-export const NumberInput = styled.input`
+export const EmailInput = styled.input`
     box-sizing: border-box;
 
     display: flex;
@@ -92,7 +92,7 @@ export const NumberInput = styled.input`
     margin-bottom: 16px;
 `
 
-export const VerifyNumberInput = styled.input`
+export const VerifyEmailInput = styled.input`
     box-sizing: border-box;
 
     display: flex;
@@ -111,7 +111,7 @@ export const VerifyNumberInput = styled.input`
 `
 
 
-export const NumberVerifyButton = styled.button<{ inverted: boolean }>`
+export const EmailVerifyButton = styled.button<{ inverted: boolean }>`
     width: 52px;
     height: 48px;
 
