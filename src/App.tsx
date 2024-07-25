@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from "react-router-dom";
 import './App.css';
 import './assets/fonts/font.css';
 import Layout from './layout/Layout';
@@ -8,9 +8,29 @@ import Report from './pages/report/Report';
 import Register from './pages/auth/register/Register';
 import Login from './pages/auth/login/Login';
 import Payment from './pages/payment/Payment';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN } from './reducers/auth/loginAction';
+import AuthApi from './core/apis/auth/Auth.api';
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 function App() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const check = async () => {
+    const data = await AuthApi.loginCheck();
+    if (data !== "error") {
+      dispatch({
+        type: LOGIN,
+        data: data.userData
+      });
+    }
+  };
+
+  useEffect(() => {
+    check();
+  }, [location.pathname]);
+
   return (
     <>
       <Layout>

@@ -36,7 +36,6 @@ const HouseDetail: React.FC = () => {
             <HouseDetailSupplyVolume /> {/* 공급 물량 */}
             <HouseDetailSortation />
             <HouseDetailAptReview /> {/* 아파트 평점 */}
-            <ReportPrintButtonStyle type="button">보고서 출력하기</ReportPrintButtonStyle> {/* 보고서 출력 버튼 */}
         </HouseDetailStyle>
     )
 }

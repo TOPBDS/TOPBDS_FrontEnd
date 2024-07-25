@@ -29,14 +29,20 @@ const RegisterForm = () => {
 
     const onClickStep1 = () => {
         // TODO 이메일 인증 로직 후 인증 성공 시 step 넘어가기
-        setStep(1);
+        if (name !== "" || email !== "" || verifyNumber !== "") {
+            setStep(1);
+        }
         // 인증 싪패 시 인증 실패 메시지 띄우기
     }
 
     const sendRegisterUser = async () => {
         // TODO 회원가입 서버 연결 로직
-        const response = await AuthApi.register({
-            id, name, email, password, number
+        await AuthApi.register({
+            userId: id,
+            name: name,
+            email: email,
+            password: password,
+            phone: number
         });
     }
 

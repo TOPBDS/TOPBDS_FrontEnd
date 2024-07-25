@@ -36,12 +36,12 @@ const HouseDetailPopulationChange: React.FC = () => {
                 </div>
                 <span>전국 지역별 (시도, 시군구, 읍면동) 인구현황</span>
             </div>
-            <div className="search">
+            {/* <div className="search">
                 <div className="search-container">
                     <input type="text" className="search-input" placeholder="지역명" />
                     <HouseSearchIcon className="search-icon"/>
                 </div>
-            </div>
+            </div> */}
             <div className="radios">
                 <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
                 <div className="radio-box"><input type="radio" className="radio" /> 분기</div>

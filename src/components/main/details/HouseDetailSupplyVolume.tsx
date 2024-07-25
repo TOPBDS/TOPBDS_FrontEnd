@@ -99,12 +99,12 @@ const HouseDetailSupplyVolume: React.FC = () => {
                     <span>출처 : 분양물량조사</span>
                 </div>
             </div>
-            <div className="search">
+            {/* <div className="search">
                 <div className="search-container">
                     <input type="text" className="search-input" placeholder="지역명" />
                     <HouseSearchIcon className="search-icon"/>
                 </div>
-            </div>
+            </div> */}
             <div className="select">
                 <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
                 <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />

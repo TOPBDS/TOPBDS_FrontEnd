@@ -33,10 +33,10 @@ const HouseDetailRank: React.FC = () => {
                     <input type="text" className="search-input" placeholder="아파트명"/>
                     <HouseSearchIcon className="search-icon"/>
                 </div>
-                <div className="search-container">
+                {/* <div className="search-container">
                     <input type="text" className="search-input" placeholder="지역명" />
                     <HouseSearchIcon className="search-icon"/>
-                </div>
+                </div> */}
             </div>
             <div className="select">
                 <Select optionName="도시" optionList={["대구", "서울", "부산"]} />

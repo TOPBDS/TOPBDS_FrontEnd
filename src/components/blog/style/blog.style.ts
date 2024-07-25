@@ -4,7 +4,7 @@ export const BlogHeaderStyle = styled.div`
     width: 25.625rem;
     height: 80px;
 
-    padding: 24px;
+    padding: 36px;
 `
 
 export const BlogMenuStyle = styled.div`

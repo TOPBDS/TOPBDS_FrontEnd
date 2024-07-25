@@ -1,3 +1,3 @@
 export default {
-    config: "http://localhost:8082",
+    config: "http://localhost:8080",
   };

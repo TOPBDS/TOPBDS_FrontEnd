@@ -2,9 +2,23 @@ import "./style/profile.css";
 import { ProfileInfoStyle } from "./style/profile.style";
 import { ReactComponent as ArrowRightIcon } from "../../assets/icon/arrow_right.svg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../../reducers/auth/loginAction";
 
 const ProfileInfo = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("RefreshToken");
+        localStorage.removeItem("user");
+        dispatch({
+            type: LOGOUT,
+        });
+
+        navigate("/");
+    }
 
     return (
         <ProfileInfoStyle>
@@ -45,7 +59,7 @@ const ProfileInfo = () => {
                     <p className="label">1:1 채팅</p>
                 </div>
                 <div className="logout">
-                    <p className="label">로그아웃</p>
+                    <p className="label" onClick={() => logout()}>로그아웃</p>
                 </div>
             </div>
         </ProfileInfoStyle>
