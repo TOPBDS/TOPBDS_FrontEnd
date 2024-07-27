@@ -6,3 +6,18 @@ export const ReportContainer = styled.div`
     overflow-y: hidden;
     color: #fff;
 `
+
+export const ReportHeader = styled.div`
+    position: absolute;
+    width: 13.625rem;
+    height:100vh;
+    left: 64px;
+
+    background-color: #fff;
+    border-right: 1px solid #D5D7DD;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    z-index: 2;
+`
