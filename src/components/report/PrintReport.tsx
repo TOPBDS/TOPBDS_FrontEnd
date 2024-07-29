@@ -53,11 +53,10 @@ const PrintReport = () => {
             <div className="report-container">
                 <div className="report-header">
                     <h1 className="report-title">아파트 데이터 분석 보고서</h1>
-                    <SLOGO className="report-logo" />
                 </div>
                 <div className="report-filter">
-                    <p>검색 조건</p>
-                    <div className="select-box">
+                    <p className="report-filter-search">검색 조건</p>
+                    <div className="report-select-box">
                         <button type="button" className="select-label" onClick={toggleAptDropdown}>
                             <p>{aptSelectedOption}</p>
                             <DropDownIcon className='icon' />
@@ -72,7 +71,7 @@ const PrintReport = () => {
                             </ul>
                         )}
                     </div>
-                    <div className="select-box">
+                    <div className="report-select-box">
                         <button type="button" className="select-label" onClick={toggleSquareDropdown}>
                             <p>{squareSelectedOption}</p>
                             <DropDownIcon className='icon' />
@@ -101,7 +100,7 @@ const PrintReport = () => {
                 </div>
                 <div className="report-info">
                     <div className="report-info-item">
-                        <p>[표] 아파트 실거래가 내역</p>
+                        <p className="graph-title">[표] 아파트 실거래가 내역</p>
                         <div className="tables">
                             <TableContainer component={Paper} className="table-container">
                                 <Table size="small" stickyHeader className="table">
@@ -130,7 +129,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 아파트 실거래가 및 거래량 변화</p>
+                        <p className="graph-title">[그림] 아파트 실거래가 및 거래량 변화</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -142,7 +141,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 최고가 아파트</p>
+                        <p className="graph-title">[그림] 최고가 아파트</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -154,7 +153,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 최대 거래량</p>
+                        <p className="graph-title">[그림] 최대 거래량</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -166,7 +165,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 동에 따른 실거래가 분포</p>
+                        <p className="graph-title">[그림] 동에 따른 실거래가 분포</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -178,7 +177,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 아파트 층별 거래량</p>
+                        <p className="graph-title">[그림] 아파트 층별 거래량</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -190,7 +189,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 아파트 연도별 거래량</p>
+                        <p className="graph-title">[그림] 아파트 연도별 거래량</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
@@ -202,7 +201,7 @@ const PrintReport = () => {
                         </div>
                     </div>
                     <div className="report-info-item">
-                        <p>[그림] 아파트 평형 거래량</p>
+                        <p className="graph-title">[그림] 아파트 평형 거래량</p>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={chartData}>
