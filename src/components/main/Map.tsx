@@ -1,6 +1,6 @@
 import "./style/main.css";
 import { useEffect, useRef, useState } from "react";
-import { Map } from "react-kakao-maps-sdk";
+import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
 import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
@@ -63,6 +63,20 @@ const Maps = () => {
                 zoomable={true}
                 ref={mapRef}
             >
+                <div className="overlay-container">
+                    <CustomOverlayMap position={location}>
+                        <div className='overlay'>
+                            <p className="square-footage">31평</p>
+                            <p className="apt-price">16.8억</p>
+                        </div>
+                    </CustomOverlayMap>
+                    <CustomOverlayMap position={{ lat: 33.55635, lng: 126.795841 }}>
+                        <div className='overlay active'>
+                            <p className="square-footage">31평</p>
+                            <p className="apt-price">16.8억</p>
+                        </div>
+                    </CustomOverlayMap>
+                </div>
                 <div className="map-system">
                     <button className="map-level" onClick={() => handleLevel("decrease")}><PlusIcon /></button>
                     <button className="map-level" onClick={() => handleLevel("increase")}><MinusIcon /></button>

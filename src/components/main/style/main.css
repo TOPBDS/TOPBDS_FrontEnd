@@ -355,3 +355,41 @@
     background-color: #03C6CE;
     color: #FFFFFF;
 }
+
+.overlay {
+    width: 70px;
+    height: 52px;
+    border-radius: 6px;
+    background-color: rgba(3, 198, 206, 1);
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay.active {
+    background-color: #fff;
+    border: 1px solid rgba(3, 198, 206, 1);
+}
+
+.overlay.active p {
+    color: rgba(3, 198, 206, 1);
+}
+
+.overlay p {
+    color: #fff;
+}
+
+.overlay .square-footage {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.overlay .apt-price {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}

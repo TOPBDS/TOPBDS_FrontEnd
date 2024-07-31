@@ -2,11 +2,15 @@ import "./style/printReport.css";
 import { PrintReportContainer } from "./style/printReport.style";
 import { ReactComponent as SLOGO } from "../../assets/icon/s-logo.svg";
 import { ReactComponent as DropDownIcon } from "../../assets/icon/drop-down.svg";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
-const PrintReport = () => {
+interface PrintReportProps {
+    menu: number;
+}
+
+const PrintReport: React.FC<PrintReportProps> = ({ menu }) => {
     const [aptIsOpen, setAptIsOpen] = useState(false);
     const [squareIsOpen, setSquareIsOpen] = useState(false);
     const [aptSelectedOption, setAptSelectedOption] = useState("아파트");
@@ -14,6 +18,17 @@ const PrintReport = () => {
     const [aptOptionList, setAptOptionList] = useState<[]>([]);
     const [squareOptionList, setSquareOptionList] = useState<[]>([]);
     const [rangeValue, setRangeValue] = useState<number>();
+
+    const getTitle = () => {
+        switch (menu) {
+            case 0:
+                return "아파트 데이터 분석 보고서";
+            case 1:
+                return "아파트 시군구 분석 보고서";
+            case 2:
+                return "아파트 인프라 분석 보고서";
+        }
+    }
 
     const chartData = [
         {name: '2006', number: 0},
@@ -52,7 +67,7 @@ const PrintReport = () => {
         <PrintReportContainer>
             <div className="report-container">
                 <div className="report-header">
-                    <h1 className="report-title">아파트 데이터 분석 보고서</h1>
+                    <h1 className="report-title">{getTitle()}</h1>
                 </div>
                 <div className="report-filter">
                     <p className="report-filter-search">검색 조건</p>
