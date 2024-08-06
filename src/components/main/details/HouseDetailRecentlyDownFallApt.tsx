@@ -1,8 +1,9 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailRecentlyDownFallAptStyle } from "../style/main-item.style";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailRecentlyDownFallApt: React.FC = () => {
     const [ recentlyDownFailAptList, setRecentlyDownFailAptList ] = useState<{
@@ -24,6 +25,16 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
           priceInfo: "최고가 대비 5억 하락 (15%)",
         }
     ]);
+
+    useEffect(() => {
+        getRecentlyDownFailAptList();
+    }, []);
+
+    const getRecentlyDownFailAptList = async () => {
+        const response = await AptApi.getDeclineAptList(0, 0, 0, 0, 0, 0, '', new Date());
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailRecentlyDownFallAptStyle>

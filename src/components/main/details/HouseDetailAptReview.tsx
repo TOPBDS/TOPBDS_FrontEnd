@@ -1,32 +1,24 @@
 import "./style/detail.css"; 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HouseDetailAptReviewStyle } from "../style/main-item.style";
 import { ReactComponent as EmptyStarIcon } from "../../../assets/icon/star.svg";
 import { ReactComponent as FillStarIcon } from "../../../assets/icon/fill-star.svg";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
-const HouseDetailAptReview: React.FC = () => {
+interface HouseDetailAptReviewProps {
+    aptId: number;
+}
+
+const HouseDetailAptReview: React.FC<HouseDetailAptReviewProps> = ({ aptId }) => {
     const [ reviewList, setReviewList ] = useState<{
         icon: string,
         nickName: string,
         star: number,
         date: string,
         comment: string
-    }[]>([
-        {
-            icon: "",
-            nickName: "이름",
-            star: 3,
-            date: "2345.67.89",
-            comment: "리뷰"
-        },
-        {
-            icon: "",
-            nickName: "이름",
-            star: 3,
-            date: "2345.67.89",
-            comment: "리뷰"
-        },
-    ]);
+    }[]>([]);
+    const comment = useRef<HTMLInputElement>(null);
+    const [ rating, setRating ] = useState<number>(0);
 
     const showStar = (star: number) => {
         const stars = [];
@@ -35,6 +27,37 @@ const HouseDetailAptReview: React.FC = () => {
         }
         return stars;
     }
+
+    // useEffect(() => {
+    //     getAptReviewList();
+    // }, [])
+
+    const getAptReviewList = async () => {
+        const response = await AptApi.getReviewList(0, aptId);
+        
+        console.log(response);
+        setReviewList(response);
+    }
+
+    const createAptReview = async () => {
+        const response = await AptApi.createReview(
+            comment.current!.value, rating, aptId
+        );
+        console.log(response);
+
+        if (response) {
+            alert("리뷰를 작성하였습니다.");
+        }
+    }
+
+    // 별 클릭 이벤트 핸들러
+    const handleClick = (index: number) => {
+        if (index + 1 === rating) {
+            setRating(0);
+        } else {
+            setRating(index + 1);
+        }
+    };
 
     return (
         <HouseDetailAptReviewStyle>
@@ -45,13 +68,18 @@ const HouseDetailAptReview: React.FC = () => {
             </div>
             <div className="input-star">
                 <div className="star-list">
-                    <EmptyStarIcon className="icon" />
-                    <EmptyStarIcon className="icon" />
-                    <EmptyStarIcon className="icon" />
-                    <EmptyStarIcon className="icon" />
-                    <EmptyStarIcon className="icon" />
+                    {[...Array(5)].map((_, index) => (
+                        <span key={index} onClick={() => handleClick(index)}>
+                            {index < rating ? (
+                                <FillStarIcon className="icon" />
+                            ) : (
+                                <EmptyStarIcon className="icon" />
+                            )}
+                        </span>
+                    ))}
                 </div>
-                <input type="text" placeholder="리뷰를 작성해주세요." className="input-review" />
+                <input type="text" placeholder="리뷰를 작성해주세요." ref={comment} className="input-review" />
+                <button type="button" className="review-btn" onClick={createAptReview}>작성</button>
             </div>
             <div className="review-list">
                 {reviewList && reviewList.map((review, index) =>

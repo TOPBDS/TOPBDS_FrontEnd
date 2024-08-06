@@ -13,11 +13,15 @@ import HouseDetailRecentlyRiseApt from "./details/HouseDetailRecentlyRiseApt";
 import HouseDetailCompareApts from "./details/HouseDetailCompareApts";
 import HouseDetailAptsInDecreasePrice from "./details/HouseDetailAptsInDecreasePrice";
 import HouseDetailAptReview from "./details/HouseDetailAptReview";
+import { useLocation } from "react-router-dom";
 
 const HouseDetail: React.FC = () => {
+    const { pathname } = useLocation();
+    const element = pathname.split("/")[2];
+
     return (
         <HouseDetailStyle>
-            <HouseDetailHeader /> {/* 아파트 정보 */}
+            <HouseDetailHeader aptId={Number(element)} /> {/* 아파트 정보 */}
             <HouseDetailSortation />
             <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
             <HouseDetailSortation />
@@ -35,7 +39,7 @@ const HouseDetail: React.FC = () => {
             <HouseDetailSortation />
             <HouseDetailSupplyVolume /> {/* 공급 물량 */}
             <HouseDetailSortation />
-            <HouseDetailAptReview /> {/* 아파트 평점 */}
+            <HouseDetailAptReview aptId={Number(element)} /> {/* 아파트 평점 */}
         </HouseDetailStyle>
     )
 }

@@ -1,9 +1,10 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailUnsoldStyle } from "../style/main-item.style";
 import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailUnsold: React.FC = () => {
     const [ unsoldList, setUnsoldList ] = useState<{
@@ -86,6 +87,16 @@ const HouseDetailUnsold: React.FC = () => {
         const month = date.getMonth() + 1; // getMonth() returns 0-based month, so add 1
         return month < 10 ? `0${month}` : `${month}`;
     };
+
+    useEffect(() => {
+        getUnsoldList();
+    }, []);
+
+    const getUnsoldList = async () => {
+        const response = await AptApi.getUnsoldAptList(0, 0, 0, new Date(), new Date());
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailUnsoldStyle>

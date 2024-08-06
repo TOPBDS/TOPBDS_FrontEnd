@@ -273,3 +273,6 @@ export const ReportPrintButtonStyle = styled.button`
 
     cursor: pointer;
 `
+
+export const HouseDetailSideStyle = styled.div`
+`

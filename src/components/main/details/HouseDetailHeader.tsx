@@ -1,13 +1,31 @@
 import "./style/detail.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailHeaderStyle, HouseHeader } from "../style/main-item.style";
 import { ReactComponent as HouseCloseIcon } from "../../../assets/icon/close.svg";
 import { ReactComponent as HeartIcon } from "../../../assets/icon/heart.svg";
 import { useNavigate } from "react-router-dom";
 import ApartImage  from "../../../assets/image/apartment.png";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
-const HouseDetailHeader: React.FC = () => {
+interface HouseDetailHeaderProps {
+    aptId: number;
+}
+
+const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
     const navigate = useNavigate();
+    const [ aptInfo, setAptInfo ] = useState<{
+        aptImage: string
+    }>();
+
+    useEffect(() => {
+        getAptInfo();
+    }, []);
+    
+    const getAptInfo = async () => {
+        const response = await AptApi.getAptInfo(aptId);
+        
+        setAptInfo(response);
+    }
 
     return (
         <HouseDetailHeaderStyle>
@@ -16,7 +34,7 @@ const HouseDetailHeader: React.FC = () => {
                 <HouseCloseIcon className="close" onClick={() => navigate(-1)} />
             </HouseHeader>
             <div className="image-container">
-                <img src={ApartImage} alt="preview" className="preview-image"/>
+                <img src={aptInfo?.aptImage ? aptInfo.aptImage : ApartImage} alt="preview" className="preview-image"/>
             </div>
             <div className="interested">
                 <HeartIcon className="icon" />

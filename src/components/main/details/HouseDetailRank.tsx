@@ -1,8 +1,9 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailRankStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 import Select from "../../common/Select";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailRank: React.FC = () => {
     const [ rankList, setRankList ] = useState<{
@@ -18,6 +19,16 @@ const HouseDetailRank: React.FC = () => {
             number: 6423
         }
     ]);
+
+    useEffect(() => {
+        getRankList();
+    }, []);
+
+    const getRankList = async () => {
+        const response = await AptApi.getLargeComplexList(0, 0, 0, 0, '', '');
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailRankStyle>

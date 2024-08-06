@@ -70,7 +70,7 @@ class Apt {
 
     public async getPredictionList(page: number, lcId: number, slcId: number, aptRentType: string, aptDate: Date) {
       try {
-        const response = await customAxios.get(`/apt/apt-people-change/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&apt-rent-type=${aptRentType}&apt-date=${aptDate}&size=10`);
+        const response = await customAxios.get(`/apt/apt-prediction/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&apt-rent-type=${aptRentType}&apt-date=${aptDate}&size=10`);
 
         return response;
       } catch (e: any) {
@@ -81,7 +81,7 @@ class Apt {
 
     public async getSupplyVolumeList(page: number, lcId: number, slcId: number, viewType: string, supplyVolumeDate: Date) {
       try {
-        const response = await customAxios.get(`/apt/apt-people-change/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&view-type=${viewType}&sv-apt-date=${supplyVolumeDate}&size=10`);
+        const response = await customAxios.get(`/apt/apt-supply-volume/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&view-type=${viewType}&sv-apt-date=${supplyVolumeDate}&size=10`);
 
         return response;
       } catch (e: any) {
@@ -92,7 +92,7 @@ class Apt {
 
     public async getRiseList(page: number, lcId: number, slcId: number, aptRentType: string) {
       try {
-        const response = await customAxios.get(`/apt/apt-people-change/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&apt-rent-type=${aptRentType}&size=10`);
+        const response = await customAxios.get(`/apt/apt-rise/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&apt-rent-type=${aptRentType}&size=10`);
 
         return response;
       } catch (e: any) {
@@ -103,7 +103,21 @@ class Apt {
 
     public async getReviewList(page: number, aptId: number) {
       try {
-        const response = await customAxios.get(`/apt/apt-people-change/find-all?page=${page}&apt-id=${aptId}&size=10`);
+        const response = await customAxios.get(`/apt/apt-review/find-all?page=${page}&apt-id=${aptId}&size=10`);
+
+        return response;
+      } catch (e: any) {
+        console.error(e);
+        return e;
+      }
+    }
+
+    public async createReview(comment: string, review: number, aptId: number) {
+      try {
+        const response = await customAxios.post(`/apt/apt-review/create`, {
+          review,
+          comment
+        });
 
         return response;
       } catch (e: any) {

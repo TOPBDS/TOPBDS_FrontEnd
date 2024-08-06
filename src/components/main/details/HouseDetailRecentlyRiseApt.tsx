@@ -1,7 +1,8 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailRecentlyRiseAptStyle } from "../style/main-item.style";
 import Select from "../../common/Select";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailRecentlyRiseApt: React.FC = () => {
     const [ recentlyRiseAptList, setRecentlyRiseAptList ] = useState<{
@@ -19,6 +20,16 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
             risePrice: "1억 500만 ➡️ 1억 3,800만"
         }
     ]);
+
+    useEffect(() => {
+        getRecentlyRiselist();
+    }, [])
+
+    const getRecentlyRiselist = async () => {
+        const response = await AptApi.getRiseList(0, 0, 0, '');
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailRecentlyRiseAptStyle>

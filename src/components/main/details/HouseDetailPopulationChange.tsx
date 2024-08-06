@@ -1,9 +1,10 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailPopulationChangeStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailPopulationChange: React.FC = () => {
     const [ populationList, setPopulationList ] = useState<{
@@ -26,6 +27,16 @@ const HouseDetailPopulationChange: React.FC = () => {
         {name: '2021', number: 55.7},
         {name: '2023', number: 56.2},
     ];
+
+    useEffect(() => {
+        getPopulationChangeList();
+    }, [])
+
+    const getPopulationChangeList = async () => {
+        const response = await AptApi.getPeopleChangeList(0, 0, 0, '');
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailPopulationChangeStyle>

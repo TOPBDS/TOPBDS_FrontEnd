@@ -1,11 +1,12 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailSupplyVolumeStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 import { ReactComponent as SelectLocation } from "../../../assets/icon/select-location.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
+import AptApi from "../../../core/apis/apt/Apt.api";
 
 const HouseDetailSupplyVolume: React.FC = () => {
     const [ supplyVolumeList, setSupplyVolumeList ] = useState<{
@@ -90,6 +91,16 @@ const HouseDetailSupplyVolume: React.FC = () => {
         const month = date.getMonth() + 1; // getMonth() returns 0-based month, so add 1
         return month < 10 ? `0${month}` : `${month}`;
     };
+
+    useEffect(() => {
+        getSupplyVolumeList();
+    }, []);
+
+    const getSupplyVolumeList = async () => {
+        const response = await AptApi.getSupplyVolumeList(0, 0, 0, '', new Date());
+
+        console.log(response);
+    }
 
     return (
         <HouseDetailSupplyVolumeStyle>
