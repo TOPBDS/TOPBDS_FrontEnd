@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/main.css";
 import { MainContainer } from "./style/main.style";
 import HouseList from "../../components/main/HouseList";
@@ -12,13 +12,16 @@ const Main: React.FC = () => {
     const { pathname } = useLocation();
     const element = pathname.split("/")[1];
 
+    const [ lat, setLat ] = useState<number>(0);
+    const [ lng, setLng ] = useState<number>(0);
+
     return (
         <MainContainer>
-            { element == "" && (<HouseList />) }
+            { element == "" && (<HouseList lat={lat} lng={lng} />) }
             { element == "item" && (<HouseDetail />) }
             { element == "blog" && (<Blog />) }
             { element == "my" && (<Profile />) }
-            <Maps />
+            <Maps setLat={setLat} setLng={setLng} />
         </MainContainer>
     )
 }

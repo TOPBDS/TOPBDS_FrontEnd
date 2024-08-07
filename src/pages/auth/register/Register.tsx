@@ -9,7 +9,7 @@ const Register = () => {
             <RegisterContainer>
                 <RegisterForm />
             </RegisterContainer>
-            <Maps />
+            <Maps setLat={null} setLng={null} />
         </>
     )
 }

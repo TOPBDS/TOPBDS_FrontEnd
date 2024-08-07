@@ -1,12 +1,17 @@
 import "./style/main.css";
-import { useEffect, useRef, useState } from "react";
+import React, { Dispatch, useEffect, useRef, useState } from "react";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
 import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icon/minus.svg";
 
-const Maps = () => {
+interface MapsProps {
+    setLat: Dispatch<React.SetStateAction<number>> | null,
+    setLng: Dispatch<React.SetStateAction<number>> | null
+}
+
+const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
     const defaultLevel = 3;
     const [ level, setLevel ] = useState<number>(defaultLevel);
     const [ hide, setHide ] = useState<boolean>(false);
@@ -46,6 +51,11 @@ const Maps = () => {
             const latlng = new kakao.maps.LatLng(data.coords.latitude, data.coords.longitude);
             map.setCenter(latlng);
 
+            if (setLat !== null && setLng !== null) {
+                setLat(data.coords.latitude);
+                setLng(data.coords.longitude);
+            }
+            
             setLocation({
                 lat: data.coords.latitude,
                 lng: data.coords.longitude

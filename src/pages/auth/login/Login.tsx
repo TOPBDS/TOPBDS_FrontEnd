@@ -9,7 +9,7 @@ const Login = () => {
             <LoginContainer>
                 <LoginForm />
             </LoginContainer>
-            <Maps />
+            <Maps setLat={null} setLng={null} />
         </>
     )
 }

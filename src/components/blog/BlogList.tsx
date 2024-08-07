@@ -18,7 +18,7 @@ const BlogList: React.FC<BlogList> = ({ menu }) => {
     }
 
     useEffect(() => {
-        getBlogList();
+        // getBlogList();
     }, []);
 
     return (

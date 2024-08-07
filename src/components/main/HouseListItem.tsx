@@ -1,22 +1,37 @@
 import "./style/main.css"; 
 import { useNavigate } from "react-router-dom";
 import { HouseImageStyle, HouseItemContent, HouseItemInfo, HouseItemInfoStyle, HouseItemNumber, HouseItemPrice, HouseItemStyle, HouseItemTitle, HouseItemTopStyle, HouseItemType, HouseListItemStyle } from "./style/main.style";
+import React from "react";
 
-const HouseListItem = () => {
+interface HouseItemProps {
+    data: {
+        id: number;
+        name: string;
+        explain: string;
+        price: string;
+        type: string;
+        info: string;
+        number: number;
+    }
+}
+
+const HouseListItem: React.FC<HouseItemProps> = ({
+    data
+}) => {
     const naviagte = useNavigate();
 
     return (
-        <HouseListItemStyle onClick={() => naviagte("/item/1")}>
+        <HouseListItemStyle onClick={() => naviagte("/item/" + data?.id)}>
             <HouseItemTopStyle>
                 <HouseItemStyle>
-                        <HouseItemTitle>무슨무슨 아파트</HouseItemTitle>
-                    <HouseItemContent>햇빛 잘 들고 멋있고 살기 좋은 집</HouseItemContent>
-                    <HouseItemPrice>전세 7억 6천</HouseItemPrice>
+                        <HouseItemTitle>{data?.name}</HouseItemTitle>
+                    <HouseItemContent>{data?.explain}</HouseItemContent>
+                    <HouseItemPrice>{data?.price}</HouseItemPrice>
                     <HouseItemInfoStyle>
-                        <HouseItemType>아파트</HouseItemType>
-                        <HouseItemInfo>12월 25일부터 입주 가능, 6/15층</HouseItemInfo>
+                        <HouseItemType>{data?.type}</HouseItemType>
+                        <HouseItemInfo>{data?.info}</HouseItemInfo>
                     </HouseItemInfoStyle>
-                    <HouseItemNumber>매물 추천 번호 : 123456</HouseItemNumber>
+                    <HouseItemNumber>매물 추천 번호 : {data?.number}</HouseItemNumber>
                 </HouseItemStyle>
                 <HouseImageStyle></HouseImageStyle>
             </HouseItemTopStyle>

@@ -1,11 +1,14 @@
 import "./style/main.css";    
 import { HouseSearchItemContainer, HouseSearchItemStyle, HouseSearchStyle } from "./style/main.style";
 import { ReactComponent as HouseSearchIcon } from "../../assets/icon/search.svg";
-import { useState } from "react";
+import React, { Dispatch, useState } from "react";
 
-const HouseSearch = () => {
-    const [keyword, setKeyword] = useState<string>("");
+interface HouseSearchProps {
+    keyword: string;
+    setKeyword: Dispatch<React.SetStateAction<string>>;
+}
 
+const HouseSearch: React.FC<HouseSearchProps> = ({ keyword, setKeyword }) => {
     const searchApts = () => {
         console.log(keyword);
     }
