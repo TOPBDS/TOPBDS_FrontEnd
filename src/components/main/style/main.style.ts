@@ -275,4 +275,23 @@ export const ReportPrintButtonStyle = styled.button`
 `
 
 export const HouseDetailSideStyle = styled.div`
+    box-sizing: border-box;
+
+    width: 48px;
+    height: 100vh;
+    position:fixed;
+    z-index:999;
+    top: 70px;
+    left: 490px;
+`
+
+export const HouseDetailSideMenuStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin: 8px;
+    margin-left: 16px;
 `
