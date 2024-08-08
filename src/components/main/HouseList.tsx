@@ -11,7 +11,7 @@ interface HouseListProps {
 }
 
 const HouseList: React.FC<HouseListProps> = ({ lat, lng }) => {
-    const [ aptList, setAptList ] = useState<{
+    const [aptList, setAptList] = useState<{
         id: number;
         name: string;
         explain: string;
@@ -20,17 +20,35 @@ const HouseList: React.FC<HouseListProps> = ({ lat, lng }) => {
         info: string;
         number: number;
     }[]>([]);
-    const [ keyword, setKeyword ] = useState<string>("");
+    const [keyword, setKeyword] = useState<string>("");
+    const [page, setPage] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        // getAptList();
-    }, []);
+        console.log(page);
+        getAptList();
+        // Add scroll event listener
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [page]);
 
     const getAptList = async () => {
-        const response = await AptApi.getAptList(lat, lng, 0, "type", "aptRenttype");
+        if (isLoading) return;
 
-        setAptList(response);
+        setIsLoading(true);
+        const response = await AptApi.getAptList(lat, lng, page, "type", "aptRenttype");
+        
+        if (response && response.length > 0) {
+            setAptList((prevAptList) => [...prevAptList, ...response]);
+        }
+
+        setIsLoading(false);
     }
+
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) return;
+        setPage((prevPage) => prevPage + 1);
+    };
 
     const recommendAptList = async () => {
         alert("기능 구현 중입니다.");
@@ -41,12 +59,13 @@ const HouseList: React.FC<HouseListProps> = ({ lat, lng }) => {
             <HouseSearch keyword={keyword} setKeyword={setKeyword} />
             <HosueItemListStyle>
                 {
-                    aptList && aptList.map((apt) => (
-                        <HouseListItem data={apt}  />
+                    aptList && aptList.map((apt, index) => (
+                        <HouseListItem key={index} data={apt} />
                     ))
                 }
             </HosueItemListStyle>
-            <HouseItemRecommendButtonStyle type="button" onClick={recommendAptList}>AI 매몰 추천하기</HouseItemRecommendButtonStyle>
+            {isLoading && <p>Loading...</p>}
+            <HouseItemRecommendButtonStyle type="button" onClick={recommendAptList}>AI 매물 추천하기</HouseItemRecommendButtonStyle>
         </HouseListStyle>
     )
 }

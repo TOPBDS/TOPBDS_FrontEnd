@@ -4,6 +4,7 @@ import { HouseDetailRecentlyDownFallAptStyle } from "../style/main-item.style";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailRecentlyDownFallApt: React.FC = () => {
     const [ recentlyDownFailAptList, setRecentlyDownFailAptList ] = useState<{
@@ -26,14 +27,80 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
         }
     ]);
 
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const [ houseHoldsNumberList, setHouseHoldsNumberList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ houseHoldsNumber, setHouseHoldsNumber ] = useState<number>(0);
+    const [ pastTopPriceList, setPastTopPriceList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ pastTopPrice, setPastTopPrice ] = useState<number>(0);
+    const [ reviewList, setReviewList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ review, setReview ] = useState<number>(0);
+    const [ recentlyTransactionList, setRecentlyTransactionList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ recentlyTransaction, setRecentlyTransaction ] = useState<number>(0);
+    const [ calculatedDate, setCalculatedDate ] = useState<Date>(new Date());
+    const [ aptRentType, setAptRentType ] = useState<string>("");
+
     useEffect(() => {
-        getRecentlyDownFailAptList();
+        // getLocation();
+        // getRecentlyDownFailAptList();
     }, []);
 
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
+    useEffect(() => {
+        calculateDate(recentlyTransaction);
+    }, [recentlyTransaction]);
+
+    const calculateDate = (daysAgo: number) => {
+        const today = new Date();
+        const pastDate = new Date(today);
+        pastDate.setDate(today.getDate() - daysAgo);
+
+        setCalculatedDate(pastDate);
+    };
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
     const getRecentlyDownFailAptList = async () => {
-        const response = await AptApi.getDeclineAptList(0, 0, 0, 0, 0, 0, '', new Date());
+        const response = await AptApi.getDeclineAptList(
+            0, selectLocation, selectSubLocation, houseHoldsNumber, pastTopPrice, review, aptRentType, calculatedDate
+        );
 
         console.log(response);
+        setRecentlyDownFailAptList(response);
     }
 
     return (
@@ -44,23 +111,23 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
-                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="select">
-                <Select optionName="세대수" optionList={["100+세대", "1000+세대", "10000+세대"]} />
-                <Select optionName="과거 최고가" optionList={["1억 이상", "5000만월 이상", "1000만월 이상"]} />
-                <Select optionName="전체 평점" optionList={["5", "4", "3", "2", "1"]} />
+                <Select optionName="세대수" optionList={houseHoldsNumberList} setSelectItem={setHouseHoldsNumber} />
+                <Select optionName="과거 최고가" optionList={pastTopPriceList} setSelectItem={setPastTopPrice} />
+                <Select optionName="전체 평점" optionList={reviewList} setSelectItem={setReview} />
             </div>
             <div className="space-radios">
                 <div className="radio-list">
-                    <div className="radio-box"><input type="radio" className="radio" /> 매매</div>
-                    <div className="radio-box"><input type="radio" className="radio" /> 전세</div>
-                    <div className="radio-box"><input type="radio" className="radio" /> 월세</div>
+                    <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("TRADING")} /> 매매</div>
+                    <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("JEONSE")} /> 전세</div>
+                    <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("MONTHLY")} /> 월세</div>
                 </div>
                 <div className="transaction">
-                   <Select optionName="최근 1주일거래" optionList={["최근 1달거래", "최근 1년거래"]} />
+                   <Select optionName="최근 1주일거래" optionList={recentlyTransactionList} setSelectItem={setRecentlyTransaction} />
                 </div>
             </div>
             <div className="tables">

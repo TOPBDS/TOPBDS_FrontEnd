@@ -49,43 +49,43 @@ const HouseDetail: React.FC = () => {
                 }}
             />
             <div ref={headerRef}>
-                <HouseDetailHeader aptId={Number(element)} /> {/* 아파트 정보 */}
+                <HouseDetailHeader aptId={Number(element)} /> {/* 아파트 정보 (O) */}
             </div>
             <HouseDetailSortation />
             <div ref={recentlyDownFallAptRef}>
-                <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
+                <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 (O) */}
             </div>
             <HouseDetailSortation />
             <div ref={recentlyRiseAptRef}>
-                <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
+                <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 (O) */}
             </div>
             <HouseDetailSortation />
             <div ref={compareAptsRef}>
-                <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
+                <HouseDetailCompareApts /> {/* 여러 아파트 비교 (X) */}
             </div>
             <HouseDetailSortation />
             <div ref={aptsInDecreasePriceRef}>
-                <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
+                <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 (X) */}
             </div>
             <HouseDetailSortation />
             <div ref={unsoldRef}>
-                <HouseDetailUnsold /> {/* 미분양 정보 */}
+                <HouseDetailUnsold /> {/* 미분양 정보 (X) */}
             </div>
             <HouseDetailSortation />
             <div ref={populationChangeRef}>
-                <HouseDetailPopulationChange /> {/* 인구수 변화 */}
+                <HouseDetailPopulationChange /> {/* 인구수 변화 (X) */}
             </div>
             <HouseDetailSortation />
             <div ref={rankRef}>
-                <HouseDetailRank /> {/* 대단지 순위 */}
+                <HouseDetailRank /> {/* 대단지 순위 (X) */}
             </div>
             <HouseDetailSortation />
             <div ref={supplyVolumeRef}>
-                <HouseDetailSupplyVolume /> {/* 공급 물량 */}
+                <HouseDetailSupplyVolume /> {/* 공급 물량 (O) */}
             </div>
             <HouseDetailSortation />
             <div ref={aptReviewRef}>
-                <HouseDetailAptReview aptId={Number(element)} /> {/* 아파트 평점 */}
+                <HouseDetailAptReview aptId={Number(element)} /> {/* 아파트 평점 (O) */}
             </div>
         </HouseDetailStyle>
     )
