@@ -27,6 +27,12 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
         setAptInfo(response);
     }
 
+    const setInterestApt = async () => {
+        const response = await AptApi.setInterestApt(aptId);
+
+        console.log(response);
+    }
+
     return (
         <HouseDetailHeaderStyle>
             <HouseHeader>
@@ -37,7 +43,7 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
                 <img src={aptInfo?.aptImage ? aptInfo.aptImage : ApartImage} alt="preview" className="preview-image"/>
             </div>
             <div className="interested">
-                <HeartIcon className="icon" />
+                <HeartIcon className="icon" onClick={setInterestApt} />
                 &nbsp; 관심 매물 추가하기
             </div>
         </HouseDetailHeaderStyle> 

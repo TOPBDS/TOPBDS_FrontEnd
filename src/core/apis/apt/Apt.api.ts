@@ -114,10 +114,21 @@ class Apt {
 
     public async createReview(comment: string, review: number, aptId: number) {
       try {
-        const response = await customAxios.post(`/apt/apt-review/create`, {
+        const response = await customAxios.post(`/apt/apt-review/create/${aptId}`, {
           review,
           comment
         });
+
+        return response;
+      } catch (e: any) {
+        console.error(e);
+        return e;
+      }
+    }
+
+    public async setInterestApt(aptId: number) {
+      try {
+        const response = await customAxios.post(`/apt/set-interest/${aptId}`);
 
         return response;
       } catch (e: any) {
