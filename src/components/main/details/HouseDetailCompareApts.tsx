@@ -73,7 +73,7 @@ const HouseDetailCompareApts: React.FC = () => {
     }
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const [ aptList, setAptList ] = useState<{

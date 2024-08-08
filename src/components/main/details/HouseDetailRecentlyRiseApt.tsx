@@ -34,12 +34,12 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
     const [ aptRentType, setAptRentType ] = useState<string>("");
 
     useEffect(() => {
-        getLocation();
-        getRecentlyRiselist();
+        // getLocation();
+        // getRecentlyRiselist();
     }, []);
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const getLocation = async () => {

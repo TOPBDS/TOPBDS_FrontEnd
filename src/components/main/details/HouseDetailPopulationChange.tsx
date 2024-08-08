@@ -62,7 +62,7 @@ const HouseDetailPopulationChange: React.FC = () => {
     }
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const getPopulationChangeList = async () => {

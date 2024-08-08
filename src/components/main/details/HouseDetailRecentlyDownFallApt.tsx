@@ -67,7 +67,7 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     useEffect(() => {

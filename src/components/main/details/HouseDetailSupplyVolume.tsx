@@ -59,7 +59,7 @@ const HouseDetailSupplyVolume: React.FC = () => {
     }
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     // Function to format the date based on the range value

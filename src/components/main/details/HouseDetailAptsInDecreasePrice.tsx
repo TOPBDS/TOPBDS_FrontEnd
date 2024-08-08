@@ -30,7 +30,7 @@ const HouseDetailAptsInDecreasePrice: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const getLocation = async () => {

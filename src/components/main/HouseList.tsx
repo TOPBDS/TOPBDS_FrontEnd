@@ -19,7 +19,53 @@ const HouseList: React.FC<HouseListProps> = ({ lat, lng }) => {
         type: string;
         info: string;
         number: number;
-    }[]>([]);
+    }[]>([
+        {
+            id: 1,
+            name: "무슨무슨 아파트",
+            explain: "햇빛 잘 들고 멋있고 살기 좋은 집",
+            price: "전세 7억 6천",
+            type: "아파트",
+            info: "12월 25일부터 입주 가능, 6/15층",
+            number: 123456
+        },
+        {
+            id: 2,
+            name: "무슨무슨 아파트",
+            explain: "햇빛 잘 들고 멋있고 살기 좋은 집",
+            price: "전세 7억 6천",
+            type: "아파트",
+            info: "12월 25일부터 입주 가능, 6/15층",
+            number: 123456
+        },
+        {
+            id: 3,
+            name: "무슨무슨 아파트",
+            explain: "햇빛 잘 들고 멋있고 살기 좋은 집",
+            price: "전세 7억 6천",
+            type: "아파트",
+            info: "12월 25일부터 입주 가능, 6/15층",
+            number: 123456
+        },
+        {
+            id: 4,
+            name: "무슨무슨 아파트",
+            explain: "햇빛 잘 들고 멋있고 살기 좋은 집",
+            price: "전세 7억 6천",
+            type: "아파트",
+            info: "12월 25일부터 입주 가능, 6/15층",
+            number: 123456
+        },
+        {
+            id: 5,
+            name: "무슨무슨 아파트",
+            explain: "햇빛 잘 들고 멋있고 살기 좋은 집",
+            price: "전세 7억 6천",
+            type: "아파트",
+            info: "12월 25일부터 입주 가능, 6/15층",
+            number: 123456
+        }
+    ]);
     const [keyword, setKeyword] = useState<string>("");
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(false);

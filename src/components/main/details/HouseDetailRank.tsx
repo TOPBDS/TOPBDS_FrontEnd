@@ -50,7 +50,7 @@ const HouseDetailRank: React.FC = () => {
     }
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const [ aptName, setAptName ] = useState<string>("");

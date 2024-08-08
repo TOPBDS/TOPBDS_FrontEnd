@@ -118,7 +118,7 @@ const HouseDetailUnsold: React.FC = () => {
     }
 
     useEffect(() => {
-        getSubLocation();
+        // getSubLocation();
     }, [selectLocation]);
 
     const getUnsoldList = async () => {
