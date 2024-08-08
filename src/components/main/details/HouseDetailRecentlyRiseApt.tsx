@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HouseDetailRecentlyRiseAptStyle } from "../style/main-item.style";
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailRecentlyRiseApt: React.FC = () => {
     const [ recentlyRiseAptList, setRecentlyRiseAptList ] = useState<{
@@ -20,15 +21,44 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
             risePrice: "1억 500만 ➡️ 1억 3,800만"
         }
     ]);
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+    const [ aptRentType, setAptRentType ] = useState<string>("");
 
     useEffect(() => {
+        getLocation();
         getRecentlyRiselist();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
 
     const getRecentlyRiselist = async () => {
-        const response = await AptApi.getRiseList(0, 0, 0, '');
+        const response = await AptApi.getRiseList(0, selectLocation, selectSubLocation, aptRentType);
 
         console.log(response);
+        setRecentlyRiseAptList(response);
     }
 
     return (
@@ -39,14 +69,14 @@ const HouseDetailRecentlyRiseApt: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
-                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="radios">
-                <div className="radio-box"><input type="radio" className="radio" /> 매매</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 전세</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 월세</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("TRADING")} /> 매매</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("JEONSE")} /> 전세</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("MONTHLY")} /> 월세</div>
             </div>
             <div className="item-list">
                 {recentlyRiseAptList && recentlyRiseAptList.map((recentlyRiseApt, index) => 

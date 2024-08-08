@@ -5,6 +5,7 @@ import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } fro
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailUnsold: React.FC = () => {
     const [ unsoldList, setUnsoldList ] = useState<{
@@ -89,11 +90,39 @@ const HouseDetailUnsold: React.FC = () => {
     };
 
     useEffect(() => {
+        getLocation();
         getUnsoldList();
     }, []);
 
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
     const getUnsoldList = async () => {
-        const response = await AptApi.getUnsoldAptList(0, 0, 0, new Date(), new Date());
+        const response = await AptApi.getUnsoldAptList(0, selectLocation, selectSubLocation, new Date(), new Date());
 
         console.log(response);
     }
@@ -108,8 +137,8 @@ const HouseDetailUnsold: React.FC = () => {
                 <span>분양을 했으나 분양되지 않은 주택 수를 시기별로 확인해보세요.</span>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>

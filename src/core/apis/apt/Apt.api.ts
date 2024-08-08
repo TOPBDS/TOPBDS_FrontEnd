@@ -79,7 +79,7 @@ class Apt {
       }
     }
 
-    public async getSupplyVolumeList(page: number, lcId: number, slcId: number, viewType: string, supplyVolumeDate: Date) {
+    public async getSupplyVolumeList(page: number, lcId: number[], slcId: number[], viewType: string, supplyVolumeDate: Date) {
       try {
         const response = await customAxios.get(`/apt/apt-supply-volume/find-all?page=${page}&lc-id=${lcId}&slc-id=${slcId}&view-type=${viewType}&sv-apt-date=${supplyVolumeDate}&size=10`);
 

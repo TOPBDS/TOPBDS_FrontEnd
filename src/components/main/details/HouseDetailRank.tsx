@@ -4,6 +4,7 @@ import { HouseDetailRankStyle } from "../style/main-item.style";
 import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.svg";
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailRank: React.FC = () => {
     const [ rankList, setRankList ] = useState<{
@@ -21,13 +22,44 @@ const HouseDetailRank: React.FC = () => {
     ]);
 
     useEffect(() => {
-        getRankList();
+        // getLocation();
+        // getRankList();
     }, []);
 
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
+    const [ aptName, setAptName ] = useState<string>("");
+
     const getRankList = async () => {
-        const response = await AptApi.getLargeComplexList(0, 0, 0, 0, '', '');
+        const response = await AptApi.getLargeComplexList(0, selectLocation, selectSubLocation, 0, aptName, '');
 
         console.log(response);
+        setRankList(response); 
     }
 
     return (
@@ -41,7 +73,7 @@ const HouseDetailRank: React.FC = () => {
             </div>
             <div className="search">
                 <div className="search-container">
-                    <input type="text" className="search-input" placeholder="아파트명"/>
+                    <input type="text" className="search-input" placeholder="아파트명" onChange={(e) => setAptName(e.target.value)}/>
                     <HouseSearchIcon className="search-icon"/>
                 </div>
                 {/* <div className="search-container">
@@ -50,9 +82,9 @@ const HouseDetailRank: React.FC = () => {
                 </div> */}
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
-                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="range">
                 <h3>세대수</h3>

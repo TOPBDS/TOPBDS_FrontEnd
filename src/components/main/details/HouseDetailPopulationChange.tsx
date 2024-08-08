@@ -5,6 +5,7 @@ import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.s
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailPopulationChange: React.FC = () => {
     const [ populationList, setPopulationList ] = useState<{
@@ -19,23 +20,57 @@ const HouseDetailPopulationChange: React.FC = () => {
         now: 543212
     }]);
 
-    const chartData = [
+    const [ chartData, setChartData ] = useState<{
+        name: string,
+        number: number
+    }[]>([
         {name: '2013', number: 55},
         {name: '2015', number: 56.3},
         {name: '2017', number: 56.1},
         {name: '2019', number: 56.5},
         {name: '2021', number: 55.7},
         {name: '2023', number: 56.2},
-    ];
+    ]);
 
     useEffect(() => {
-        getPopulationChangeList();
+        // getLocation();
+        // getPopulationChangeList();
     }, [])
 
+    const [ viewType, setViewType ] = useState<string>("");
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
     const getPopulationChangeList = async () => {
-        const response = await AptApi.getPeopleChangeList(0, 0, 0, '');
+        const response = await AptApi.getPeopleChangeList(0, selectLocation, selectSubLocation, viewType);
 
         console.log(response);
+        setPopulationList(response.data);
+        setChartData(response.chartData)
     }
 
     return (
@@ -54,9 +89,9 @@ const HouseDetailPopulationChange: React.FC = () => {
                 </div>
             </div> */}
             <div className="radios">
-                <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("MONTHLY")} /> 월간</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("QUARTER")} /> 분기</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("YEARLY")} /> 년간</div>
             </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>

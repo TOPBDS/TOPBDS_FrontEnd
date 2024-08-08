@@ -7,6 +7,7 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailSupplyVolume: React.FC = () => {
     const [ supplyVolumeList, setSupplyVolumeList ] = useState<{
@@ -21,47 +22,45 @@ const HouseDetailSupplyVolume: React.FC = () => {
         total: 1000
     }]);
 
-    const chartData = [
-        {name: '1999/12', number: 1500},
-        {name: '2000/1', number: 1200},
-        {name: '2000/2', number: 300},
-        {name: '2000/3', number: 3000},
-        {name: '2000/4', number: 2030},
-        {name: '2000/5', number: 2500},
-        {name: '2000/6', number: 1300},
-        {name: '2000/7', number: 1200},
-        {name: '2000/8', number: 3300},
-        {name: '2000/9', number: 4400},
-        {name: '2000/10', number: 1500},
-        {name: '2000/11', number: 2600},
-        {name: '2000/12', number: 4700},
-        {name: '2001/1', number: 2030},
-        {name: '2001/2', number: 1900},
-        {name: '2001/3', number: 1300},
-        {name: '2001/4', number: 1100},
-        {name: '2001/5', number: 1300},
-        {name: '2001/6', number: 1300},
-        {name: '2001/7', number: 1400},
-        {name: '2001/8', number: 1100},
-        {name: '2001/9', number: 200},
-        {name: '2001/10', number: 700},
-        {name: '2001/11', number: 1400},
-        {name: '2001/12', number: 900},
-        {name: '2002/1', number: 1200},
-        {name: '2002/2', number: 100},
-        {name: '2002/3', number: 2200},
-        {name: '2002/4', number: 3300},
-        {name: '2002/5', number: 1400},
-        {name: '2002/6', number: 1500},
-        {name: '2002/7', number: 2600},
-        {name: '2002/8', number: 700},
-        {name: '2002/9', number: 800},
-        {name: '2002/10', number: 1900},
-        {name: '2002/11', number: 1300},
-        {name: '2002/12', number: 3200},
-    ];
+    const [ chartData, setChartData ] = useState<{
+        name: string,
+        number: number
+    }[]>(
+        [
+            {name: '1999/12', number: 1500},
+            {name: '2000/1', number: 1200},
+            {name: '2000/2', number: 300}
+        ]
+    );
 
     const [rangeValue, setRangeValue] = useState(0);
+
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
 
     // Function to format the date based on the range value
     const formatDate = (value: any) => {
@@ -93,13 +92,36 @@ const HouseDetailSupplyVolume: React.FC = () => {
     };
 
     useEffect(() => {
+        getLocation();
         getSupplyVolumeList();
     }, []);
 
+    const [ viewType, setViewType ] = useState<string>("");
+    const [ seletLocationList, setSelectLocationList ] = useState<number[]>([]);
+    const [ seletSubLocationList, setSelectSubLocationList ] = useState<number[]>([]);
+ 
     const getSupplyVolumeList = async () => {
-        const response = await AptApi.getSupplyVolumeList(0, 0, 0, '', new Date());
+        const response = await AptApi.getSupplyVolumeList(0, seletLocationList, seletSubLocationList, viewType, new Date());
 
         console.log(response);
+        setSupplyVolumeList(response.data);
+        setChartData(response.chartData);
+    }
+
+    const addlocation = () => {
+        if (selectLocation) {
+            setSelectLocationList((prevAptList) => [...prevAptList, selectLocation]);
+            if (selectSubLocation) {
+                setSelectSubLocationList((prevAptList) => [...prevAptList, selectSubLocation]);
+            }
+        } else {
+            alert("도시를 먼저 선택해주세요.");
+        }
+    }
+
+    const deleteLocation = () => {
+        setSelectLocationList([]);
+        setSelectSubLocationList([]);
     }
 
     return (
@@ -117,13 +139,13 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </div>
             </div> */}
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="radios">
-                <div className="radio-box"><input type="radio" className="radio" /> 월간</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 분기</div>
-                <div className="radio-box"><input type="radio" className="radio" /> 년간</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("MONTHLY")} /> 월간</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("QUARTER")} /> 분기</div>
+                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("YEARLY")} /> 년간</div>
             </div>
             <div className="locations">
             <div className="select-location">
@@ -131,8 +153,8 @@ const HouseDetailSupplyVolume: React.FC = () => {
                     <p>대구</p>
                 </div>
                 <div className="location-box">
-                    <button type="button" className="add-location button-lg">대체지역 추가</button>
-                    <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>
+                    <button type="button" className="add-location button-lg" onClick={addlocation}>대체지역 추가</button>
+                    <button type="button" className="delete-location button-lg btn-outline" onClick={deleteLocation}>전체 삭제</button>
                 </div>
             </div>
             <div className="chart-container">
