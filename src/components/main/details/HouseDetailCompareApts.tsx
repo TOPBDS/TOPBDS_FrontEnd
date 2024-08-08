@@ -1,9 +1,10 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailCompareAptsStyle } from "../style/main-item.style";
 import { ReactComponent as SelectLocation } from "../../../assets/icon/select-location.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import Select from "../../common/Select";
+import LocationApi from "../../../core/apis/location/Location.api";
 
 const HouseDetailCompareApts: React.FC = () => {
     const chartData = [
@@ -48,6 +49,50 @@ const HouseDetailCompareApts: React.FC = () => {
         return month < 10 ? `0${month}` : `${month}`;
     };
 
+    const [ locationList, setLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ subLocationList, setSubLocationList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<number>(0);
+    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+
+    const getLocation = async () => {
+        const response = await LocationApi.getLocaitonList();
+        console.log(response);
+        setLocationList(response);
+    }
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSubLocationList(selectLocation);
+        console.log(response);
+        setSubLocationList(response);
+    }
+
+    useEffect(() => {
+        getSubLocation();
+    }, [selectLocation]);
+
+    const [ aptList, setAptList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectApt, setSelectApt ] = useState<number>(0); 
+    const [ nameList, setNameList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]); 
+    const [ selectName, setSelectName ] = useState<number>(0); 
+    const [ dongList, setDongList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]); 
+    const [ selectDong, setSelectDong ] = useState<number>(0); 
+    const [ aptRentType, setAptRentType ] = useState<string>("");
+
     return (
         <HouseDetailCompareAptsStyle>
             <div className="header">
@@ -56,14 +101,14 @@ const HouseDetailCompareApts: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
-                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
+                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="select">
-                <Select optionName="아파트" optionList={["강남 반포자이", "롯데캐슬"]} />
-                <Select optionName="이름" optionList={["이름", "이름", "이름"]} />
-                <Select optionName="동" optionList={["5", "4", "3", "2", "1"]} />
+                <Select optionName="아파트" optionList={aptList} setSelectItem={setSelectApt}  />
+                <Select optionName="이름" optionList={nameList} setSelectItem={setSelectName} />
+                <Select optionName="동" optionList={dongList} setSelectItem={setSelectDong} />
             </div>
             <div className="locations">
                 <div className="select-location">
@@ -76,9 +121,9 @@ const HouseDetailCompareApts: React.FC = () => {
                 </div>
             </div>
             <div className="radios">
-                <input type="radio" className="radio" /> 매매
-                <input type="radio" className="radio" /> 전세
-                <input type="radio" className="radio" /> 월세
+                <input type="radio" className="radio" onClick={() => setAptRentType("TRADING")} /> 매매
+                <input type="radio" className="radio" onClick={() => setAptRentType("JEONSE")} /> 전세
+                <input type="radio" className="radio" onClick={() => setAptRentType("MONTHLY")} /> 월세
             </div>
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
