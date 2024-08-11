@@ -7,6 +7,5 @@ export const PrintReportContainer = styled.div`
     color: #fff;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
 `

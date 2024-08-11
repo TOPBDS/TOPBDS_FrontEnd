@@ -1,5 +1,5 @@
 .report-container {
-    width: 70%;
+    width: 85%;
     height: 100vh;
 
     overflow-y: auto;
@@ -9,6 +9,8 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+
+    padding: 0 1.5rem;
 }
 
 .report-header { 

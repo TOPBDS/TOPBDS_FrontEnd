@@ -6,7 +6,7 @@
 }
 
 .report-menu .report-menu-item {
-    width: 100%;
+    width: 95%;
     height: 48px;
 
     display: flex;
@@ -17,10 +17,19 @@
     font-weight: 400;
 
     padding: 0 12px;
+
+    cursor: pointer;
 }
 
 .report-menu .report-menu-item.active {
     color: #03C6CE;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    background-color: #E7FEFF;
+
+    border-radius: 0 32px 32px 0;
 }
 
 .report-title {
