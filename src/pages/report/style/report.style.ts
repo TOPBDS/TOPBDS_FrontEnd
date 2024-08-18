@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const ReportContainer = styled.div`
     width: 100%;
     height: 100vh;
-    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
     color: #fff;
 `
 
 export const ReportHeader = styled.div`
-    position: absolute;
+    position: relative;
     width: 13.625rem;
     height:100vh;
     left: 64px;
