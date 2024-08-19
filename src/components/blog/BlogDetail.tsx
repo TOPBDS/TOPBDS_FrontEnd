@@ -16,10 +16,14 @@ const BlogDetail: React.FC<BlogDetailProps> = ({
         title: string,
         content: string,
         img: string
-    }>();
+    }>({
+        title: "test" + id,
+        content: "test" + id,
+        img: ""
+    });
 
     useEffect(() => {
-        getBlogData();
+        // getBlogData();
     }, [])
 
     const getBlogData = async () => {
