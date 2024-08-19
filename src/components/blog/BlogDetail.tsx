@@ -36,7 +36,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({
         <BlogDetailStyle>
             <div className="blog-title">
                 <p>{data?.title}</p>
-                <BlogCloseIcon className="close" onClick={() => navigate(-1)} />
+                <BlogCloseIcon className="close" onClick={() => navigate("/blog")} />
             </div>
             <img src={data?.img} />
             <div className="blog-content">
