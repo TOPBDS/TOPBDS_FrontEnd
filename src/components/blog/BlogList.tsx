@@ -18,19 +18,19 @@ const BlogList: React.FC<BlogList> = ({ menu }) => {
     }
 
     useEffect(() => {
-        // getBlogList();
+        getBlogList();
     }, []);
 
     return (
         <BlogListStyle>
             {
-                blogList && blogList.map((item: any) => (
+                blogList.length > 0 && blogList.map((item: any) => (
                     <BlogListItem 
                         id={item.id}
-                        img="" 
+                        img={item.img}
                         title={item.title} 
                         subTitle={item.content}
-                        date={item.createDateTime}
+                        date={item.createdDateTime}
                     />
                 ))
             }
