@@ -5,6 +5,7 @@ import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
 import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icon/minus.svg";
+import MapFilter from "./MapFilter";
 
 interface MapsProps {
     setLat: Dispatch<React.SetStateAction<number>> | null,
@@ -94,7 +95,7 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />
                         <MapStyleSelect optionName="지도" setMapType={setMapType} />
-                        <MapFilterSelect optionName="필터" optionList={["평형", "가격", "입주년차", "세대수", "주차공간", "전세가율", "갭가격"]} />
+                        <MapFilter />
                         <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} />
                         <button type="button" className={`hide-button ${hide ? "active" : ""}`} onClick={() => setHide(!hide)}>숨김</button>
                         <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} />
