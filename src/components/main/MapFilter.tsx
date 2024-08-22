@@ -1,7 +1,17 @@
+import AptApi from "../../core/apis/apt/Apt.api";
 import "./style/main.css";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-const MapFilter: React.FC = () => {
+interface MapFilterProps {
+    lat: number,
+    lng: number,
+    setAptList: Dispatch<SetStateAction<{
+        latitude: number,
+        longitude: number
+    }[]>>
+}
+
+const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("필터");
 
@@ -84,10 +94,19 @@ const MapFilter: React.FC = () => {
         setRentalBusinessRatioRangeValue(event.target.value);
     };
 
-    const [monthlyPriceRaioRangeValue, setMonthlyPriceRaioRangeValue] = useState(0);
-    const handleMonthlyPriceRaioRangeValue = (event: any) => {
-        setMonthlyPriceRaioRangeValue(event.target.value);
+    const [monthlyPriceRatioRangeValue, setMonthlyPriceRatioRangeValue] = useState(0);
+    const handleMonthlyPriceRatioRangeValue = (event: any) => {
+        setMonthlyPriceRatioRangeValue(event.target.value);
     };
+
+    const getMapFilter = async () => {
+        const response = await AptApi.getMapAptList(lat, lng, aptType, aptRentType, sizeRangeValue, priceRangeValue, );
+        setAptList(response);
+    }
+
+    useEffect(() => {
+        getMapFilter();
+    }, [])
 
     return (
         <div className="side-map-fillter-select-box">
@@ -245,8 +264,8 @@ const MapFilter: React.FC = () => {
                                 onChange={handleGapPriceRangeValue}
                             />
                             <div className="range-labels">
-                                <span>1</span>
-                                <span>30</span>
+                                <span>1천</span>
+                                <span>3억</span>
                             </div>
                         </div>
                     </div>
@@ -275,8 +294,8 @@ const MapFilter: React.FC = () => {
                                 className="range-input"
                                 min="3"
                                 max="7"
-                                value={monthlyPriceRaioRangeValue}
-                                onChange={handleMonthlyPriceRaioRangeValue}
+                                value={monthlyPriceRatioRangeValue}
+                                onChange={handleMonthlyPriceRatioRangeValue}
                             />
                             <div className="range-labels">
                                 <span>3%</span>

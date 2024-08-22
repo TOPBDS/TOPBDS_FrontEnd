@@ -24,6 +24,10 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
         lat: 123,
         lng: 123
     });
+    const [ aptList, setAptList ] = useState<{
+        latitude: number,
+        longitude: number
+    }[]>([]);
 
     const mapRef = useRef<kakao.maps.Map>(null);
 
@@ -75,12 +79,16 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
                 ref={mapRef}
             >
                 <div className="overlay-container">
-                    <CustomOverlayMap position={location}>
-                        <div className='overlay'>
-                            <p className="square-footage">31평</p>
-                            <p className="apt-price">16.8억</p>
-                        </div>
-                    </CustomOverlayMap>
+                    {
+                        aptList && aptList.map((data) => (
+                            <CustomOverlayMap position={{ lat: data?.latitude, lng: data?.longitude}}>
+                                <div className='overlay'>
+                                    <p className="square-footage">31평</p>
+                                    <p className="apt-price">16.8억</p>
+                                </div>
+                            </CustomOverlayMap>
+                        ))
+                    }
                     <CustomOverlayMap position={{ lat: 33.55635, lng: 126.795841 }}>
                         <div className='overlay active'>
                             <p className="square-footage">31평</p>
@@ -95,7 +103,7 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />
                         <MapStyleSelect optionName="지도" setMapType={setMapType} />
-                        <MapFilter />
+                        <MapFilter lat={location.lat} lng={location.lng} setAptList={setAptList} />
                         <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} />
                         <button type="button" className={`hide-button ${hide ? "active" : ""}`} onClick={() => setHide(!hide)}>숨김</button>
                         <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} />
