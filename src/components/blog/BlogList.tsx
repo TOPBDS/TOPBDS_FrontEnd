@@ -9,7 +9,35 @@ interface BlogList {
 }
 
 const BlogList: React.FC<BlogList> = ({ menu }) => {
-    const [blogList, setBlogList] = useState<[]>([]);
+    const [blogList, setBlogList] = useState<{
+        id: number,
+        img: string,
+        title: string,
+        content: string,
+        createdDateTime: string
+    }[]>([
+        {
+            id: 1,
+            img: "",
+            title: "test",
+            content: "test",
+            createdDateTime: "2024-08-19"
+        },
+        {
+            id: 2,
+            img: "",
+            title: "test2",
+            content: "test2",
+            createdDateTime: "2024-08-19"
+        },
+        {
+            id: 3,
+            img: "",
+            title: "test3",
+            content: "test3",
+            createdDateTime: "2024-08-19"
+        }
+    ]);
 
     const getBlogList = async () => {
         const data = await BlogApi.getBlogList(1, menu);
@@ -24,13 +52,13 @@ const BlogList: React.FC<BlogList> = ({ menu }) => {
     return (
         <BlogListStyle>
             {
-                blogList && blogList.map((item: any) => (
+                blogList.length > 0 && blogList.map((item: any) => (
                     <BlogListItem 
                         id={item.id}
-                        img="" 
+                        img={item.img}
                         title={item.title} 
                         subTitle={item.content}
-                        date={item.createDateTime}
+                        date={item.createdDateTime}
                     />
                 ))
             }

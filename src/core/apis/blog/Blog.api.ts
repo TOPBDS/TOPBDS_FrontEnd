@@ -31,7 +31,7 @@ class Blog {
         try {
             const response = await axios.get(`${config.config}/blog/find/${id}`);
 
-            return response;
+            return response?.data?.data;
         } catch (e: any) {
             console.error(e);
             return e;
