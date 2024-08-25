@@ -309,6 +309,10 @@ export const CustomSlider = styled(Slider)({
         // marginTop: -8,
         // marginLeft: -12,
         '&:focus, &:hover, &.Mui-active': {
+<<<<<<< HEAD
+=======
+            boxShadow: 'inherit',
+>>>>>>> 50b987336ec6d50ac01e385646b5b2d17debd391
         },
     },
 
@@ -323,23 +327,44 @@ export const CustomSlider = styled(Slider)({
     },
 
     '& .MuiSlider-mark': { // 슬라이더 마크(점) 스타일을 지정합니다.
+<<<<<<< HEAD
         backgroundColor: '#03C6CE',
+=======
+        backgroundColor: '#bfbfbf',
+>>>>>>> 50b987336ec6d50ac01e385646b5b2d17debd391
         height: 8,
         width: 1,
         '&.MuiSlider-markActive': {
             opacity: 1,
+<<<<<<< HEAD
             backgroundColor: '#03C6CE',
             color: '#FFF'
+=======
+            backgroundColor: 'currentColor',
+            color: '#fff'
+>>>>>>> 50b987336ec6d50ac01e385646b5b2d17debd391
         },
     },
 
     '& .MuiSlider-valueLabel': { // valueLabel에 대한 스타일을 지정합니다.
+<<<<<<< HEAD
         backgroundColor: '#03C6CE',
         color: '#fff !important',
         borderRadius: '4px',
         '&:before': {
             backgroundColor: '#52af77',
             color: '#fff !important',
+=======
+        backgroundColor: '#52af77',
+        color: '#fff',
+        borderRadius: '4px',
+        top: -10,
+        '&:before': {
+            transform: 'rotate(45deg)',
+            width: 8, 
+            height: 8,
+            backgroundColor: '#52af77',
+>>>>>>> 50b987336ec6d50ac01e385646b5b2d17debd391
         },
     },
 });
