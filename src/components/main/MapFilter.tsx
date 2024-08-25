@@ -1,3 +1,4 @@
+import { Slider } from "@mui/material";
 import AptApi from "../../core/apis/apt/Apt.api";
 import "./style/main.css";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -6,8 +7,20 @@ interface MapFilterProps {
     lat: number,
     lng: number,
     setAptList: Dispatch<SetStateAction<{
-        latitude: number,
-        longitude: number
+        aptId: number,
+        location: string,
+        subLocation: string,
+        aptName: string,
+        aptExplain: string,
+        aptType: string,
+        aptRentType: string,
+        aptPrice: string,
+        aptLike: number,
+        aptImage: string,
+        aptAddress: string,
+        aptLatitude: number,
+        aptLongitude: number,
+        squareFootage: string,
     }[]>>
 }
 
@@ -24,13 +37,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
         setIsOpen(false);
     };
 
-    const [aptRentType, setAptRentType] = useState(1);
-    const onClickAptRentType = (type: number) => {
+    const [aptRentType, setAptRentType] = useState("ALL");
+    const onClickAptRentType = (type: string) => {
         setAptRentType(type);
     }
 
-    const [aptType, setAptType] = useState(1);
-    const onClickAptType = (type: number) => {
+    const [aptType, setAptType] = useState("ALL");
+    const onClickAptType = (type: string) => {
         setAptType(type);
     }
 
@@ -49,63 +62,202 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
         setHeating(type);
     }
 
-    const [sizeRangeValue, setSizeRangeValue] = useState(0);
-    const handleSizeRangeChange = (event: any) => {
-        setSizeRangeValue(event.target.value);
+    const [sizeRangeValue, setSizeRangeValue] = useState([10, 80]);
+    const handleSizeChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setSizeRangeValue([Math.min(newValue[0], sizeRangeValue[1] - 10), sizeRangeValue[1]]);
+        } else {
+            setSizeRangeValue([sizeRangeValue[0], Math.max(newValue[1], sizeRangeValue[0] + 10)]);
+        }
     };
 
-    const [priceRangeValue, setPriceRangeValue] = useState(0);
-    const handlePriceRangeChange = (event: any) => {
-        setPriceRangeValue(event.target.value);
+    const [priceRangeValue, setPriceRangeValue] = useState([2, 40]);
+    const handlePriceChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setPriceRangeValue([Math.min(newValue[0], priceRangeValue[1] - 10), priceRangeValue[1]]);
+        } else {
+            setPriceRangeValue([priceRangeValue[0], Math.max(newValue[1], priceRangeValue[0] + 10)]);
+        }
     };
 
-    const [numberRangeValue, setNumberRangeValue] = useState(0);
-    const handleNumberRangeChange = (event: any) => {
-        setNumberRangeValue(event.target.value);
+    const [numberRangeValue, setNumberRangeValue] = useState([100, 5000]);
+    const handleNumberChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setNumberRangeValue([Math.min(newValue[0], numberRangeValue[1] - 10), numberRangeValue[1]]);
+        } else {
+            setNumberRangeValue([numberRangeValue[0], Math.max(newValue[1], numberRangeValue[0] + 10)]);
+        }
     };
 
-    const [yearRangeValue, setYearRangeValue] = useState(0);
-    const handleYearRangeChange = (event: any) => {
-        setYearRangeValue(event.target.value);
+    const [yearRangeValue, setYearRangeValue] = useState([3, 25]);
+    const handleYearChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setYearRangeValue([Math.min(newValue[0], yearRangeValue[1] - 10), yearRangeValue[1]]);
+        } else {
+            setYearRangeValue([yearRangeValue[0], Math.max(newValue[1], yearRangeValue[0] + 10)]);
+        }
     };
 
-    const [floorAreaRatioRangeValue, setFloorAreaRatioRangeValue] = useState(0);
-    const handleFloorAreaRatioChange = (event: any) => {
-        setFloorAreaRatioRangeValue(event.target.value);
+    const [floorAreaRatioRangeValue, setFloorAreaRatioRangeValue] = useState([100, 700]);
+    const handleFloorAreaRatioChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setFloorAreaRatioRangeValue([Math.min(newValue[0], floorAreaRatioRangeValue[1] - 10), floorAreaRatioRangeValue[1]]);
+        } else {
+            setFloorAreaRatioRangeValue([floorAreaRatioRangeValue[0], Math.max(newValue[1], floorAreaRatioRangeValue[0] + 10)]);
+        }
     };
 
-    const [buildingToLandRatioRangeValue, setBuildingToLandRatioRangeValue] = useState(0);
-    const handleBuildingToLandRatioChange = (event: any) => {
-        setBuildingToLandRatioRangeValue(event.target.value);
+    const [buildingToLandRatioRangeValue, setBuildingToLandRatioRangeValue] = useState([10, 50]);
+    const handleBuildingToLandRatioChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setBuildingToLandRatioRangeValue([Math.min(newValue[0], buildingToLandRatioRangeValue[1] - 10), buildingToLandRatioRangeValue[1]]);
+        } else {
+            setBuildingToLandRatioRangeValue([buildingToLandRatioRangeValue[0], Math.max(newValue[1], buildingToLandRatioRangeValue[0] + 10)]);
+        }
     };
     
-    const [jeonsePriceRatioRangeValue, setJeonsePriceRatioRangeValue] = useState(0);
-    const handleJeonsePriceRatioRangeValue = (event: any) => {
-        setJeonsePriceRatioRangeValue(event.target.value);
+    const [jeonsePriceRatioRangeValue, setJeonsePriceRatioRangeValue] = useState([50, 300]);
+    const handleJeonsePriceRatioChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setJeonsePriceRatioRangeValue([Math.min(newValue[0], jeonsePriceRatioRangeValue[1] - 10), jeonsePriceRatioRangeValue[1]]);
+        } else {
+            setJeonsePriceRatioRangeValue([jeonsePriceRatioRangeValue[0], Math.max(newValue[1], jeonsePriceRatioRangeValue[0] + 10)]);
+        }
     };
 
-    const [gapPriceRangeValue, setGapPriceRangeValue] = useState(0);
-    const handleGapPriceRangeValue = (event: any) => {
-        setGapPriceRangeValue(event.target.value);
+    const [gapPriceRangeValue, setGapPriceRangeValue] = useState([1000, 30000]);
+    const handleGapPriceChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setGapPriceRangeValue([Math.min(newValue[0], gapPriceRangeValue[1] - 10), gapPriceRangeValue[1]]);
+        } else {
+            setGapPriceRangeValue([gapPriceRangeValue[0], Math.max(newValue[1], gapPriceRangeValue[0] + 10)]);
+        }
     };
 
-    const [rentalBusinessRatioRangeValue, setRentalBusinessRatioRangeValue] = useState(0);
-    const handleRentalBusinessRatioRangeValue = (event: any) => {
-        setRentalBusinessRatioRangeValue(event.target.value);
+    const [rentalBusinessRatioRangeValue, setRentalBusinessRatioRangeValue] = useState([10, 50]);
+    const handleRentalBusinessRatioChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setRentalBusinessRatioRangeValue([Math.min(newValue[0], rentalBusinessRatioRangeValue[1] - 10), rentalBusinessRatioRangeValue[1]]);
+        } else {
+            setRentalBusinessRatioRangeValue([rentalBusinessRatioRangeValue[0], Math.max(newValue[1], rentalBusinessRatioRangeValue[0] + 10)]);
+        }
     };
 
-    const [monthlyPriceRatioRangeValue, setMonthlyPriceRatioRangeValue] = useState(0);
-    const handleMonthlyPriceRatioRangeValue = (event: any) => {
-        setMonthlyPriceRatioRangeValue(event.target.value);
+    const [monthlyPriceRatioRangeValue, setMonthlyPriceRatioRangeValue] = useState([3, 7]);
+    const handleMonthlyPriceRatioChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setMonthlyPriceRatioRangeValue([Math.min(newValue[0], monthlyPriceRatioRangeValue[1] - 10), monthlyPriceRatioRangeValue[1]]);
+        } else {
+            setMonthlyPriceRatioRangeValue([monthlyPriceRatioRangeValue[0], Math.max(newValue[1], monthlyPriceRatioRangeValue[0] + 10)]);
+        }
     };
 
     const getMapFilter = async () => {
-        const response = await AptApi.getMapAptList(lat, lng, aptType, aptRentType, sizeRangeValue, priceRangeValue, );
+        const response = await AptApi.getMapAptList(
+            lat, 
+            lng, 
+            aptType, 
+            aptRentType, 
+            sizeRangeValue[0] + "평",
+            priceRangeValue[0],
+            floorAreaRatioRangeValue[0],
+            floorAreaRatioRangeValue[1], 
+            buildingToLandRatioRangeValue[0],
+            buildingToLandRatioRangeValue[1],
+            jeonsePriceRatioRangeValue[0],
+            jeonsePriceRatioRangeValue[1],
+            gapPriceRangeValue[0],
+            gapPriceRangeValue[1],
+            rentalBusinessRatioRangeValue[0],
+            rentalBusinessRatioRangeValue[1],
+            monthlyPriceRatioRangeValue[0],
+            monthlyPriceRatioRangeValue[1]
+        );
         setAptList(response);
     }
 
     useEffect(() => {
-        getMapFilter();
+        // getMapFilter();
     }, [])
 
     return (
@@ -118,31 +270,31 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-chip-filter">
                         <p>거래 유형</p>
                         <div className="chips">
-                            <span className={aptRentType === 1 ? "active" : ""} onClick={() => onClickAptRentType(1)}>전체</span>
-                            <span className={aptRentType === 2 ? "active" : ""} onClick={() => onClickAptRentType(2)}>매매</span>
-                            <span className={aptRentType === 3 ? "active" : ""} onClick={() => onClickAptRentType(3)}>전월세</span>
+                            <span className={aptRentType === "ALL" ? "active" : ""} onClick={() => onClickAptRentType("ALL")}>전체</span>
+                            <span className={aptRentType === "TRADING" ? "active" : ""} onClick={() => onClickAptRentType("TRADING")}>매매</span>
+                            <span className={aptRentType === "JEONSE" ? "active" : ""} onClick={() => onClickAptRentType("JEONSE")}>전월세</span>
                         </div>
                     </div>
                     <div className="apt-chip-filter">
                         <p>유형</p>
                         <div className="chips">
-                            <span className={aptType === 1 ? "active" : ""} onClick={() => onClickAptType(1)}>전체</span>
-                            <span className={aptType === 2 ? "active" : ""} onClick={() => onClickAptType(2)}>아파트</span>
-                            <span className={aptType === 3 ? "active" : ""} onClick={() => onClickAptType(3)}>오피스텔</span>
-                            <span className={aptType === 4 ? "active" : ""} onClick={() => onClickAptType(4)}>상가</span>
-                            <span className={aptType === 5 ? "active" : ""} onClick={() => onClickAptType(5)}>건물</span>
+                            <span className={aptType === "ALL" ? "active" : ""} onClick={() => onClickAptType("ALL")}>전체</span>
+                            <span className={aptType === "APARTMENT" ? "active" : ""} onClick={() => onClickAptType("APARTMENT")}>아파트</span>
+                            <span className={aptType === "EFFICIENCY_APARTMENT" ? "active" : ""} onClick={() => onClickAptType("EFFICIENCY_APARTMENT")}>오피스텔</span>
+                            <span className={aptType === "SHOPPING_MALL" ? "active" : ""} onClick={() => onClickAptType("SHOPPING_MALL")}>상가</span>
+                            <span className={aptType === "BUILDING" ? "active" : ""} onClick={() => onClickAptType("BUILDING")}>건물</span>
                         </div>
                     </div>
                     <div className="apt-range-filter">
                         <p>평형</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="10"
-                                max="80"
+                            <Slider
+                                min={10}
+                                max={80}
                                 value={sizeRangeValue}
-                                onChange={handleSizeRangeChange}
+                                onChange={handleSizeChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>10평</span>
@@ -153,13 +305,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>가격</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="2"
-                                max="40"
+                            <Slider
+                                min={2}
+                                max={40}
                                 value={priceRangeValue}
-                                onChange={handlePriceRangeChange}
+                                onChange={handlePriceChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>2억</span>
@@ -170,13 +322,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>세대수</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="100"
-                                max="5000"
+                            <Slider
+                                min={100}
+                                max={5000}
                                 value={numberRangeValue}
-                                onChange={handleNumberRangeChange}
+                                onChange={handleNumberChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>100세대</span>
@@ -187,30 +339,30 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>입주년차</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="3"
-                                max="25"
+                            <Slider
+                                min={3}
+                                max={25}
                                 value={yearRangeValue}
-                                onChange={handleYearRangeChange}
+                                onChange={handleYearChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
-                                <span>2억</span>
-                                <span>40억</span>
+                                <span>3년</span>
+                                <span>25년</span>
                             </div>
                         </div>
                     </div>
                     <div className="apt-range-filter">
                         <p>용적률</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="100"
-                                max="700"
+                            <Slider
+                                min={100}
+                                max={700}
                                 value={floorAreaRatioRangeValue}
                                 onChange={handleFloorAreaRatioChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>100%</span>
@@ -221,13 +373,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>건폐율</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="10"
-                                max="50"
+                            <Slider
+                                min={10}
+                                max={50}
                                 value={buildingToLandRatioRangeValue}
                                 onChange={handleBuildingToLandRatioChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>10%</span>
@@ -238,13 +390,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>전세가율</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="50"
-                                max="300"
+                            <Slider
+                                min={50}
+                                max={300}
                                 value={jeonsePriceRatioRangeValue}
-                                onChange={handleJeonsePriceRatioRangeValue}
+                                onChange={handleJeonsePriceRatioChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>50%</span>
@@ -255,13 +407,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>갭가격</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="1"
-                                max="30"
+                            <Slider
+                                min={1000}
+                                max={30000}
                                 value={gapPriceRangeValue}
-                                onChange={handleGapPriceRangeValue}
+                                onChange={handleGapPriceChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>1천</span>
@@ -272,13 +424,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>임대사업율</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="10"
-                                max="50"
+                            <Slider
+                                min={10}
+                                max={50}
                                 value={rentalBusinessRatioRangeValue}
-                                onChange={handleRentalBusinessRatioRangeValue}
+                                onChange={handleRentalBusinessRatioChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>10%</span>
@@ -289,13 +441,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>월세수익률</p>
                         <div className="range">
-                            <input
-                                type="range"
-                                className="range-input"
-                                min="3"
-                                max="7"
+                            <Slider
+                                min={3}
+                                max={7}
                                 value={monthlyPriceRatioRangeValue}
-                                onChange={handleMonthlyPriceRatioRangeValue}
+                                onChange={handleMonthlyPriceRatioChange}
+                                valueLabelDisplay="auto"
+                                disableSwap
                             />
                             <div className="range-labels">
                                 <span>3%</span>

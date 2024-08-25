@@ -6,6 +6,7 @@ import MapStyleSelect from "./MapStyleSelect";
 import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icon/minus.svg";
 import MapFilter from "./MapFilter";
+import { useNavigate } from "react-router-dom";
 
 interface MapsProps {
     setLat: Dispatch<React.SetStateAction<number>> | null,
@@ -13,6 +14,7 @@ interface MapsProps {
 }
 
 const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
+    const navigate = useNavigate();
     const defaultLevel = 3;
     const [ level, setLevel ] = useState<number>(defaultLevel);
     const [ hide, setHide ] = useState<boolean>(false);
@@ -25,8 +27,20 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
         lng: 123
     });
     const [ aptList, setAptList ] = useState<{
-        latitude: number,
-        longitude: number
+        aptId: number,
+        location: string,
+        subLocation: string,
+        aptName: string,
+        aptExplain: string,
+        aptType: string,
+        aptRentType: string,
+        aptPrice: string,
+        aptLike: number,
+        aptImage: string,
+        aptAddress: string,
+        aptLatitude: number,
+        aptLongitude: number,
+        squareFootage: string,
     }[]>([]);
 
     const mapRef = useRef<kakao.maps.Map>(null);
@@ -81,10 +95,10 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
                 <div className="overlay-container">
                     {
                         aptList && aptList.map((data) => (
-                            <CustomOverlayMap position={{ lat: data?.latitude, lng: data?.longitude}}>
-                                <div className='overlay'>
-                                    <p className="square-footage">31평</p>
-                                    <p className="apt-price">16.8억</p>
+                            <CustomOverlayMap position={{ lat: data?.aptLatitude, lng: data?.aptLongitude}}>
+                                <div className='overlay' onClick={() => navigate("/item/" + data?.aptId)}>
+                                    <p className="square-footage">{data?.squareFootage}</p>
+                                    <p className="apt-price">{data?.aptPrice}</p>
                                 </div>
                             </CustomOverlayMap>
                         ))
