@@ -2,9 +2,9 @@ import { customAxios } from "../../util/customAxios";
 
 class Apt {
 
-  public async getMapAptList(latitude: number, longitude: number, type: string, rentType: string, sf: string, ap: number, farMin: number, farMax: number, btlrMin: number, btlrMax: number, jprMin: number, jprMax: number, gpMin: number, gpMax: number, rbrMin: number, rbrMax: number, mprMin: number, mprMax: number): Promise<any> {
+  public async getMapAptList(latitude: number, longitude: number, type: string, rentType: string, sfMin: number, sfMax: number, apMin: number, apMax: number, farMin: number, farMax: number, btlrMin: number, btlrMax: number, jprMin: number, jprMax: number, gpMin: number, gpMax: number, rbrMin: number, rbrMax: number, mprMin: number, mprMax: number): Promise<any> {
     try {
-      const response = await customAxios.get(`/apt/map/apt-info/find-all?lat=${latitude}&lon=${longitude}&type=${type}&rent-type=${rentType}&sf=${sf}&ap=${ap}&far-min=${farMin}&far-max=${farMax}&btlr-min=${btlrMin}&btlr-max=${btlrMax}&jpr-min=${jprMin}&jpr-max=${jprMax}&gp-min=${gpMin}&gp-max=${gpMax}&rbr-min=${rbrMin}&rbr-max=${rbrMax}&mpr-min=${mprMin}&mpr-max=${mprMax}&page=0&size=10`);
+      const response = await customAxios.get(`/apt/map/apt-info/find-all?lat=${latitude}&lon=${longitude}&type=${type}&rent-type=${rentType}&sf-min=${sfMin}&sf-max=${sfMax}&ap-min=${apMin}&ap-max=${apMax}&far-min=${farMin}&far-max=${farMax}&btlr-min=${btlrMin}&btlr-max=${btlrMax}&jpr-min=${jprMin}&jpr-max=${jprMax}&gp-min=${gpMin}&gp-max=${gpMax}&rbr-min=${rbrMin}&rbr-max=${rbrMax}&mpr-min=${mprMin}&mpr-max=${mprMax}&page=0&size=10`);
 
       return response;
     } catch (e: any) {
