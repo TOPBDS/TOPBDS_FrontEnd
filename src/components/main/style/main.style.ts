@@ -1,3 +1,4 @@
+import { Slider } from "@mui/material";
 import styled from "styled-components";
 
 export const HouseListStyle = styled.div`
@@ -295,3 +296,39 @@ export const HouseDetailSideMenuStyle = styled.div`
     margin: 8px;
     margin-left: 16px;
 `
+
+export const CustomSlider = styled(Slider)({
+    color: '#52af77', // 슬라이더 트랙과 thumb 색상
+    height: 8, // 슬라이더 높이
+
+    '& .MuiSlider-thumb': {
+        height: 24,
+        width: 24,
+        backgroundColor: '#fff',
+        border: '2px solid currentColor',
+        marginTop: -8,
+        marginLeft: -12,
+        '&:focus, &:hover, &.Mui-active': {
+        boxShadow: 'inherit',
+        },
+    },
+
+    '& .MuiSlider-track': {
+        border: 'none',
+    },
+
+    '& .MuiSlider-rail': {
+        opacity: 0.5,
+        backgroundColor: '#bfbfbf',
+    },
+
+    '& .MuiSlider-mark': {
+        backgroundColor: '#bfbfbf',
+        height: 8,
+        width: 1,
+        '&.MuiSlider-markActive': {
+        opacity: 1,
+        backgroundColor: 'currentColor',
+        },
+    },
+});

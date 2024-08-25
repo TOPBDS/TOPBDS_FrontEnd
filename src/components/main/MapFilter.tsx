@@ -2,6 +2,7 @@ import { Slider } from "@mui/material";
 import AptApi from "../../core/apis/apt/Apt.api";
 import "./style/main.css";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { CustomSlider } from "./style/main.style";
 
 interface MapFilterProps {
     lat: number,
@@ -288,7 +289,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>평형</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={10}
                                 max={80}
                                 value={sizeRangeValue}
@@ -305,7 +306,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>가격</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={2}
                                 max={40}
                                 value={priceRangeValue}
@@ -322,7 +323,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>세대수</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={100}
                                 max={5000}
                                 value={numberRangeValue}
@@ -339,7 +340,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>입주년차</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={3}
                                 max={25}
                                 value={yearRangeValue}
@@ -356,7 +357,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>용적률</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={100}
                                 max={700}
                                 value={floorAreaRatioRangeValue}
@@ -373,7 +374,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>건폐율</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={10}
                                 max={50}
                                 value={buildingToLandRatioRangeValue}
@@ -390,7 +391,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>전세가율</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={50}
                                 max={300}
                                 value={jeonsePriceRatioRangeValue}
@@ -407,7 +408,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>갭가격</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={1000}
                                 max={30000}
                                 value={gapPriceRangeValue}
@@ -424,7 +425,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>임대사업율</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={10}
                                 max={50}
                                 value={rentalBusinessRatioRangeValue}
@@ -441,7 +442,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                     <div className="apt-range-filter">
                         <p>월세수익률</p>
                         <div className="range">
-                            <Slider
+                            <CustomSlider
                                 min={3}
                                 max={7}
                                 value={monthlyPriceRatioRangeValue}
