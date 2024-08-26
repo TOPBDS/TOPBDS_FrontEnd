@@ -519,6 +519,7 @@
 .chips span.active {
     background-color: #03C6CE;
     color: #FFFFFF;
+    border: none;
 }
 
 .apt-range-filter {
