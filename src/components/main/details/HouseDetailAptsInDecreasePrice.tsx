@@ -35,20 +35,17 @@ const HouseDetailAptsInDecreasePrice: React.FC = () => {
 
     const getLocation = async () => {
         const response = await LocationApi.getLocaitonList();
-        console.log(response);
         setLocationList(response);
     }
 
     const getSubLocation = async () => {
         const response = await LocationApi.getSubLocationList(selectLocation);
-        console.log(response);
         setSubLocationList(response);
     }
 
     const getAptPrediction = async () => {
         const response = await AptApi.getPredictionList(0, selectLocation, 0, aptRentType, aptDate);
 
-        console.log(response);
         setAptInDecreasePriceList(response.data);
     }
 

@@ -28,9 +28,9 @@ const HouseDetailAptReview: React.FC<HouseDetailAptReviewProps> = ({ aptId }) =>
         return stars;
     }
 
-    // useEffect(() => {
-    //     getAptReviewList();
-    // }, [])
+    useEffect(() => {
+        // getAptReviewList();
+    }, []);
 
     const getAptReviewList = async () => {
         const response = await AptApi.getReviewList(0, aptId);
@@ -43,7 +43,6 @@ const HouseDetailAptReview: React.FC<HouseDetailAptReviewProps> = ({ aptId }) =>
         const response = await AptApi.createReview(
             comment.current!.value, rating, aptId
         );
-        console.log(response);
 
         if (response) {
             alert("리뷰를 작성하였습니다.");

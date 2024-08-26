@@ -35,6 +35,17 @@ class Apt {
     }
   }
 
+  public async getAptLike(aptId: number): Promise<any> {
+    try {
+      const response = await customAxios.get(`/apt/like/${aptId}`);
+
+      return response;
+    } catch (e: any) {
+      console.error(e);
+      return e;
+    }
+  }
+
   public async getUnsoldAptList(page: number, lcId: number, slcId: number, unsoldStartDate: Date, unsoldEndDate: Date): Promise<any> {
     try {
       const response = await customAxios.get(`/apt/apt-unsold/find-all?page=${page}&size=10&lc-id=${lcId}&slc-id=${slcId}&unsold-start-date=${unsoldStartDate}&unsold-end-date=${unsoldEndDate}`);
@@ -137,9 +148,11 @@ class Apt {
     }
   }
 
-  public async setInterestApt(aptId: number) {
+  public async setInterestApt(aptId: number, status: boolean) {
     try {
-      const response = await customAxios.post(`/apt/set-interest/${aptId}`);
+      const response = await customAxios.post(`/apt/like/${aptId}`, {
+        status
+      });
 
       return response;
     } catch (e: any) {

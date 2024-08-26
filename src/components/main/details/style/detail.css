@@ -75,7 +75,7 @@
 .chip.active {
     background-color: #03C6CE;
     color: white;
-    border: none;
+    border: #03C6CE;
 }
 
 .chip:not(.active) {

@@ -459,12 +459,12 @@
 
 .side-map-fillter-option-list {
     margin: 0;
-    padding: 12px, 16px;
+    padding: 12px 16px; 
     list-style: none;
     position: absolute;
     background-color: #FFFFFF;
     border-radius: 8px;
-    width: 260px;
+    width: 300px;
     max-height: 800px;
     top: -350px; 
     right: 53px; /* Position it to the right of the button */
@@ -519,6 +519,7 @@
 .chips span.active {
     background-color: #03C6CE;
     color: #FFFFFF;
+    border: none;
 }
 
 .apt-range-filter {

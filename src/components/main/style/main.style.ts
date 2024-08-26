@@ -246,7 +246,7 @@ export const HouseItemRecommendButtonStyle = styled.button`
     border-radius: 8px;
     border: none;
 
-    color: #fff;
+    color: #03C6CE;
 
     cursor: pointer;
 `
@@ -298,16 +298,16 @@ export const HouseDetailSideMenuStyle = styled.div`
 `
 
 export const CustomSlider = styled(Slider)({
-    color: '#52af77', // 슬라이더 트랙과 thumb 색상
+    color: '#03C6CE', // 슬라이더 트랙과 thumb 색상
     height: 8, // 슬라이더 높이
 
     '& .MuiSlider-thumb': { // 슬라이더 썸(이동 가능한 점)에 대한 스타일을 지정합니다.
         height: 24,
         width: 24,
         backgroundColor: '#fff',
-        border: '2px solid currentColor',
-        marginTop: -8,
-        marginLeft: -12,
+        // border: '2px solid currentColor',
+        // marginTop: -8,
+        // marginLeft: -12,
         '&:focus, &:hover, &.Mui-active': {
             boxShadow: 'inherit',
         },
@@ -315,6 +315,7 @@ export const CustomSlider = styled(Slider)({
 
     '& .MuiSlider-track': { // 선택된 범위에 대한 트랙 스타일을 지정합니다.
         border: 'none',
+        backgroundColor: '#03C6CE',
     },
 
     '& .MuiSlider-rail': { // 선택되지 않은 범위에 대한 레일 스타일을 지정합니다.
@@ -334,15 +335,11 @@ export const CustomSlider = styled(Slider)({
     },
 
     '& .MuiSlider-valueLabel': { // valueLabel에 대한 스타일을 지정합니다.
-        backgroundColor: '#111',
+        backgroundColor: '#03C6CE',
         color: '#fff',
         borderRadius: '4px',
-        top: -10,
         '&:before': { // valueLabel 밑의 화살표에 대한 스타일을 지정합니다.
-            transform: 'rotate(45deg)',
-            width: 8, 
-            height: 8,
-            backgroundColor: '#111',
+            backgroundColor: '#03C6CE',
         },
     },
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HouseDetailHeaderStyle, HouseHeader } from "../style/main-item.style";
 import { ReactComponent as HouseCloseIcon } from "../../../assets/icon/close.svg";
 import { ReactComponent as HeartIcon } from "../../../assets/icon/heart.svg";
+import { ReactComponent as FillHeartIcon } from "../../../assets/icon/fill-heart.svg";
 import { useNavigate } from "react-router-dom";
 import ApartImage  from "../../../assets/image/apartment.png";
 import AptApi from "../../../core/apis/apt/Apt.api";
@@ -16,9 +17,11 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
     const [ aptInfo, setAptInfo ] = useState<{
         aptImage: string
     }>();
+    const [ like, setLike ] = useState<boolean>(false);
 
     useEffect(() => {
         getAptInfo();
+        getAptLike();
     }, []);
     
     const getAptInfo = async () => {
@@ -27,10 +30,18 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
         setAptInfo(response);
     }
 
-    const setInterestApt = async () => {
-        const response = await AptApi.setInterestApt(aptId);
+    const getAptLike = async () => {
+        const response = await AptApi.getAptLike(aptId);
 
-        console.log(response);
+        setLike(response);
+    }
+
+    const setInterestApt = async () => {
+        const response = await AptApi.setInterestApt(aptId, like);
+
+        if (response) {
+            alert("관심 매물에 등록하였습니다");
+        }
     }
 
     return (
@@ -43,7 +54,13 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
                 <img src={aptInfo?.aptImage ? aptInfo.aptImage : ApartImage} alt="preview" className="preview-image"/>
             </div>
             <div className="interested">
-                <HeartIcon className="icon" onClick={setInterestApt} />
+                {
+                    like ? (
+                        <FillHeartIcon className="icon" onClick={setInterestApt} />
+                    ) : (
+                        <HeartIcon className="icon" onClick={setInterestApt} />
+                    )
+                }
                 &nbsp; 관심 매물 추가하기
             </div>
         </HouseDetailHeaderStyle> 

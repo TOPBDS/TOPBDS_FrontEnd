@@ -6,6 +6,7 @@ export const ReportContainer = styled.div`
     display: flex;
     flex-direction: row;
     color: #fff;
+    justify-content: flex-end;
 `
 
 export const ReportHeader = styled.div`

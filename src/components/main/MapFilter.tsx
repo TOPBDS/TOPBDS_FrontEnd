@@ -269,7 +269,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                 <p>{selectedOption}</p>
             </button>
             {isOpen && (
-                <ul className="side-map-fillter-option-list">
+                <div className="side-map-fillter-option-list">
                     <div className="apt-chip-filter">
                         <p>거래 유형</p>
                         <div className="chips">
@@ -482,7 +482,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                             <span className={heating === 3 ? "active" : ""} onClick={() => onClickHeating(3)}>중앙난방</span>
                         </div>
                     </div>
-                </ul>
+                </div>
             )}
         </div>
     )
