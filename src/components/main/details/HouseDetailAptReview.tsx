@@ -78,7 +78,9 @@ const HouseDetailAptReview: React.FC<HouseDetailAptReviewProps> = ({ aptId }) =>
                     ))}
                 </div>
                 <input type="text" placeholder="리뷰를 작성해주세요." ref={comment} className="input-review" />
-                <button type="button" className="review-btn" onClick={createAptReview}>작성</button>
+                <div className="button-display">
+                    <button type="button" className="review-btn" onClick={createAptReview}>작성</button>
+                </div>
             </div>
             <div className="review-list">
                 {reviewList && reviewList.map((review, index) =>
