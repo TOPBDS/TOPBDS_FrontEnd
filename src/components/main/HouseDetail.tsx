@@ -2,7 +2,7 @@ import "./style/main.css";
 import "./style/main-item.style"
 import { HouseDetailStyle, ReportPrintButtonStyle } from "./style/main.style";
 import { HouseDetailSortation } from "./style/main-item.style";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HouseDetailHeader from "./details/HouseDetailHeader";
 import HouseDetailUnsold from "./details/HouseDetailUnsold";
 import HouseDetailPopulationChange from "./details/HouseDetailPopulationChange";
@@ -13,30 +13,113 @@ import HouseDetailRecentlyRiseApt from "./details/HouseDetailRecentlyRiseApt";
 import HouseDetailCompareApts from "./details/HouseDetailCompareApts";
 import HouseDetailAptsInDecreasePrice from "./details/HouseDetailAptsInDecreasePrice";
 import HouseDetailAptReview from "./details/HouseDetailAptReview";
+import { useLocation } from "react-router-dom";
+import HouseDetailSide from "./HouseDetailSide";
+import LocationApi from "../../core/apis/location/Location.api";
 
 const HouseDetail: React.FC = () => {
+    const { pathname } = useLocation();
+    const element = pathname.split("/")[2];
+
+    // Create refs for each section
+    const headerRef = useRef(null);
+    const recentlyDownFallAptRef = useRef(null);
+    const recentlyRiseAptRef = useRef(null);
+    const compareAptsRef = useRef(null);
+    const aptsInDecreasePriceRef = useRef(null);
+    const unsoldRef = useRef(null);
+    const populationChangeRef = useRef(null);
+    const rankRef = useRef(null);
+    const supplyVolumeRef = useRef(null);
+    const aptReviewRef = useRef(null);
+
+    const [ unsoldSggList, setUnsoldSggList ] = useState<string[]>([]);
+    const [ largeComplexSggList, setLargeComplexSggList ] = useState<string[]>([]);
+    const [ realSggList, setRealSggList ] = useState<string[]>([]);
+    const [ upComSupplySggList, setUpComSupplySggList ] = useState<string[]>([]);
+
+    const getUnsoldSggList = async () => {
+        const response = await LocationApi.getUnsoldSgg();
+        setUnsoldSggList(response);
+    }
+
+    const getLargeComplexSggList = async () => {
+        const response = await LocationApi.getSggLargeComplex();
+        setLargeComplexSggList(response);
+    }
+
+    const getRealSggList = async () => {
+        const response = await LocationApi.getSggReal();
+        setRealSggList(response);
+    }
+
+    const getUpComSupplySggList = async () => {
+        const response = await LocationApi.getSggUpComSupply();
+        setUpComSupplySggList(response);
+    }
+
+    useEffect(() => {
+        getUnsoldSggList();
+        getLargeComplexSggList();
+        getRealSggList();
+        getUpComSupplySggList();
+    }, []);
+
     return (
         <HouseDetailStyle>
-            <HouseDetailHeader /> {/* 아파트 정보 */}
+            <HouseDetailSide
+                refs={{
+                    headerRef,
+                    recentlyDownFallAptRef,
+                    recentlyRiseAptRef,
+                    compareAptsRef,
+                    aptsInDecreasePriceRef,
+                    unsoldRef,
+                    populationChangeRef,
+                    rankRef,
+                    supplyVolumeRef,
+                    aptReviewRef
+                }}
+            />
+            <div ref={headerRef}>
+                <HouseDetailHeader aptId={Number(element)} /> {/* 아파트 정보 (O) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailRecentlyDownFallApt /> {/* 최근 하락 아파트 */}
+            <div ref={recentlyDownFallAptRef}>
+                <HouseDetailRecentlyDownFallApt locationList={realSggList} /> {/* 최근 하락 아파트 (O) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailRecentlyRiseApt /> {/* 최근 상승 아파트 */}
+            <div ref={recentlyRiseAptRef}>
+                <HouseDetailRecentlyRiseApt locationList={realSggList} /> {/* 최근 상승 아파트 (O) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailCompareApts /> {/* 여러 아파트 비교 */}
+            <div ref={compareAptsRef}>
+                <HouseDetailCompareApts locationList={realSggList} /> {/* 여러 아파트 비교 (X) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailAptsInDecreasePrice /> {/* 매물 증감 */}
+            <div ref={aptsInDecreasePriceRef}>
+                <HouseDetailAptsInDecreasePrice locationList={realSggList} /> {/* 매물 증감 (X) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailUnsold /> {/* 미분양 정보 */}
+            <div ref={unsoldRef}>
+                <HouseDetailUnsold locationList={unsoldSggList} /> {/* 미분양 정보 (X) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailPopulationChange /> {/* 인구수 변화 */}
+            <div ref={populationChangeRef}>
+                <HouseDetailPopulationChange locationList={realSggList} /> {/* 인구수 변화 (X) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailRank /> {/* 대단지 순위 */}
+            <div ref={rankRef}>
+                <HouseDetailRank locationList={largeComplexSggList} /> {/* 대단지 순위 (X) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailSupplyVolume /> {/* 공급 물량 */}
+            <div ref={supplyVolumeRef}>
+                <HouseDetailSupplyVolume locationList={upComSupplySggList} /> {/* 공급 물량 (O) */}
+            </div>
             <HouseDetailSortation />
-            <HouseDetailAptReview /> {/* 아파트 평점 */}
-            <ReportPrintButtonStyle type="button">보고서 출력하기</ReportPrintButtonStyle> {/* 보고서 출력 버튼 */}
+            <div ref={aptReviewRef}>
+                <HouseDetailAptReview aptId={Number(element)} /> {/* 아파트 평점 (O) */}
+            </div>
         </HouseDetailStyle>
     )
 }

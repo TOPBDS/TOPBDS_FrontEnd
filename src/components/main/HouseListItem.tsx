@@ -1,24 +1,73 @@
 import "./style/main.css"; 
 import { useNavigate } from "react-router-dom";
 import { HouseImageStyle, HouseItemContent, HouseItemInfo, HouseItemInfoStyle, HouseItemNumber, HouseItemPrice, HouseItemStyle, HouseItemTitle, HouseItemTopStyle, HouseItemType, HouseListItemStyle } from "./style/main.style";
+import React from "react";
 
-const HouseListItem = () => {
+interface AptApiDTO {
+    apt: string;
+    capacity: number;
+    area: string;
+    amount: number;
+    amountConv: number;
+    amountType: string;
+    floor: number;
+    conDate: string;
+    transMethod: string | null;
+    broLoc: string | null;
+    addr: string;
+    date: string;
+    dong: string;
+    geo: string;
+    sgg: string;
+    conYear: number;
+    year: number;
+}
+
+interface HouseItemProps {
+    data: AptApiDTO
+}
+
+const HouseListItem: React.FC<HouseItemProps> = ({
+    data
+}) => {
     const naviagte = useNavigate();
 
+    function numberToKoreanMixed(num: number): string {
+        const units = ['', '만', '억', '조', '경'];
+        const result: string[] = [];
+        
+        let unitIndex = 0;
+        
+        while (num > 0) {
+            const part = num % 10000;
+        
+            if (part > 0) {
+                const partStr = part.toString();
+                const formattedPart = partStr + units[unitIndex];
+                result.unshift(formattedPart);
+            }
+        
+            num = Math.floor(num / 10000);
+            unitIndex++;
+        }
+        
+        return result.join(' ').trim();
+    }
+
     return (
-        <HouseListItemStyle onClick={() => naviagte("/item/1")}>
+        <HouseListItemStyle onClick={() => naviagte("/item/" + data?.apt)}>
             <HouseItemTopStyle>
                 <HouseItemStyle>
-                        <HouseItemTitle>무슨무슨 아파트</HouseItemTitle>
-                    <HouseItemContent>햇빛 잘 들고 멋있고 살기 좋은 집</HouseItemContent>
-                    <HouseItemPrice>전세 7억 6천</HouseItemPrice>
+                        <HouseItemTitle>{data?.apt}</HouseItemTitle>
+                    <HouseItemContent>{data?.addr}</HouseItemContent>
+                    <HouseItemPrice>{numberToKoreanMixed(Number(data?.amount))}</HouseItemPrice>
                     <HouseItemInfoStyle>
-                        <HouseItemType>아파트</HouseItemType>
-                        <HouseItemInfo>12월 25일부터 입주 가능, 6/15층</HouseItemInfo>
+                        <HouseItemType>{data?.area}</HouseItemType>
+                        <HouseItemInfo>{data?.amountType}</HouseItemInfo>
                     </HouseItemInfoStyle>
-                    <HouseItemNumber>매물 추천 번호 : 123456</HouseItemNumber>
+                    {/* <HouseItemNumber>매물 추천 번호 : {data?.aptId}</HouseItemNumber> */}
                 </HouseItemStyle>
-                <HouseImageStyle></HouseImageStyle>
+                {/* <HouseImageStyle></HouseImageStyle> */}
             </HouseItemTopStyle>
         </HouseListItemStyle>
     )

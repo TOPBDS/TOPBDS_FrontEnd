@@ -21,13 +21,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Header />
         )
       }
-      {
+      {/* {
         !pathname.includes("login") &&
         !pathname.includes("register") &&
-        !pathname.includes("payment") && (
+        !pathname.includes("payment") &&
+        !pathname.includes("blog") &&
+        !pathname.includes("report") && (
           <SubHeader />
         )
-      }
+      } */}
       {children}
     </>
   );

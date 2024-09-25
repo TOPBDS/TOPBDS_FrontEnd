@@ -1,5 +1,5 @@
 import "./style/profile.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProfileContainer } from "./style/profile.style";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 import ProfileInfo from "../../components/profile/ProfileInfo";
@@ -10,6 +10,16 @@ import ProfileInterest from "../../components/profile/ProfileInterest";
 import ProfileSearch from "../../components/profile/ProfileSearch";
 import ProfileNotify from "../../components/profile/ProfileNotify";
 import FAQ from "../../components/profile/faq";
+import UserApi from "../../core/apis/user/User.api";
+
+interface UserInfoDTO {
+    admin: boolean;
+    email: string;
+    id: number;
+    name: string;
+    phone: string;
+    userId: string;
+}
 
 const Profile: React.FC = () => {
     const { pathname } = useLocation();
@@ -20,13 +30,23 @@ const Profile: React.FC = () => {
                 : element == "notify" ? "알림" 
                 : element == "faq" ? "FAQ"
                 : ""; 
+    const [ user, setUser ] = useState<UserInfoDTO | null>(null);
+
+    useEffect(() => {
+        getUserInfo();
+    }, [pathname]);
+
+    const getUserInfo = async () => {
+        const response =  await UserApi.getUserInfo();
+        setUser(response);
+    }
 
     return (
         <ProfileContainer>
             <ProfileHeader title={title}/>
             {
                 element == "info" ? (
-                    <ProfileMoreInfo />
+                    <ProfileMoreInfo user={user} setUser={setUser}/>
                 ) : element == "interest" ? (
                     <ProfileInterest />
                 ) : element == "search" ? (
@@ -36,7 +56,7 @@ const Profile: React.FC = () => {
                 ) : element == "faq" ? (
                     <FAQ />
                 ) : (
-                    <ProfileInfo />
+                    <ProfileInfo user={user} />
                 )
             }
             {

@@ -45,22 +45,22 @@ export const ProfileSearchStyle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 `
 
 export const ProfileMoreInfoStyle = styled.div`
     width: 100%;
-    height: fit-content;
+    height: 100vh;
 
     background: none;
     border: none;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
-    margin-bottom: 280px;
     overflow-x: hidden;
+    overflow-y: hidden;
 `
 
 export const ProfileInterestStyle = styled.div`
@@ -115,10 +115,9 @@ export const FAQStyle = styled.div`
 
 export const ProfileFooterStyle = styled.div`
     width: 100%;
-    height: 180px;
+    height: fit-content;
 
-    position: absolute;
-    bottom: -180px;
+    margin-top: 32px;
 
     background-color: #FFFFFF;
 
@@ -129,7 +128,7 @@ export const ProfileFooterStyle = styled.div`
     flex-direction: column;
 
     padding: 20px;
-    border-top: 1px solid #111;
+    border-top: 1px solid #e9e9e9;
 `
 
 export const MyHosueItemListStyle = styled.div`

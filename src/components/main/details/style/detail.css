@@ -244,6 +244,7 @@
 .location-box {
     display: flex;
     flex-direction: row;
+    margin-top: 16px;
 
     gap: 0.5rem;
 }
@@ -431,4 +432,27 @@
 
 .select-location .icon {
     margin-right: 5px;
+}
+
+.review-btn {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    background-color: #03C6CE;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.button-display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }

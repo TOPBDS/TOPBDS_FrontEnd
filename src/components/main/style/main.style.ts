@@ -1,9 +1,11 @@
+import { Slider } from "@mui/material";
 import styled from "styled-components";
 
 export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:100vh;
+    min-height:100vh;
+    max-height:100vh;
     left: 64px;
 
     background-color: #fff;
@@ -35,7 +37,7 @@ export const HosueItemListStyle = styled.div`
 export const HouseDetailStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:100vh;
+    height: 100vh;
     left: 64px;
 
     background-color: #fff;
@@ -245,7 +247,7 @@ export const HouseItemRecommendButtonStyle = styled.button`
     border-radius: 8px;
     border: none;
 
-    color: #fff;
+    color: #FFFFFF;
 
     cursor: pointer;
 `
@@ -273,3 +275,74 @@ export const ReportPrintButtonStyle = styled.button`
 
     cursor: pointer;
 `
+
+export const HouseDetailSideStyle = styled.div`
+    box-sizing: border-box;
+
+    width: 48px;
+    position:fixed;
+    z-index:999;
+    top: 70px;
+    left: 490px;
+`
+
+export const HouseDetailSideMenuStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+
+    margin: 8px;
+    margin-left: 16px;
+`
+
+export const CustomSlider = styled(Slider)({
+    color: '#03C6CE', // 슬라이더 트랙과 thumb 색상
+    height: 8, // 슬라이더 높이
+
+    '& .MuiSlider-thumb': { // 슬라이더 썸(이동 가능한 점)에 대한 스타일을 지정합니다.
+        height: 24,
+        width: 24,
+        backgroundColor: '#fff',
+        // border: '2px solid currentColor',
+        // marginTop: -8,
+        // marginLeft: -12,
+        '&:focus, &:hover, &.Mui-active': {
+            boxShadow: 'inherit',
+        },
+    },
+
+    '& .MuiSlider-track': { // 선택된 범위에 대한 트랙 스타일을 지정합니다.
+        border: 'none',
+        backgroundColor: '#03C6CE',
+    },
+
+    '& .MuiSlider-rail': { // 선택되지 않은 범위에 대한 레일 스타일을 지정합니다.
+        opacity: 0.5,
+        backgroundColor: '#bfbfbf',
+    },
+
+    '& .MuiSlider-mark': { // 슬라이더 마크(점) 스타일을 지정합니다.
+        backgroundColor: '#bfbfbf',
+        height: 8,
+        width: 1,
+        '&.MuiSlider-markActive': {
+            opacity: 1,
+            backgroundColor: 'currentColor',
+            color: '#fff'
+        },
+    },
+
+    '& .MuiSlider-valueLabel': { // valueLabel에 대한 스타일을 지정합니다.
+        backgroundColor: '#03C6CE',
+        color: '#fff',
+        borderRadius: '4px',
+        '&:before': { // valueLabel 밑의 화살표에 대한 스타일을 지정합니다.
+            backgroundColor: '#03C6CE',
+        },
+    },
+
+    '& .MuiSlider-valueLabelLabel': { // valueLabel 내부의 Label 텍스트의 스타일을 지정합니다
+        color: '#fff', // 상자 내부 텍스트 색상
+    },
+});

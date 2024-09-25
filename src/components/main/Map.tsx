@@ -1,12 +1,33 @@
 import "./style/main.css";
-import { useEffect, useRef, useState } from "react";
-import { Map } from "react-kakao-maps-sdk";
+import React, { Dispatch, useEffect, useRef, useState } from "react";
+import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import MapFilterSelect from "../common/MapFilterSelect";
 import MapStyleSelect from "./MapStyleSelect";
 import { ReactComponent as PlusIcon } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icon/minus.svg";
+import MapFilter from "./MapFilter";
+import { useNavigate } from "react-router-dom";
 
-const Maps = () => {
+interface MapsProps {
+    setLat: Dispatch<React.SetStateAction<number>> | null,
+    setLng: Dispatch<React.SetStateAction<number>> | null
+}
+
+interface AptDTO {
+    aptId: number;
+    location: string;
+    subLocation: string;
+    aptName: string;
+    aptPrice: string;
+    aptAddress: string;
+    aptLatitude: number;
+    aptLongitude: number;
+    squareFootage: string;
+    floor: string;
+}
+
+const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
+    const navigate = useNavigate();
     const defaultLevel = 3;
     const [ level, setLevel ] = useState<number>(defaultLevel);
     const [ hide, setHide ] = useState<boolean>(false);
@@ -18,6 +39,7 @@ const Maps = () => {
         lat: 123,
         lng: 123
     });
+    const [ aptList, setAptList ] = useState<AptDTO[]>([]);
 
     const mapRef = useRef<kakao.maps.Map>(null);
 
@@ -36,7 +58,7 @@ const Maps = () => {
 
     useEffect(() => {
         getCenter();
-    }, [])
+    }, []);
 
     const getCenter = () => {
         window.navigator.geolocation.getCurrentPosition((data) => {
@@ -46,6 +68,11 @@ const Maps = () => {
             const latlng = new kakao.maps.LatLng(data.coords.latitude, data.coords.longitude);
             map.setCenter(latlng);
 
+            if (setLat !== null && setLng !== null) {
+                setLat(data.coords.latitude);
+                setLng(data.coords.longitude);
+            }
+            
             setLocation({
                 lat: data.coords.latitude,
                 lng: data.coords.longitude
@@ -63,17 +90,35 @@ const Maps = () => {
                 zoomable={true}
                 ref={mapRef}
             >
+                <div className="overlay-container">
+                    {
+                        hide && aptList && aptList.map((data) => (
+                            <CustomOverlayMap position={{ lat: data?.aptLatitude, lng: data?.aptLongitude}}>
+                                <div className='overlay' onClick={() => navigate("/item/" + data?.aptId)}>
+                                    <p className="square-footage">{data?.squareFootage}</p>
+                                    <p className="apt-price">{data?.aptPrice}</p>
+                                </div>
+                            </CustomOverlayMap>
+                        ))
+                    }
+                    <CustomOverlayMap position={{ lat: 33.55635, lng: 126.795841 }}>
+                        <div className='overlay active'>
+                            <p className="square-footage">31평</p>
+                            <p className="apt-price">16.8억</p>
+                        </div>
+                    </CustomOverlayMap>
+                </div>
                 <div className="map-system">
                     <button className="map-level" onClick={() => handleLevel("decrease")}><PlusIcon /></button>
                     <button className="map-level" onClick={() => handleLevel("increase")}><MinusIcon /></button>
 
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />
-                        <MapStyleSelect optionName="지도" setMapType={setMapType} />
-                        <MapFilterSelect optionName="필터" optionList={["평형", "가격", "입주년차", "세대수", "주차공간", "전세가율", "갭가격"]} />
-                        <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} />
+                        {/* <MapStyleSelect optionName="지도" setMapType={setMapType} /> */}
+                        <MapFilter lat={location.lat} lng={location.lng} setAptList={setAptList} />
+                        {/* <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} /> */}
                         <button type="button" className={`hide-button ${hide ? "active" : ""}`} onClick={() => setHide(!hide)}>숨김</button>
-                        <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} />
+                        {/* <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} /> */}
                     </div>
                 </div>
             </Map>

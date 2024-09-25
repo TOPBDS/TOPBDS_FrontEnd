@@ -1,0 +1,76 @@
+.report-container {
+    width: 96%;
+    height: 100vh;
+
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.report-filter .select-box {
+    position: relative; /* Ensure this is set to create a stacking context */
+    display: inline-block;
+    width: 100%;
+}
+
+.report-filter .select-label {
+    background-color: var(--bg-white);
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+
+    border-radius: 0.25rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-filter .select-label p {
+    font-size: 12px;
+
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem;
+
+    color: #9DA3AF;
+
+    white-space: nowrap;
+}
+
+.report-filter .option-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 100%;
+    z-index: 9999; /* Increase this value to ensure it is above other elements */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.report-filter .option-list::-webkit-scrollbar {
+    display: none;
+}
+
+.report-filter .option-list .select-option {
+    padding: 0.75rem;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.report-filter .option-list .select-option:hover {
+    background-color: #f1f1f1;
+}
+
+.report-select-box {
+    position: relative;
+}

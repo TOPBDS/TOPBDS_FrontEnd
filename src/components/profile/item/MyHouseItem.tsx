@@ -1,26 +1,41 @@
+import React from "react";
 import "../style/profile.css";
 import { MyHouseImageStyle, MyHouseItemContent, MyHouseItemInfo, MyHouseItemInfoStyle, MyHouseItemNumber, MyHouseItemNumberReview, MyHouseItemPrice, MyHouseItemReview, MyHouseItemStyle, MyHouseItemTitle, MyHouseItemTopStyle, MyHouseItemType, MyHouseListItemStyle } from "../style/profile.style";
 import { useNavigate } from "react-router-dom";
 
-const MyHouseListItem = () => {
+interface MyHouseListItemProps {
+    data: {
+        id: number;
+        name: string;
+        explain: string;
+        price: string;
+        type: string;
+        info: string;
+        number: number;
+    }
+}
+
+const MyHouseListItem: React.FC<MyHouseListItemProps> = ({
+    data
+}) => {
     const naviagte = useNavigate();
 
     return (
-        <MyHouseListItemStyle onClick={() => naviagte("/item/1")}>
+        <MyHouseListItemStyle onClick={() => naviagte("/item/" + data?.id)}>
             <MyHouseItemTopStyle>
                 <MyHouseItemStyle>
-                        <MyHouseItemTitle>무슨무슨 아파트</MyHouseItemTitle>
-                    <MyHouseItemContent>햇빛 잘 들고 멋있고 살기 좋은 집</MyHouseItemContent>
-                    <MyHouseItemPrice>전세 7억 6천</MyHouseItemPrice>
+                        <MyHouseItemTitle>{data?.name}</MyHouseItemTitle>
+                    <MyHouseItemContent>{data?.explain}</MyHouseItemContent>
+                    <MyHouseItemPrice>{data?.price}</MyHouseItemPrice>
                     <MyHouseItemInfoStyle>
-                        <MyHouseItemType>아파트</MyHouseItemType>
-                        <MyHouseItemInfo>12월 25일부터 입주 가능, 6/15층</MyHouseItemInfo>
+                        <MyHouseItemType>{data?.type}</MyHouseItemType>
+                        <MyHouseItemInfo>{data?.info}</MyHouseItemInfo>
                     </MyHouseItemInfoStyle>
                 </MyHouseItemStyle>
                 <MyHouseImageStyle></MyHouseImageStyle>
             </MyHouseItemTopStyle>
             <MyHouseItemNumberReview>
-                <MyHouseItemNumber>매물 추천 번호 : 123456</MyHouseItemNumber>
+                <MyHouseItemNumber>매물 추천 번호 : {data?.number}</MyHouseItemNumber>
                 <MyHouseItemReview>리뷰 작성</MyHouseItemReview>
             </MyHouseItemNumberReview>
         </MyHouseListItemStyle>

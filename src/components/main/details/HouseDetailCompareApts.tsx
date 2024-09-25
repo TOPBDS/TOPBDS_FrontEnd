@@ -1,71 +1,28 @@
 import "./style/detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HouseDetailCompareAptsStyle } from "../style/main-item.style";
 import { ReactComponent as SelectLocation } from "../../../assets/icon/select-location.svg";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import Select from "../../common/Select";
+import LocationApi from "../../../core/apis/location/Location.api";
+import SelectString from "../../common/SelectString";
+import AptApi from "../../../core/apis/apt/Apt.api";
+import { CustomSlider } from "../style/main.style";
 
-const HouseDetailCompareApts: React.FC = () => {
-    const chartData = [
-        {
-            name: 'Page A', 
-            uv: 400, 
-            pv: 2400, 
-            amt: 2400
-        },
-        {
-            name: 'Page B', 
-            uv: 400, 
-            pv: 2400, 
-            amt: 2400
-        },
-    ];
-    
-    const axisTick = ({ x, y, payload }: any) => {
-        let path = '';
+interface HouseDetailCompareAptsProps {
+    locationList: string[];
+}
 
-        switch (payload.value) {
-            case 'Page A':
-                path = 'M899.072 99.328q9.216 13.312 17.92 48.128t16.384 81.92 13.824 100.352 11.264 102.912 9.216 90.112 6.144 60.928q4.096 30.72 7.168 70.656t5.632 79.872 4.096 75.264 2.56 56.832q-13.312 16.384-30.208 25.6t-34.304 11.264-34.304-2.56-30.208-16.896q-1.024-10.24-3.584-33.28t-6.144-53.76-8.192-66.56-8.704-71.68q-11.264-83.968-23.552-184.32-7.168 37.888-11.264 74.752-4.096 31.744-6.656 66.56t-0.512 62.464q1.024 18.432 3.072 29.184t4.608 19.968 5.12 21.504 5.12 34.304 5.12 56.832 4.608 90.112q-11.264 24.576-50.688 42.496t-88.576 29.696-97.28 16.896-74.752 5.12q-18.432 0-46.08-2.56t-60.416-7.168-66.048-12.288-61.952-17.92-49.664-24.064-28.16-30.208q2.048-55.296 5.12-90.112t5.632-56.832 5.12-34.304 5.12-21.504 4.096-19.968 3.584-29.184q2.048-27.648-0.512-62.464t-6.656-66.56q-4.096-36.864-11.264-74.752-13.312 100.352-24.576 184.32-5.12 35.84-9.216 71.68t-8.192 66.56-6.656 53.76-2.56 33.28q-13.312 12.288-30.208 16.896t-34.304 2.56-33.792-11.264-29.696-25.6q0-21.504 2.048-56.832t4.096-75.264 5.632-79.872 6.656-70.656q2.048-20.48 6.144-60.928t9.728-90.112 11.776-102.912 13.824-100.352 16.384-81.92 17.92-48.128q20.48-12.288 56.32-25.6t73.216-26.624 71.168-25.088 50.176-22.016q10.24 13.312 16.896 61.44t13.312 115.712 15.36 146.432 23.04 153.6l38.912-334.848-29.696-25.6 43.008-54.272 15.36 2.048 15.36-2.048 43.008 54.272-29.696 25.6 38.912 334.848q14.336-74.752 23.04-153.6t15.36-146.432 13.312-115.712 16.896-61.44q16.384 10.24 50.176 22.016t71.168 25.088 73.216 26.624 56.32 25.6';
-                break;
-            case 'Page B':
-                path = 'M662.528 451.584q10.24 5.12 30.208 16.384t46.08 31.744 57.856 52.736 65.024 80.896 67.072 115.2 64.512 154.624q-15.36 9.216-31.232 21.504t-31.232 22.016-31.744 15.36-32.768 2.56q-44.032-9.216-78.336-8.192t-62.976 7.68-53.248 16.896-47.616 19.968-46.08 16.384-49.664 6.656q-57.344-1.024-110.592-16.896t-101.376-32.256-89.6-25.088-75.264 4.608q-20.48 8.192-41.984 1.024t-38.912-18.432q-20.48-13.312-39.936-33.792 37.888-116.736 86.016-199.68t92.672-136.704 78.848-81.408 43.52-33.792q9.216-5.12 10.24-25.088t-1.024-40.448q-3.072-24.576-9.216-54.272l-150.528-302.08 180.224-29.696q27.648 52.224 53.76 79.36t50.176 36.864 45.568 5.12 39.936-17.92q43.008-30.72 80.896-103.424l181.248 29.696q-20.48 48.128-45.056 99.328-20.48 44.032-47.616 97.28t-57.856 105.472q-12.288 34.816-13.824 57.344t1.536 36.864q4.096 16.384 12.288 25.6z';
-                break;
-            default:
-                path = '';
-        }
+interface ChartDTO {
+    year: string;
+    averagePrice: number;
+}
 
-        return (
-            <svg x={x - 12} y={y + 4} width={24} height={24} viewBox="0 0 1024 1024" fill="#666">
-                <path d={path} />
-            </svg>
-        );
-    };
-
-    const barLabel = ({ payload, x, y, width, height, value }: any) => {
-        return <text x={x + width / 2} y={y} fill="#03C6CE" textAnchor="middle" dy={-6}>{`value: ${value}`}</text>;
-    };
+const HouseDetailCompareApts: React.FC<HouseDetailCompareAptsProps> = ({
+    locationList
+}) => {
+    const [ chartData, setChartData] = useState<ChartDTO[]>([]);
 
     const [rangeValue, setRangeValue] = useState(0);
-
-    // Function to format the date based on the range value
-    const formatDate = (value: any) => {
-        const startYear = 1999;
-        const startMonth = 12;
-
-        const yearsPassed = Math.floor(value / 12);
-        const monthsPassed = value % 12;
-
-        let currentYear = startYear + yearsPassed;
-        let currentMonth = startMonth + monthsPassed;
-
-        if (currentMonth > 12) {
-        currentYear += Math.floor((currentMonth - 1) / 12);
-        currentMonth = currentMonth % 12 || 12;
-        }
-
-        return `${currentYear}년 ${currentMonth}월`;
-    };
 
     const handleRangeChange = (event: any) => {
         setRangeValue(event.target.value);
@@ -77,6 +34,121 @@ const HouseDetailCompareApts: React.FC = () => {
         return month < 10 ? `0${month}` : `${month}`;
     };
 
+    const [ subLocationList, setSubLocationList ] = useState<string[]>([]);
+    const [ dongList, setDongList ] = useState<string[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<string>("");
+    const [ selectSubLocation, setSelectSubLocation ] = useState<string>("");
+    const [ selectDong, setSelectDong ] = useState<string>(""); 
+    const [ selectLocationList, setSelectLocationList ] = useState<string[]>([]);
+
+    const getSubLocation = async () => {
+        const response = await LocationApi.getSggReal2(selectLocation);
+        setSubLocationList(response);
+    }
+
+    const getDong = async () => {
+        const response = await LocationApi.getDongReal(selectLocation + " " + selectSubLocation);
+        setDongList(response);
+    }
+
+    useEffect(() => {
+        if (selectLocation) {
+            getSubLocation();
+            if (selectSubLocation) {
+                getDong();
+            }
+        }
+    }, [selectLocation, selectSubLocation]);
+
+    const [yearRangeValue, setYearRangeValue] = useState(["1999-12-01", "2024-12-01"]);
+    
+    useEffect(() => {
+        getAptCompare();
+    }, [selectLocationList, yearRangeValue]);
+
+    const getAptCompare = async () => {
+        const response = await AptApi.getCompareList(1, selectLocationList, yearRangeValue[0], yearRangeValue[1]);
+
+        setChartData(response?.data?.data?.data?.yearlyPrices);
+    }
+
+    const [ aptList, setAptList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]);
+    const [ selectApt, setSelectApt ] = useState<number>(0); 
+    const [ nameList, setNameList ] = useState<{
+        id: number,
+        name: string
+    }[]>([]); 
+    const [ selectName, setSelectName ] = useState<number>(0); 
+    const [ aptRentType, setAptRentType ] = useState<string>("");
+
+
+    const handleYearChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+    
+        const getFormattedDate = (value: number) => {
+            // 슬라이더 값인 연도를 받아서 12월로 고정한 yyyy-mm-dd 형식으로 반환
+            const year = value;
+            const month = "12"; // 12월 고정
+            return `${year}-${month}-01`; // yyyy-mm-dd 형식으로 반환
+        };
+    
+        if (activeThumb === 0) {
+            // 슬라이더의 첫 번째 thumb 변경
+            const startDate = getFormattedDate(newValue[0]);
+            setYearRangeValue([startDate, yearRangeValue[1]]);
+        } else {
+            // 슬라이더의 두 번째 thumb 변경
+            const endDate = getFormattedDate(newValue[1]);
+            setYearRangeValue([yearRangeValue[0], endDate]);
+        }
+    };
+    
+
+    // 년월일 형식으로 변환하는 함수
+    const formatDate = (value: string) => {
+        const [year, month] = value.split("-");
+        return `${year}년 ${month}월`;
+    };
+
+    const addLocation = () => {
+        let newLocation = "";
+
+        if (selectLocation) {
+            newLocation += selectLocation;
+
+            if (selectSubLocation) {
+                newLocation += " " + selectSubLocation;
+
+                if (selectDong) {
+                    newLocation += " " + selectDong;
+                    setSelectLocationList((prev) => {
+                        if (prev.includes(newLocation)) {
+                            alert("이미 선택된 지역입니다.");
+                            return prev;
+                        } else {
+                            return [...prev, newLocation];
+                        }
+                    });
+                } else {
+                    alert("동을 선택해주세요.");
+                }
+            } else {
+                alert("시군구를 선택해주세요.");
+            }
+        } else {
+            alert("도시를 선택해주세요.");
+        }
+    }
+
     return (
         <HouseDetailCompareAptsStyle>
             <div className="header">
@@ -85,48 +157,56 @@ const HouseDetailCompareApts: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={["대구", "서울", "부산"]} />
-                <Select optionName="시군구" optionList={["동구", "서구", "남구"]} />
-                <Select optionName="읍/면/동" optionList={["안심1동", "안심2동", "안심3,4동"]} />
+                <SelectString optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <SelectString optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <SelectString optionName="읍/면/동" optionList={dongList} setSelectItem={setSelectDong} />
             </div>
-            <div className="select">
-                <Select optionName="아파트" optionList={["강남 반포자이", "롯데캐슬"]} />
-                <Select optionName="이름" optionList={["이름", "이름", "이름"]} />
-                <Select optionName="동" optionList={["5", "4", "3", "2", "1"]} />
-            </div>
+            {/* <div className="select">
+                <Select optionName="아파트" optionList={aptList} setSelectItem={setSelectApt} setSelectOption={null}  />
+                <Select optionName="이름" optionList={nameList} setSelectItem={setSelectName} setSelectOption={null} />
+                <Select optionName="동" optionList={dongList} setSelectItem={setSelectDong} setSelectOption={null} />
+            </div> */}
             <div className="locations">
-                <div className="select-location">
+                {
+                    selectLocationList && selectLocationList.map((selectLocation) => (
+                        <div className="select-location">
+                            <SelectLocation className="icon" />
+                            <p>{selectLocation}</p>
+                        </div>
+                    ))
+                }
+                {/* <div className="select-location">
                     <SelectLocation className="icon" />
                     <p>반포자이 (32평)</p>
-                </div>
+                </div> */}
                 <div className="location-box">
-                    <button type="button" className="add-location button-lg">대체지역 추가</button>
-                    <button type="button" className="delete-location button-lg btn-outline">전체 삭제</button>
+                    <button type="button" className="add-location button-lg" onClick={() => addLocation()}>대체지역 추가</button>
+                    <button type="button" className="delete-location button-lg btn-outline" onClick={() => setSelectLocationList([])}>전체 삭제</button>
                 </div>
             </div>
-            <div className="radios">
-                <input type="radio" className="radio" /> 매매
-                <input type="radio" className="radio" /> 전세
-                <input type="radio" className="radio" /> 월세
-            </div>
+            {/* <div className="radios">
+                <input type="radio" name="apt-rent-type" className="radio" onClick={() => setAptRentType("TRADING")} /> 매매
+                <input type="radio" name="apt-rent-type" className="radio" onClick={() => setAptRentType("JEONSE")} /> 전세
+                <input type="radio" name="apt-rent-type" className="radio" onClick={() => setAptRentType("MONTHLY")} /> 월세
+            </div> */}
             <div className="chart-container">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
-                        <XAxis dataKey="name" tick={axisTick} />
-                        <YAxis />
-                        <Bar dataKey="uv" barSize={30} fill="#03C6CE" label={barLabel}/>
-                    </BarChart>
+                        <XAxis dataKey="name" tickLine={true} padding={{ left: 20, right: 20 }} />
+                        <YAxis tickLine={true} />
+                        <Bar dataKey="number" barSize={10} fill="#03C6CE" />
+                    </BarChart>        
                 </ResponsiveContainer>
             </div>
             <div className="range">
-                <h3>{formatDate(rangeValue)} ~ 2024년 {getCurrentMonth()}월</h3>
-                <input
-                    type="range"
-                    className="range-date"
-                    min="0"
-                    max="292"
-                    value={rangeValue}
-                    onChange={handleRangeChange}
+                <h3>{formatDate(yearRangeValue[0])} ~ {formatDate(yearRangeValue[1])}</h3>
+                <CustomSlider
+                    min={1999}
+                    max={2024}
+                    value={[parseInt(yearRangeValue[0].split('-')[0]), parseInt(yearRangeValue[1].split('-')[0])]}
+                    onChange={handleYearChange}
+                    valueLabelDisplay="auto"
+                    disableSwap
                 />
                 <div className="range-labels">
                     <span>99년</span>

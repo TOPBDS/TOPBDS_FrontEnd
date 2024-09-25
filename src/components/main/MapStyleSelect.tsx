@@ -4,46 +4,55 @@ import DEFAULT_STYLE from "../../assets/image/default-style.png";
 import SKYVIEW_STYLE from "../../assets/image/skyview-style.png";
 import HYBRID_STYLE from "../../assets/image/hybrid-style.png";
 
-interface MapStyleSelect {
+interface MapStyleSelectProps {
     optionName: string;
-    setMapType: Dispatch<React.SetStateAction<number>>
+    setMapType: Dispatch<React.SetStateAction<string>>;
 }
 
-const MapStyleSelect: React.FC<MapStyleSelect> = ({ 
-    optionName,
-    setMapType
-}) => {
+const MapStyleSelect: React.FC<MapStyleSelectProps> = ({ optionName, setMapType }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(optionName);
-    const mapStyle = ["지도", "스카이뷰", "하이브리드"];
+    const mapStyles = [
+        { name: "지도", id: "roadmap", img: DEFAULT_STYLE }, // Google Maps의 roadmap에 대응
+        { name: "스카이뷰", id: "satellite", img: SKYVIEW_STYLE }, // satellite에 대응
+        { name: "하이브리드", id: "hybrid", img: HYBRID_STYLE }, // hybrid에 대응
+    ];
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleOptionClick = (option: any) => {
-        setSelectedOption(option);
-        setMapType(option == "지도" ? 1 : option == "스카이뷰" ? 2 : 3);
+    const handleOptionClick = (option: { name: string; id: string }) => {
+        setSelectedOption(option.name);
+        setMapType(option.id); // Google Maps API에서 사용하는 mapTypeId 값으로 설정
         setIsOpen(false);
     };
 
     return (
         <div className="map-style-select-box">
-            <button type="button" className={`map-style-select-label ${selectedOption != optionName ? "active" : ""}`} onClick={toggleDropdown}>
+            <button
+                type="button"
+                className={`map-style-select-label ${selectedOption !== optionName ? "active" : ""}`}
+                onClick={toggleDropdown}
+            >
                 <p>{selectedOption}</p>
             </button>
             {isOpen && (
                 <div className="style-list">
-                    {mapStyle && mapStyle.map((map: any, index: number) => (
-                        <div key={index} className={`style-info ${selectedOption == map ? "active" : ""}`} onClick={() => handleOptionClick(map)}>
-                            <img src={map == "지도" ? DEFAULT_STYLE : map == "스카이뷰" ? SKYVIEW_STYLE : HYBRID_STYLE} />
-                            <p>{map}</p>
+                    {mapStyles.map((style, index) => (
+                        <div
+                            key={index}
+                            className={`style-info ${selectedOption === style.name ? "active" : ""}`}
+                            onClick={() => handleOptionClick(style)}
+                        >
+                            <img src={style.img} alt={style.name} />
+                            <p>{style.name}</p>
                         </div>
                     ))}
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default MapStyleSelect;

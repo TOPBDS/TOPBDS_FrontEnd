@@ -11,8 +11,8 @@ const BlogMenu: React.FC<BlogMenu> = ({ menu, setMenu }) => {
     return (
         <BlogMenuStyle>
             <div className="menu">
-                <div className={`blog ${menu == "blog" ? "active" : ""}`} onClick={() => setMenu('blog')}>블로그</div>
-                <div className={`insite ${menu == "insite" ? "active" : ""}`} onClick={() => setMenu('insite')}>인사이트</div>
+                <div className={`blog ${menu == "BLOG" ? "active" : ""}`} onClick={() => setMenu('BLOG')}>블로그</div>
+                <div className={`insite ${menu == "INSIGHT" ? "active" : ""}`} onClick={() => setMenu('INSIGHT')}>인사이트</div>
             </div>
         </BlogMenuStyle>
     )

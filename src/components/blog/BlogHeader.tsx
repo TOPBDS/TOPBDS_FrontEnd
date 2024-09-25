@@ -11,7 +11,7 @@ const BlogHeader:React.FC = () => {
         <BlogHeaderStyle>
             <div className="blog-header">
                 <h1>블로그 / 인사이트</h1>
-                <HouseCloseIcon className="close" onClick={() => navigate(-1)} />
+                {/* <HouseCloseIcon className="close" onClick={() => navigate(-1)} /> */}
             </div>
         </BlogHeaderStyle>
     )

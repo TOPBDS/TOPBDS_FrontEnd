@@ -4,7 +4,7 @@ export const BlogHeaderStyle = styled.div`
     width: 25.625rem;
     height: 80px;
 
-    padding: 24px;
+    padding: 36px;
 `
 
 export const BlogMenuStyle = styled.div`
@@ -53,4 +53,21 @@ export const BlogListItemStyle = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+`
+
+export const BlogDetailStyle = styled.div`
+    position: absolute;
+    width: 25.625rem;
+    height: 100vh;
+    left: calc(64px + 25.625rem);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto;
+
+    background-color: #fff;
+    border-right: 1px solid #D5D7DD;
+    z-index: 3;
 `
