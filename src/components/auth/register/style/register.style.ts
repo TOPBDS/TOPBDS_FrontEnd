@@ -63,13 +63,10 @@ export const RegisterInput = styled.input`
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
-
-    margin-bottom: 16px;
 `
 
 export const EmailVerifyContainerStyle = styled.div`
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
 `
@@ -88,8 +85,6 @@ export const EmailInput = styled.input`
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
-
-    margin-bottom: 16px;
 `
 
 export const VerifyEmailInput = styled.input`
@@ -106,8 +101,6 @@ export const VerifyEmailInput = styled.input`
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
-
-    margin-bottom: 16px;
 `
 
 
@@ -122,7 +115,6 @@ export const EmailVerifyButton = styled.button<{ inverted: boolean }>`
     border: none;
 
     margin-left: 8px;
-    margin-bottom: 16px;
 `
 
 export const RegisterButton = styled.button<{ inverted: boolean }>`

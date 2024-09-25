@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginFormStyle = styled.div`
+export const LoginFormStyle = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,6 @@ export const LoginFormStyle = styled.div`
 
     position: relative;
     width: 348px;
-    height: 362px;
 
     background: #FFFFFF;
     border-radius: 8px;
@@ -63,8 +62,6 @@ export const LoginInput = styled.input`
     background: #FFFFFF;
     border: 1px solid #D5D7DD;
     border-radius: 4px;
-
-    margin-bottom: 16px;
 `
 
 export const LoginButton = styled.button<{ inverted: boolean }>`

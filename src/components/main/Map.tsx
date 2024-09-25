@@ -13,6 +13,19 @@ interface MapsProps {
     setLng: Dispatch<React.SetStateAction<number>> | null
 }
 
+interface AptDTO {
+    aptId: number;
+    location: string;
+    subLocation: string;
+    aptName: string;
+    aptPrice: string;
+    aptAddress: string;
+    aptLatitude: number;
+    aptLongitude: number;
+    squareFootage: string;
+    floor: string;
+}
+
 const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
     const navigate = useNavigate();
     const defaultLevel = 3;
@@ -26,22 +39,7 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
         lat: 123,
         lng: 123
     });
-    const [ aptList, setAptList ] = useState<{
-        aptId: number,
-        location: string,
-        subLocation: string,
-        aptName: string,
-        aptExplain: string,
-        aptType: string,
-        aptRentType: string,
-        aptPrice: string,
-        aptLike: number,
-        aptImage: string,
-        aptAddress: string,
-        aptLatitude: number,
-        aptLongitude: number,
-        squareFootage: string,
-    }[]>([]);
+    const [ aptList, setAptList ] = useState<AptDTO[]>([]);
 
     const mapRef = useRef<kakao.maps.Map>(null);
 
@@ -60,7 +58,7 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
 
     useEffect(() => {
         getCenter();
-    }, [])
+    }, []);
 
     const getCenter = () => {
         window.navigator.geolocation.getCurrentPosition((data) => {
@@ -94,7 +92,7 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
             >
                 <div className="overlay-container">
                     {
-                        aptList && aptList.map((data) => (
+                        hide && aptList && aptList.map((data) => (
                             <CustomOverlayMap position={{ lat: data?.aptLatitude, lng: data?.aptLongitude}}>
                                 <div className='overlay' onClick={() => navigate("/item/" + data?.aptId)}>
                                     <p className="square-footage">{data?.squareFootage}</p>
@@ -116,11 +114,11 @@ const Maps: React.FC<MapsProps> = ({ setLat, setLng }) => {
 
                     <div className="filter">
                         <MapFilterSelect optionName="인프라" optionList={["교통", "교육", "주거환경", "편의시설"]} />
-                        <MapStyleSelect optionName="지도" setMapType={setMapType} />
+                        {/* <MapStyleSelect optionName="지도" setMapType={setMapType} /> */}
                         <MapFilter lat={location.lat} lng={location.lng} setAptList={setAptList} />
-                        <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} />
+                        {/* <MapFilterSelect optionName="주변" optionList={["광역버스", "초등학교", "중학교", "고등학교", "어린이집", "유치원"]} /> */}
                         <button type="button" className={`hide-button ${hide ? "active" : ""}`} onClick={() => setHide(!hide)}>숨김</button>
-                        <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} />
+                        {/* <MapFilterSelect optionName="정책" optionList={["규제", "노후계획"]} /> */}
                     </div>
                 </div>
             </Map>

@@ -4,25 +4,23 @@ import "./style/main.css";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CustomSlider } from "./style/main.style";
 
+interface AptDTO {
+    aptId: number;
+    location: string;
+    subLocation: string;
+    aptName: string;
+    aptPrice: string;
+    aptAddress: string;
+    aptLatitude: number;
+    aptLongitude: number;
+    squareFootage: string;
+    floor: string;
+}
+
 interface MapFilterProps {
     lat: number,
     lng: number,
-    setAptList: Dispatch<SetStateAction<{
-        aptId: number,
-        location: string,
-        subLocation: string,
-        aptName: string,
-        aptExplain: string,
-        aptType: string,
-        aptRentType: string,
-        aptPrice: string,
-        aptLike: number,
-        aptImage: string,
-        aptAddress: string,
-        aptLatitude: number,
-        aptLongitude: number,
-        squareFootage: string,
-    }[]>>
+    setAptList: Dispatch<SetStateAction<AptDTO[]>>
 }
 
 const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
@@ -256,12 +254,13 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
             monthlyPriceRatioRangeValue[0],
             monthlyPriceRatioRangeValue[1]
         );
-        setAptList(response);
+
+        setAptList(response?.data?.data?.data);
     }
 
     useEffect(() => {
-        // getMapFilter();
-    }, [])
+        getMapFilter();
+    }, [lat, lng, aptType, aptRentType, sizeRangeValue, priceRangeValue, floorAreaRatioRangeValue, buildingToLandRatioRangeValue, jeonsePriceRatioRangeValue, gapPriceRangeValue, rentalBusinessRatioRangeValue, monthlyPriceRatioRangeValue])
 
     return (
         <div className="side-map-fillter-select-box">
@@ -373,7 +372,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="apt-range-filter">
+                    {/* <div className="apt-range-filter">
                         <p>건폐율</p>
                         <div className="range">
                             <CustomSlider
@@ -389,7 +388,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                                 <span>50%</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="apt-range-filter">
                         <p>전세가율</p>
                         <div className="range">
@@ -424,7 +423,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="apt-range-filter">
+                    {/* <div className="apt-range-filter">
                         <p>임대사업율</p>
                         <div className="range">
                             <CustomSlider
@@ -440,8 +439,8 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                                 <span>50%</span>
                             </div>
                         </div>
-                    </div>
-                    <div className="apt-range-filter">
+                    </div> */}
+                    {/* <div className="apt-range-filter">
                         <p>월세수익률</p>
                         <div className="range">
                             <CustomSlider
@@ -481,7 +480,7 @@ const MapFilter: React.FC<MapFilterProps> = ({ lat, lng, setAptList }) => {
                             <span className={heating === 2 ? "active" : ""} onClick={() => onClickHeating(2)}>개별난방</span>
                             <span className={heating === 3 ? "active" : ""} onClick={() => onClickHeating(3)}>중앙난방</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>

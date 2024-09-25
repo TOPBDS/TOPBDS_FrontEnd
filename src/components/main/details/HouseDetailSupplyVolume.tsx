@@ -8,58 +8,48 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
 import LocationApi from "../../../core/apis/location/Location.api";
+import { CustomSlider } from "../style/main.style";
+import SelectString from "../../common/SelectString";
 
-const HouseDetailSupplyVolume: React.FC = () => {
-    const [ supplyVolumeList, setSupplyVolumeList ] = useState<{
-        location: string,
-        name: string,
-        date: string,
-        total: number,
-    }[]>([{
-        location: "대구광역시 서구",
-        name: "마포푸르지오 아파트",
-        date: "2023년 10월",
-        total: 1000
-    }]);
+interface HouseDetailSupplyVolumeProps {
+    locationList: string[];
+}
 
-    const [ chartData, setChartData ] = useState<{
-        name: string,
-        number: number
-    }[]>(
-        [
-            {name: '1999/12', number: 1500},
-            {name: '2000/1', number: 1200},
-            {name: '2000/2', number: 300}
-        ]
-    );
+interface AptSupplyVolumeDTO {
+    aptSvId: number;
+    aptName: string;
+    aptNumber: number;
+    moveDate: string;
+    locationName: string;
+    subLocationName: string;
+}
+
+interface AptSupplyVolumeChartDTO {
+    year: string;
+    averageSupply: number;
+}
+
+const HouseDetailSupplyVolume: React.FC<HouseDetailSupplyVolumeProps> = ({
+    locationList
+}) => {
+    const [ supplyVolumeList, setSupplyVolumeList ] = useState<AptSupplyVolumeDTO[]>([]);
+    const [ chartData, setChartData ] = useState<AptSupplyVolumeChartDTO[]>([]);
 
     const [rangeValue, setRangeValue] = useState(0);
 
-    const [ locationList, setLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ subLocationList, setSubLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ selectLocation, setSelectLocation ] = useState<number>(0);
-    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
-
-    const getLocation = async () => {
-        const response = await LocationApi.getLocaitonList();
-        console.log(response);
-        setLocationList(response);
-    }
+    const [ subLocationList, setSubLocationList ] = useState<string[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<string>("");
+    const [ selectSubLocation, setSelectSubLocation ] = useState<string>("");
 
     const getSubLocation = async () => {
-        const response = await LocationApi.getSubLocationList(selectLocation);
-        console.log(response);
+        const response = await LocationApi.getSggUpComSupply2(selectLocation);
         setSubLocationList(response);
     }
 
     useEffect(() => {
-        // getSubLocation();
+        if (selectLocation) {
+            getSubLocation();
+        }
     }, [selectLocation]);
 
     // Function to format the date based on the range value
@@ -81,48 +71,67 @@ const HouseDetailSupplyVolume: React.FC = () => {
         return `${currentYear}년 ${currentMonth}월`;
     };
 
-    const handleRangeChange = (event: any) => {
-        setRangeValue(event.target.value);
-    };
-
     const getCurrentMonth = (): string => {
         const date = new Date();
         const month = date.getMonth() + 1; // getMonth() returns 0-based month, so add 1
         return month < 10 ? `0${month}` : `${month}`;
     };
 
-    useEffect(() => {
-        getLocation();
-        getSupplyVolumeList();
-    }, []);
-
     const [ viewType, setViewType ] = useState<string>("");
-    const [ seletLocationList, setSelectLocationList ] = useState<number[]>([]);
-    const [ seletSubLocationList, setSelectSubLocationList ] = useState<number[]>([]);
+    const [ selectLocationList, setSelectLocationList ] = useState<string[]>([]);
+
+    useEffect(() => {
+        getSupplyVolumeList();
+    }, [selectLocationList, viewType]);
  
     const getSupplyVolumeList = async () => {
-        const response = await AptApi.getSupplyVolumeList(0, seletLocationList, seletSubLocationList, viewType, new Date());
+        const response = await AptApi.getSupplyVolumeList(1, selectLocationList, viewType);
 
-        console.log(response);
-        setSupplyVolumeList(response.data);
-        setChartData(response.chartData);
+        setSupplyVolumeList(response?.data?.data?.data);
+        setChartData(response?.data?.data?.chartData);
     }
 
-    const addlocation = () => {
+    const addLocation = () => {
+        let newLocation = "";
+
         if (selectLocation) {
-            setSelectLocationList((prevAptList) => [...prevAptList, selectLocation]);
+            newLocation += selectLocation;
+
             if (selectSubLocation) {
-                setSelectSubLocationList((prevAptList) => [...prevAptList, selectSubLocation]);
+                newLocation += " " + selectSubLocation;
+
+                setSelectLocationList((prev) => {
+                    if (prev.includes(newLocation)) {
+                        alert("이미 선택된 지역입니다.");
+                        return prev;
+                    } else {
+                        return [...prev, newLocation];
+                    }
+                });
+            } else {
+                alert("시군구를 선택해주세요.");
             }
         } else {
-            alert("도시를 먼저 선택해주세요.");
+            alert("도시를 선택해주세요.");
         }
     }
 
-    const deleteLocation = () => {
-        setSelectLocationList([]);
-        setSelectSubLocationList([]);
-    }
+    const [yearRangeValue, setYearRangeValue] = useState([1999, 2024]);
+    const handleYearChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setYearRangeValue([Math.min(newValue[0], yearRangeValue[1] - 10), yearRangeValue[1]]);
+        } else {
+            setYearRangeValue([yearRangeValue[0], Math.max(newValue[1], yearRangeValue[0] + 10)]);
+        }
+    };
 
     return (
         <HouseDetailSupplyVolumeStyle>
@@ -139,43 +148,47 @@ const HouseDetailSupplyVolume: React.FC = () => {
                 </div>
             </div> */}
             <div className="select">
-                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
-                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <SelectString optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <SelectString optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
             </div>
             <div className="radios">
-                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("MONTHLY")} /> 월간</div>
-                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("QUARTER")} /> 분기</div>
-                <div className="radio-box"><input type="radio" className="radio" onClick={() => setViewType("YEARLY")} /> 년간</div>
+                <div className="radio-box"><input type="radio" name="view-type" className="radio" onClick={() => setViewType("monthly")} /> 월간</div>
+                <div className="radio-box"><input type="radio" name="view-type" className="radio" onClick={() => setViewType("quarterly")} /> 분기</div>
+                <div className="radio-box"><input type="radio" name="view-type" className="radio" onClick={() => setViewType("yearly")} /> 년간</div>
             </div>
             <div className="locations">
-            <div className="select-location">
-                    <SelectLocation className="icon" />
-                    <p>대구</p>
-                </div>
+                {
+                    selectLocationList && selectLocationList.map((select: string) => (
+                        <div className="select-location">
+                            <SelectLocation className="icon" />
+                            <p>{select}</p> 
+                        </div>
+                    ))
+                }
                 <div className="location-box">
-                    <button type="button" className="add-location button-lg" onClick={addlocation}>대체지역 추가</button>
-                    <button type="button" className="delete-location button-lg btn-outline" onClick={deleteLocation}>전체 삭제</button>
+                    <button type="button" className="add-location button-lg" onClick={addLocation}>대체지역 추가</button>
+                    <button type="button" className="delete-location button-lg btn-outline" onClick={() => setSelectLocationList([])}>전체 삭제</button>
                 </div>
             </div>
             <div className="chart-container">
-                <span className="sub-comment">24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span>
+                {/* <span className="sub-comment">24년 ~ 28년 사이 입주하는 아파트는 진한 색입니다.</span> */}
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={chartData}>
-                        <XAxis dataKey="name" tickLine={true} padding={{ left: 20, right: 20 }} />
+                        <XAxis dataKey="year" tickLine={true} padding={{ left: 20, right: 20 }} />
                         <YAxis tickLine={true} />
-                        <Bar dataKey="number" barSize={10} fill="#03C6CE" />
+                        <Bar dataKey="averageSupply" barSize={10} fill="#03C6CE" />
                     </BarChart>        
                 </ResponsiveContainer>
             </div>
             <div className="range">
                 <h3>{formatDate(rangeValue)} ~ 2024년 {getCurrentMonth()}월</h3>
-                <input
-                    type="range"
-                    className="range-date"
-                    min="0"
-                    max="292"
-                    value={rangeValue}
-                    onChange={handleRangeChange}
+                <CustomSlider
+                    min={1999}
+                    max={2024}
+                    value={yearRangeValue}
+                    onChange={handleYearChange}
+                    valueLabelDisplay="auto"
+                    disableSwap
                 />
                 <div className="range-labels">
                     <span>99년</span>
@@ -185,9 +198,9 @@ const HouseDetailSupplyVolume: React.FC = () => {
                     <span>24년</span>
                 </div>
             </div>
-            <div className="small-maps">
+            {/* <div className="small-maps">
                 지도
-            </div>
+            </div> */}
             <div className="tables">
                 <TableContainer component={Paper} className="table-container">
                     <Table size="small" stickyHeader className="table">
@@ -202,10 +215,10 @@ const HouseDetailSupplyVolume: React.FC = () => {
                         <TableBody className="table-body">
                             {supplyVolumeList && supplyVolumeList.map((supplyVolume, index) => 
                                 <TableRow key={index} className="table-row">
-                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.location}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.name}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.date}</TableCell>
-                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume.total}세대</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume?.locationName}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume?.aptName}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume?.moveDate}</TableCell>
+                                    <TableCell sx={{ textAlign: "center" }} className="table-cell">{supplyVolume?.aptNumber}세대</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>

@@ -8,6 +8,7 @@ import HouseDetail from "../../components/main/HouseDetail";
 import Profile from "../profile/Profile";
 import Blog from "../blog/Blog";
 import BlogDetail from "../../components/blog/BlogDetail";
+import MapGoogle from "../../components/main/MapGoogle";
 
 const Main: React.FC = () => {
     const { pathname } = useLocation();
@@ -34,7 +35,7 @@ const Main: React.FC = () => {
             { element == "blog" && (<Blog />) }
             { blogId !== null && (<BlogDetail key={blogId} id={blogId} />) }
             { element == "my" && (<Profile />) }
-            <Maps setLat={setLat} setLng={setLng} />
+            <MapGoogle setLat={setLat} setLng={setLng} />
         </MainContainer>
     )
 }

@@ -7,7 +7,7 @@ class Blog {
     
     public async createBlog(param: CreateBlogRequest): Promise<any> {
         try {
-          const data = await customAxios.post(`/blog/create`, param);
+          const data = await customAxios.post(`/server/blog/create`, param);
 
           return "";
         } catch (e: any) {
@@ -18,7 +18,7 @@ class Blog {
 
     public async updateBlog(id: number, param: UpdateBlogRequest): Promise<any> {
         try {
-            await customAxios.patch(`/blog/update/${id}`, param);
+            await customAxios.patch(`/server/blog/update/${id}`, param);
 
             window.location.href = '/blog/' + id;
         } catch (e: any) {
@@ -29,7 +29,7 @@ class Blog {
 
     public async getBlog(id: number): Promise<any> {
         try {
-            const response = await axios.get(`${config.config}/blog/find/${id}`);
+            const response = await axios.get(`${config.config}/server/blog/find/${id}`);
 
             return response?.data?.data;
         } catch (e: any) {
@@ -40,7 +40,7 @@ class Blog {
 
     public async getBlogList(page: number, type: string): Promise<any> {
         try {
-            const response = await axios.get(`${config.config}/blog/find-all?page=${page}&size=10&type=${type}`);
+            const response = await axios.get(`${config.config}/server/blog/find-all?page=${page}&size=10&type=${type}`);
 
             return response.data.data.data;
         } catch (e: any) {

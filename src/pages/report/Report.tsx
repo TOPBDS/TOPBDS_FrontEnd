@@ -21,7 +21,7 @@ const Report: React.FC = () => {
                 <div className="report-menu">
                     <div className={getMenuClass(0)} onClick={() => setMenu(0)}>부동산 (아파트) 데이터 분석</div>
                     <div className={getMenuClass(1)} onClick={() => setMenu(1)}>부동산 (시군구) 데이터 분석</div>
-                    <div className={getMenuClass(2)} onClick={() => setMenu(2)}>부동산 (시군구) 인프라</div>
+                    <div className={getMenuClass(2)} onClick={() => setMenu(2)}>부동산 (아파트) 가격 예측 플랫폼</div>
                 </div>
             </ReportHeader>
             <PrintReport menu={menu} />

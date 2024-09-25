@@ -7,32 +7,53 @@ class Auth {
     
     public async login(param: LoginRequest): Promise<any> {
         try {
-            const response = await axios.post(`${config.config}/auth/sign-in`, param);
+            const response = await axios.post(`${config.config}/server/auth/sign-in`, param);
 
             localStorage.setItem("AccessToken", response.data.data.accessToken);
             localStorage.setItem("RefreshToken", response.data.data.refreshToken);
             localStorage.setItem("user", response.data.data.userData);
 
-            return response.data.data;
+            return 'success';
         } catch (e: any) {
-            return "error";
+            return e;
         }
     }
 
     public async register(param: RegisterRequest): Promise<any> {
         try {
-            await axios.post(`${config.config}/auth/sign-up`, param);
+            await axios.post(`${config.config}/server/auth/sign-up`, param);
 
             window.location.href = '/login';
         } catch (e: any) {
-            return "error";
+            return e;
         }
     }
 
     public async loginCheck() {
+        if (localStorage.getItem("RefreshToken") !== null) {
+            try {
+                const response = await axios.post(`${config.config}/server/auth/check?token=${localStorage.getItem("RefreshToken")}`);
+    
+                localStorage.setItem("AccessToken", response.data.data.accessToken);
+                localStorage.setItem("RefreshToken", response.data.data.refreshToken);
+                localStorage.setItem("user", response.data.data.userData);
+    
+                return response.data.data;
+            } catch (e) {
+                return "error";
+            }
+        } else {
+            return "error";
+        }
+    }
+
+    public async sendMail(address: string, number: string) {
         try {
-            const response = await customAxios.post("/auth/check");
-            return response.data.data;
+            const response = await axios.post(`${config.config}/server/auth/send/mail`, {
+                address, number
+            });
+
+            return response.data;
         } catch (e) {
             return "error";
         }

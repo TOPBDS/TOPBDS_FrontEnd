@@ -5,13 +5,15 @@ import { ReactComponent as DropDownIcon } from "../../assets/icon/drop-down.svg"
 interface SelectProps {
     optionName: string;
     optionList: {id: number, name: string}[];
-    setSelectItem: Dispatch<SetStateAction<number>>;
+    setSelectItem: Dispatch<SetStateAction<number>> | null;
+    setSelectOption: Dispatch<SetStateAction<string>> | null;
 }
 
 const Select: React.FC<SelectProps> = ({ 
     optionName,
     optionList,
-    setSelectItem
+    setSelectItem,
+    setSelectOption = null
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(optionName);
@@ -22,7 +24,12 @@ const Select: React.FC<SelectProps> = ({
 
     const handleOptionClick = (option: any) => {
         setSelectedOption(option?.name);
-        setSelectItem(option?.id);
+        if (setSelectItem != null) {
+            setSelectItem(option?.id);
+        }
+        if (setSelectOption != null) {
+            setSelectOption(option?.name);
+        }
         setIsOpen(false);
     };
 

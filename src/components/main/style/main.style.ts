@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const HouseListStyle = styled.div`
     position: absolute;
     width: 25.625rem;
-    height:100vh;
+    min-height:100vh;
+    max-height:100vh;
     left: 64px;
 
     background-color: #fff;
@@ -246,7 +247,7 @@ export const HouseItemRecommendButtonStyle = styled.button`
     border-radius: 8px;
     border: none;
 
-    color: #03C6CE;
+    color: #FFFFFF;
 
     cursor: pointer;
 `
@@ -279,7 +280,6 @@ export const HouseDetailSideStyle = styled.div`
     box-sizing: border-box;
 
     width: 48px;
-    height: 100vh;
     position:fixed;
     z-index:999;
     top: 70px;
@@ -290,8 +290,7 @@ export const HouseDetailSideMenuStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 1.5rem;
 
     margin: 8px;
     margin-left: 16px;

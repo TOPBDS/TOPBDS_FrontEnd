@@ -12,11 +12,21 @@ interface HouseDetailHeaderProps {
     aptId: number;
 }
 
+interface AptDTO {
+    aptId: number;
+    location: string;
+    subLocation: string;
+    aptName: string;
+    aptPrice: string;
+    aptAddress: string;
+    aptLatitude: number;
+    aptLongitude: number;
+    squareFootage: string;
+}
+
 const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
     const navigate = useNavigate();
-    const [ aptInfo, setAptInfo ] = useState<{
-        aptImage: string
-    }>();
+    const [ aptInfo, setAptInfo ] = useState<AptDTO>();
     const [ like, setLike ] = useState<boolean>(false);
 
     useEffect(() => {
@@ -27,13 +37,15 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
     const getAptInfo = async () => {
         const response = await AptApi.getAptInfo(aptId);
         
-        setAptInfo(response);
+        setAptInfo(response?.data);
     }
 
     const getAptLike = async () => {
-        const response = await AptApi.getAptLike(aptId);
-
-        setLike(response);
+        if (localStorage.getItem("accessToken")) {
+            const response = await AptApi.getAptLike(aptId);
+    
+            setLike(response?.data);
+        }
     }
 
     const setInterestApt = async () => {
@@ -51,7 +63,8 @@ const HouseDetailHeader: React.FC<HouseDetailHeaderProps> = ({ aptId }) => {
                 <HouseCloseIcon className="close" onClick={() => navigate(-1)} />
             </HouseHeader>
             <div className="image-container">
-                <img src={aptInfo?.aptImage ? aptInfo.aptImage : ApartImage} alt="preview" className="preview-image"/>
+                <h2>{aptInfo?.aptName}</h2>
+                {/* <img src={aptInfo?.aptImage ? aptInfo.aptImage : ApartImage} alt="preview" className="preview-image"/> */}
             </div>
             <div className="interested">
                 {

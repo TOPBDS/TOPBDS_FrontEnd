@@ -5,38 +5,35 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
 import LocationApi from "../../../core/apis/location/Location.api";
+import SelectString from "../../common/SelectString";
 
-const HouseDetailRecentlyDownFallApt: React.FC = () => {
-    const [ recentlyDownFailAptList, setRecentlyDownFailAptList ] = useState<{
-        name: string,
-        size: string,
-        date1: string,
-        date2: string,
-        price1: string,
-        price2: string,
-        priceInfo: string
-    }[]>([
-        {
-          name: "강남구 삼성동 삼성동센트럴아파트 416세대",
-          size: "64평 84.52m",
-          date1: "24.04.24",
-          date2: "24.04.24",
-          price1: "27억/12층",
-          price2: "32억/24층",
-          priceInfo: "최고가 대비 5억 하락 (15%)",
-        }
-    ]);
+interface DeclineAptDTO {
+    aptDid: number;
+    location: string;
+    subLocation: string;
+    deAptName: string;
+    deAptArea: number;
+    deAptSquareFootage: number;
+    deAptContractDate: string;
+    deAptContractPrice: number;
+    deAptFloor: number;
+    deAptRentType: string;
+}
 
-    const [ locationList, setLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ subLocationList, setSubLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ selectLocation, setSelectLocation ] = useState<number>(0);
-    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+interface HouseDetailRecentlyDownFallAptProps {
+    locationList: string[];
+}
+
+const HouseDetailRecentlyDownFallApt: React.FC<HouseDetailRecentlyDownFallAptProps> = ({
+    locationList
+}) => {
+    const [ recentlyDownFailAptList, setRecentlyDownFailAptList ] = useState<DeclineAptDTO[]>([]);
+
+    const [ subLocationList, setSubLocationList ] = useState<string[]>([]);
+    const [ dongList, setDongList ] = useState<string[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<string>("");
+    const [ selectSubLocation, setSelectSubLocation ] = useState<string>("");
+    const [ selectDong, setSelectDong ] = useState<string>("");
 
     const [ houseHoldsNumberList, setHouseHoldsNumberList ] = useState<{
         id: number,
@@ -56,19 +53,40 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
     const [ recentlyTransactionList, setRecentlyTransactionList ] = useState<{
         id: number,
         name: string
-    }[]>([]);
+    }[]>([
+        {
+            id: 7,
+            name: "최근 1주일 거래"
+        },
+        {
+            id: 14,
+            name: "최근 2주일 거래"
+        },
+        {
+            id: 31,
+            name: "최근 1달 거래"
+        },
+        {
+            id: 365,
+            name: "최근 1년 거래"
+        }
+    ]);
     const [ recentlyTransaction, setRecentlyTransaction ] = useState<number>(0);
     const [ calculatedDate, setCalculatedDate ] = useState<Date>(new Date());
     const [ aptRentType, setAptRentType ] = useState<string>("");
 
     useEffect(() => {
-        // getLocation();
-        // getRecentlyDownFailAptList();
-    }, []);
+        getRecentlyDownFailAptList();
+    }, [selectLocation, selectSubLocation, selectDong, recentlyTransaction]);
 
     useEffect(() => {
-        // getSubLocation();
-    }, [selectLocation]);
+        if (selectLocation) {
+            getSubLocation();
+            if (selectSubLocation) {
+                getDong();
+            }
+        }
+    }, [selectLocation, selectSubLocation]);
 
     useEffect(() => {
         calculateDate(recentlyTransaction);
@@ -82,25 +100,28 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
         setCalculatedDate(pastDate);
     };
 
-    const getLocation = async () => {
-        const response = await LocationApi.getLocaitonList();
-        console.log(response);
-        setLocationList(response);
-    }
-
     const getSubLocation = async () => {
-        const response = await LocationApi.getSubLocationList(selectLocation);
-        console.log(response);
+        const response = await LocationApi.getSggReal2(selectLocation);
         setSubLocationList(response);
     }
 
-    const getRecentlyDownFailAptList = async () => {
-        const response = await AptApi.getDeclineAptList(
-            0, selectLocation, selectSubLocation, houseHoldsNumber, pastTopPrice, review, aptRentType, calculatedDate
-        );
+    const getDong = async () => {
+        const response = await LocationApi.getDongReal(selectLocation + " " + selectSubLocation);
+        setDongList(response);
+    }
 
-        console.log(response);
-        setRecentlyDownFailAptList(response);
+    function formatDateToYMD(date: Date): string {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure 2 digits
+        const day = String(date.getDate()).padStart(2, '0'); // Ensure 2 digits
+    
+        return `${year}-${month}-${day}`;
+    }
+
+    const getRecentlyDownFailAptList = async () => {
+        const response = await AptApi.getDeclineAptList(1, selectLocation + " " + selectSubLocation, selectDong, formatDateToYMD(calculatedDate), formatDateToYMD(new Date()));
+
+        setRecentlyDownFailAptList(response?.data?.data?.data);
     }
 
     return (
@@ -111,23 +132,23 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                 </div>
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
-                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
-                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <SelectString optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <SelectString optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <SelectString optionName="읍/면/동" optionList={dongList} setSelectItem={setSelectDong} />
             </div>
-            <div className="select">
-                <Select optionName="세대수" optionList={houseHoldsNumberList} setSelectItem={setHouseHoldsNumber} />
-                <Select optionName="과거 최고가" optionList={pastTopPriceList} setSelectItem={setPastTopPrice} />
-                <Select optionName="전체 평점" optionList={reviewList} setSelectItem={setReview} />
-            </div>
+            {/* <div className="select">
+                <Select optionName="세대수" optionList={houseHoldsNumberList} setSelectItem={setHouseHoldsNumber} setSelectOption={null} />
+                <Select optionName="과거 최고가" optionList={pastTopPriceList} setSelectItem={setPastTopPrice} setSelectOption={null} />
+                <Select optionName="전체 평점" optionList={reviewList} setSelectItem={setReview} setSelectOption={null} />
+            </div> */}
             <div className="space-radios">
-                <div className="radio-list">
+                {/* <div className="radio-list">
                     <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("TRADING")} /> 매매</div>
                     <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("JEONSE")} /> 전세</div>
                     <div className="radio-box"><input type="radio" className="radio" onClick={() => setAptRentType("MONTHLY")} /> 월세</div>
-                </div>
+                </div> */}
                 <div className="transaction">
-                   <Select optionName="최근 1주일거래" optionList={recentlyTransactionList} setSelectItem={setRecentlyTransaction} />
+                   <Select optionName="최근 1주일 거래" optionList={recentlyTransactionList} setSelectItem={setRecentlyTransaction} setSelectOption={null} />
                 </div>
             </div>
             <div className="tables">
@@ -145,18 +166,18 @@ const HouseDetailRecentlyDownFallApt: React.FC = () => {
                             {recentlyDownFailAptList && recentlyDownFailAptList.map((recentlyDownFailApt, index) => (
                                 <React.Fragment key={index}>
                                     <TableRow className="table-row">
-                                        <TableCell sx={{ textAlign: "center" }} rowSpan={4} className="table-cell">{recentlyDownFailApt.name} 416세대</TableCell>
-                                        <TableCell sx={{ textAlign: "center" }} rowSpan={4} className="table-cell">{recentlyDownFailApt.size}</TableCell>
+                                        <TableCell sx={{ textAlign: "center" }} rowSpan={4} className="table-cell">{recentlyDownFailApt?.deAptName}</TableCell>
+                                        <TableCell sx={{ textAlign: "center" }} rowSpan={4} className="table-cell">{recentlyDownFailApt?.deAptSquareFootage}평</TableCell>
                                     </TableRow>
                                     <TableRow className="table-row">
-                                        <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt.date1}</TableCell>
-                                        <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt.price1}</TableCell>
+                                        <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt?.deAptContractDate}</TableCell>
+                                        <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt?.deAptContractPrice}</TableCell>
                                     </TableRow>
-                                    <TableRow className="table-row">
+                                    {/* <TableRow className="table-row">
                                         <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt.date2}</TableCell>
                                         <TableCell sx={{ textAlign: "center" }} className="table-cell">{recentlyDownFailApt.price2}</TableCell>
-                                    </TableRow>
-                                    <TableCell sx={{ textAlign: "center" }} colSpan={2} className="table-cell">{recentlyDownFailApt.priceInfo}</TableCell>
+                                    </TableRow> */}
+                                    {/* <TableCell sx={{ textAlign: "center" }} colSpan={2} className="table-cell">{recentlyDownFailApt.priceInfo}</TableCell> */}
                                 </React.Fragment>
                             ))}
                         </TableBody>

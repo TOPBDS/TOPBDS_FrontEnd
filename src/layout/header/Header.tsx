@@ -11,13 +11,22 @@ import { useSelector } from "react-redux";
 const Header = () => {
     const navigate = useNavigate();
     const { login } = useSelector((state: any) => state.loginReducer);
+    
+    const loginCheck = () => {
+        if (login) {
+            navigate("/report");
+        } else {
+            alert("로그인 후 이용해주세요.");
+            navigate("/login");
+        }
+    }
 
     return (
         <HeaderStyle>
             <a href="/"><SLOGO className="logo" /></a>
             <HeaderMenuStyle>
                 <HeaderMenuItemStyle onClick={() => navigate("/blog")}><BLOG /></HeaderMenuItemStyle>
-                <HeaderMenuItemStyle onClick={() => navigate("/report")}><REPORT /></HeaderMenuItemStyle>
+                <HeaderMenuItemStyle onClick={() => loginCheck()}><REPORT /></HeaderMenuItemStyle>
                 {
                     login ? (
                         <HeaderMenuItemStyle onClick={() => navigate("my")}><PROFILE /></HeaderMenuItemStyle>

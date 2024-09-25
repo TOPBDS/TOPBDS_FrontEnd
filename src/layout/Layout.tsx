@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Header />
         )
       }
-      {
+      {/* {
         !pathname.includes("login") &&
         !pathname.includes("register") &&
         !pathname.includes("payment") &&
@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         !pathname.includes("report") && (
           <SubHeader />
         )
-      }
+      } */}
       {children}
     </>
   );

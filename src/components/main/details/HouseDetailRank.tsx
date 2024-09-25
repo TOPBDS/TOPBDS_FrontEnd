@@ -5,62 +5,68 @@ import { ReactComponent as HouseSearchIcon } from "../../../assets/icon/search.s
 import Select from "../../common/Select";
 import AptApi from "../../../core/apis/apt/Apt.api";
 import LocationApi from "../../../core/apis/location/Location.api";
+import { CustomSlider } from "../style/main.style";
+import SelectString from "../../common/SelectString";
 
-const HouseDetailRank: React.FC = () => {
-    const [ rankList, setRankList ] = useState<{
-        name: string,
-        location: string,
-        dong: number,
-        number: number
-    }[]>([
-        {
-            name: "아파트 이름",
-            location: "서울시 강남구 개포동",
-            dong: 74,
-            number: 6423
-        }
-    ]);
+interface RankDTO {
+    id: number;
+    sgg: string;
+    aptName: string;
+    numHouse: number;
+}
 
-    useEffect(() => {
-        // getLocation();
-        // getRankList();
-    }, []);
+interface HouseDetailRankProps {
+    locationList: string[];
+}
 
-    const [ locationList, setLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ subLocationList, setSubLocationList ] = useState<{
-        id: number,
-        name: string
-    }[]>([]);
-    const [ selectLocation, setSelectLocation ] = useState<number>(0);
-    const [ selectSubLocation, setSelectSubLocation ] = useState<number>(0);
+const HouseDetailRank: React.FC<HouseDetailRankProps> = ({
+    locationList
+}) => {
+    const [ rankList, setRankList ] = useState<RankDTO[]>([]);
 
-    const getLocation = async () => {
-        const response = await LocationApi.getLocaitonList();
-        console.log(response);
-        setLocationList(response);
-    }
+    const [ subLocationList, setSubLocationList ] = useState<string[]>([]);
+    const [ selectLocation, setSelectLocation ] = useState<string>("");
+    const [ selectSubLocation, setSelectSubLocation ] = useState<string>("");
 
     const getSubLocation = async () => {
-        const response = await LocationApi.getSubLocationList(selectLocation);
-        console.log(response);
+        const response = await LocationApi.getSggLargeComplex2(selectLocation);
         setSubLocationList(response);
     }
 
     useEffect(() => {
-        // getSubLocation();
+        if (selectLocation) {
+            getSubLocation();
+        }
     }, [selectLocation]);
 
     const [ aptName, setAptName ] = useState<string>("");
 
     const getRankList = async () => {
-        const response = await AptApi.getLargeComplexList(0, selectLocation, selectSubLocation, 0, aptName, '');
+        const response = await AptApi.getLargeComplexList(1, selectLocation + " " + selectSubLocation, aptName, String(numberRangeValue[0]), String(numberRangeValue[1]));
 
-        console.log(response);
-        setRankList(response); 
+        setRankList(response?.data?.data?.data); 
     }
+
+    const [numberRangeValue, setNumberRangeValue] = useState([100, 500]);
+    const handleNumberChange = (
+        event: Event,
+        newValue: number | number[],
+        activeThumb: number,
+    ) => {
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setNumberRangeValue([Math.min(newValue[0], numberRangeValue[1] - 10), numberRangeValue[1]]);
+        } else {
+            setNumberRangeValue([numberRangeValue[0], Math.max(newValue[1], numberRangeValue[0] + 10)]);
+        }
+    };
+
+    useEffect(() => {
+        getRankList();
+    }, [selectLocation, selectSubLocation, aptName, numberRangeValue]);
 
     return (
         <HouseDetailRankStyle>
@@ -82,17 +88,19 @@ const HouseDetailRank: React.FC = () => {
                 </div> */}
             </div>
             <div className="select">
-                <Select optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
-                <Select optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
-                <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                <SelectString optionName="도시" optionList={locationList} setSelectItem={setSelectLocation} />
+                <SelectString optionName="시군구" optionList={subLocationList} setSelectItem={setSelectSubLocation} />
+                {/* <Select optionName="읍/면/동" optionList={subLocationList} setSelectItem={setSelectSubLocation} setSelectOption={null} /> */}
             </div>
             <div className="range">
                 <h3>세대수</h3>
-                <input
-                    type="range"
-                    className="range-date"
-                    min="100"
-                    max="500"
+                <CustomSlider
+                    min={100}
+                    max={500}
+                    value={numberRangeValue}
+                    onChange={handleNumberChange}
+                    valueLabelDisplay="auto"
+                    disableSwap
                 />
                 <div className="range-labels">
                     <span>100</span>
@@ -107,11 +115,11 @@ const HouseDetailRank: React.FC = () => {
                     <div className="item">
                         <span className="rank">{index + 1}</span>
                         <div className="info">
-                            <span>{rank.name}</span>
-                            <span className="address">{rank.location}</span>
+                            <span>{rank?.aptName}</span>
+                            <span className="address">{rank?.sgg}</span>
                         </div>
-                        <span>{rank.dong}개동</span>
-                        <span>{rank.number}세대</span>
+                        {/* <span>{rank.dong}개동</span> */}
+                        <span>{rank?.numHouse}세대</span>
                     </div>
                 )}
             </div>
